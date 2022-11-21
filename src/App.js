@@ -1,8 +1,11 @@
 import React from 'react'
+import RouteConfig from './routers/RouteConfig'
 
 const App = () => {
   return (
-    <div>App</div>
+    <div className='App'>
+      <RouteConfig />
+    </div>
   )
 }
 
