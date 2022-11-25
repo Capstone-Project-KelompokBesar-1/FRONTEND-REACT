@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "AVENIR";
+  src: url("../src/assets/fonts/Avenir\ Regular.ttf") format("truetype");
+  
+  font-family: "AVENIR-BLACK";
+  src: url("../src/assets/fonts/Avenir\ Black.ttf") format("truetype");
+  
+  font-family: "AVENIR-HEAVY";
+  src: url("../src/assets/fonts/Avenir\ Heavy.ttf") format("truetype");
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
