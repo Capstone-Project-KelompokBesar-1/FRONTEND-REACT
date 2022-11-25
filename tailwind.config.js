@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx}",
-  ],
+  content: ["./src/**/*.{js,jsx}"],
   theme: {
     screens: {
       tablet: "926px",
@@ -13,48 +11,7 @@ module.exports = {
       xl: "1280px",
       "2xl": "1536px",
     },
-    colors: {
-      
-      transparent: "transparent",
-      current: "currentColor",
 
-      primary : {
-        100: "#fcddcc",
-        500: "#cf0a0a",
-        700: "#95051d",
-      },
-      success: {
-        100: "#ebfacf",
-        500: "#56aa19",
-        700: "#2e7a0c",
-      },
-      info: {
-        100: "#c8faf5",
-        500: "#004b73",
-      },
-      warning: {
-        100: "#fcfccb",
-        500: "#c4c407",
-        700: "#8d8d03",
-      },
-      danger: {
-        100: "#fce6cf",
-        500: "#cc3d16",
-        700: "#92140b",
-      },
-      netral: {
-        background: "#FFFFFF",
-        outline: "#CCCCCC",
-        teksgray: "#666666",
-        teks: "#1A1A1A",
-        teksForm: "#999999",
-      },
-      web: {
-        background: "#F6F5FA",
-        
-      }
-
-    },
     spacing: {
       px: "1px",
       0: "0px",
@@ -94,9 +51,49 @@ module.exports = {
       96: "24rem",
     },
     boxShadow: {
-      default: "0px 4px 8px rgba(0, 0, 0, 0.12);"
+      default: "0px 4px 8px rgba(0, 0, 0, 0.12);",
     },
-    extend: {},
+    extend: {
+      colors: {
+        transparent: "transparent",
+        current: "currentColor",
+
+        primary: {
+          100: "#fcddcc",
+          500: "#cf0a0a",
+          700: "#95051d",
+        },
+        success: {
+          100: "#ebfacf",
+          500: "#56aa19",
+          700: "#2e7a0c",
+        },
+        info: {
+          100: "#c8faf5",
+          500: "#004b73",
+        },
+        warning: {
+          100: "#fcfccb",
+          500: "#c4c407",
+          700: "#8d8d03",
+        },
+        danger: {
+          100: "#fce6cf",
+          500: "#cc3d16",
+          700: "#92140b",
+        },
+        netral: {
+          background: "#FFFFFF",
+          outline: "#CCCCCC",
+          teksgray: "#666666",
+          teks: "#1A1A1A",
+          teksForm: "#999999",
+        },
+        web: {
+          background: "#F6F5FA",
+        },
+      },
+    },
+    plugins: [],
   },
-  plugins: [],
-}
+};
