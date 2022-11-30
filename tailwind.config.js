@@ -11,45 +11,6 @@ module.exports = {
       xl: "1280px",
       "2xl": "1536px",
     },
-    colors: {
-      transparent: "transparent",
-      current: "currentColor",
-
-      primary: {
-        100: "#fcddcc",
-        500: "#cf0a0a",
-        700: "#95051d",
-      },
-      success: {
-        100: "#ebfacf",
-        500: "#56aa19",
-        700: "#2e7a0c",
-      },
-      info: {
-        100: "#c8faf5",
-        500: "#004b73",
-      },
-      warning: {
-        100: "#fcfccb",
-        500: "#c4c407",
-        700: "#8d8d03",
-      },
-      danger: {
-        100: "#fce6cf",
-        500: "#cc3d16",
-        700: "#92140b",
-      },
-      netral: {
-        background: "#FFFFFF",
-        outline: "#CCCCCC",
-        teksgray: "#666666",
-        teks: "#1A1A1A",
-        teksForm: "#999999",
-      },
-      web: {
-        background: "#F6F5FA",
-      },
-    },
     spacing: {
       px: "1px",
       0: "0px",
@@ -96,6 +57,9 @@ module.exports = {
         avenir: ["AVENIR", "sans-serif"],
         avenirBlack: ["AVENIR-BLACK", "sans-serif"],
         avenirHeavy: ["AVENIR-HEAVY", "sans-serif"],
+        inter: ["Inter", "sans-serif"],
+        righteous: ["Righteous", "sans-serif"],
+        sourceSansPro: ["Source Sans Pro", "sans-serif"],
       },
       colors: {
         transparent: "transparent",
@@ -245,6 +209,43 @@ module.exports = {
           700: "#b83280",
           800: "#97266d",
           900: "#702459",
+        },
+        transparent: "transparent",
+        current: "currentColor",
+
+        primary: {
+          100: "#fcddcc",
+          500: "#cf0a0a",
+          700: "#95051d",
+        },
+        success: {
+          100: "#ebfacf",
+          500: "#56aa19",
+          700: "#2e7a0c",
+        },
+        info: {
+          100: "#c8faf5",
+          500: "#004b73",
+        },
+        warning: {
+          100: "#fcfccb",
+          500: "#c4c407",
+          700: "#8d8d03",
+        },
+        danger: {
+          100: "#fce6cf",
+          500: "#cc3d16",
+          700: "#92140b",
+        },
+        netral: {
+          background: "#FFFFFF",
+          outline: "#CCCCCC",
+          teksgray: "#666666",
+          teks: "#1A1A1A",
+          teksForm: "#999999",
+        },
+        web: {
+          background: "#F6F5FA",
         },
       },
     },
