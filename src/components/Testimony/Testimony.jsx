@@ -17,10 +17,10 @@ const Testimony = () => {
       {/* Mobile App  */}
       <div className="w-8/12 bg-white frame px-16 mx-auto flex">
         <div className="w-3/5">
-          <h1 className="w-11/12 text-primary-500 font-righteous text-5xl pt-20 mb-7 mr-0">
+          <h1 className="w-11/12 text-primary-500 font-avenirHeavy text-5xl pt-20 mb-7 mr-0">
             Unduh Aplikasi OurGym Jalani Olahraga Impianmu
           </h1>
-          <p className="w-10/12 text-primary-500 text-xl font-light mb-9 mr-0 font-sourceSansPro">
+          <p className="w-10/12 text-primary-500 text-xl font-light mb-9 mr-0 font-avenir">
             Aplikasi ini memberikan beberapa pilihan Kelas Olahraga terbaik
             dengan Pelatih yang profesional dan peralatan terbaik. Dapatkan
             informasi menarik lainnya dalam aplikasi kami.
