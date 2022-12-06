@@ -9,10 +9,12 @@
 @font-face {
   font-family: "AVENIR";
   src: url("../src/assets/fonts/Avenir\ Regular.ttf") format("truetype");
-
+}
+@font-face {
   font-family: "AVENIR-BLACK";
   src: url("../src/assets/fonts/Avenir\ Black.ttf") format("truetype");
-
+}
+@font-face {
   font-family: "AVENIR-HEAVY";
   src: url("../src/assets/fonts/Avenir\ Heavy.ttf") format("truetype");
 }
@@ -29,4 +31,10 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+@layer components {
+  .darkbg {
+    @apply bg-web-dark bg-gradient-to-r from-black/[0.2] to-black/[0.2];
+  }
 }
