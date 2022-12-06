@@ -1,26 +1,25 @@
 import TestimonyCard from "./TestimonyCard";
 
 import { phone1, phone2 } from "../../assets/pics";
+import { appleIcon, googlePlay } from "../../assets/icons";
 
 const Testimony = () => {
   return (
-    <div className="dark pb-28">
-      <h1 className="pt-16 text-white font-black text-center p-8 text-3xl font-avenirHeavy">
+    <div className="darkbg pb-28">
+      <h1 className="pt-16 text-white font-black text-center p-8 text-[32px] font-avenirBlack">
         Ulasan Pengguna
       </h1>
       <div className="flex my-6 justify-center">
         <TestimonyCard />
-        <TestimonyCard />
-        <TestimonyCard />
       </div>
 
       {/* Mobile App  */}
-      <div className="w-8/12 bg-white frame px-16 mx-auto flex">
-        <div className="w-3/5">
-          <h1 className="w-11/12 text-primary-500 font-avenirHeavy text-5xl pt-20 mb-7 mr-0">
+      <div className="flex w-[1202px] bg-white rounded-[64px] px-16 mx-auto mt-28">
+        <div className="w-[700px]">
+          <h1 className="w-[683px] text-primary-500 font-avenirBlack font-black text-5xl pt-20 mb-7 mr-0">
             Unduh Aplikasi OurGym Jalani Olahraga Impianmu
           </h1>
-          <p className="w-10/12 text-primary-500 text-xl font-light mb-9 mr-0 font-avenir">
+          <p className="w-[560px] text-primary-500 text-xl font-light mb-9 mr-0 font-avenir">
             Aplikasi ini memberikan beberapa pilihan Kelas Olahraga terbaik
             dengan Pelatih yang profesional dan peralatan terbaik. Dapatkan
             informasi menarik lainnya dalam aplikasi kami.
@@ -28,19 +27,21 @@ const Testimony = () => {
 
           {/* Button Download */}
           <div className="flex ml-10 gap-6">
-            <button className="appbtn flex bg-primary-500 text-white px-6 py-2">
-              <i className="w-5 h-6 p-5">A</i>
+            <button className="flex bg-primary-500 text-white px-6 py-1 items-center rounded-[50px]">
+              <img src={appleIcon} alt="" className="mb-1 mr-2" />
               <div>
-                <h6 className="text-xs text-start">Unduh di</h6>
-                <h4 className="font-semibold">Apple Store</h4>
+                <h6 className="text-[11px] text-start font-avenir">Unduh di</h6>
+                <h4 className="font-avenirHeavy">Apple Store</h4>
               </div>
             </button>
 
-            <button className="appbtn flex text-primary-500 border-2 border-primary-500 px-6 py-2">
-              <i className="w-5 h-6 p-5">G</i>
+            <button className="flex text-primary-500 border-2 border-primary-500 px-6 py-1 items-center rounded-[50px]">
+              <img src={googlePlay} alt="" className="w-7 mr-3" />
               <div>
-                <h6 className="text-xs text-start">Dapatkan dari</h6>
-                <h4 className="font-semibold">Google Play</h4>
+                <h6 className="text-[11px] text-start font-avenir">
+                  Dapatkan dari
+                </h6>
+                <h4 className="font-avenirHeavy">Google Play</h4>
               </div>
             </button>
           </div>
@@ -51,12 +52,12 @@ const Testimony = () => {
           <img
             src={phone2}
             alt="OurGym Mobile App"
-            className="w-60 object-contain relative top-14 left-5"
+            className="w-60 object-contain relative top-14"
           />
           <img
             src={phone1}
             alt="OurGym Mobile App"
-            className="w-60 object-contain relative top-20"
+            className="w-60 object-contain relative top-14 right-5"
           />
         </div>
       </div>
