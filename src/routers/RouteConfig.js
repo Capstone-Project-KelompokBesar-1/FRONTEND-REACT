@@ -12,7 +12,6 @@ const RouteConfig = () => {
           <Route path="dashboard" element>
           </Route>
         </Route>
-
         <Route path="/" element={<ProtectedRoute />}>
           <Route path="login" element />
           <Route path="register" element />
