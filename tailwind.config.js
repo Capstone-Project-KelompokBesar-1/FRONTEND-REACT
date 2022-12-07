@@ -9,9 +9,6 @@ module.exports = {
       },
 
       colors: {
-        transparent: "transparent",
-        current: "currentColor",
-
         primary: {
           100: "#fcddcc",
           500: "#cf0a0a",
@@ -38,16 +35,11 @@ module.exports = {
         },
         web: {
           background: "#F6F5FA",
-          webPrimary: "#31353D",
           dark: "#31353D",
-          background: "#F6F5FA",
           blue: "#3C444C",
         },
         spacing: {
           88: "22rem",
-        },
-        boxShadow: {
-          default: "0px 4px 8px rgba(0, 0, 0, 0.12);",
         },
         fontFamily: {
           avenir: ["AVENIR", "sans-serif"],
