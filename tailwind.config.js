@@ -43,18 +43,19 @@ module.exports = {
           background: "#F6F5FA",
           blue: "#3C444C",
         },
-      spacing: {
-        88: "22rem",
-      },
-      boxShadow: {
-        default: "0px 4px 8px rgba(0, 0, 0, 0.12);",
-      },
-      fontFamily: {
-        avenir: ["AVENIR", "sans-serif"],
-        avenirBlack: ["AVENIR-BLACK", "sans-serif"],
-        avenirHeavy: ["AVENIR-HEAVY", "sans-serif"],
+        spacing: {
+          88: "22rem",
+        },
+        boxShadow: {
+          default: "0px 4px 8px rgba(0, 0, 0, 0.12);",
+        },
+        fontFamily: {
+          avenir: ["AVENIR", "sans-serif"],
+          avenirBlack: ["AVENIR-BLACK", "sans-serif"],
+          avenirHeavy: ["AVENIR-HEAVY", "sans-serif"],
+        },
       },
     },
+    plugins: [],
   },
-  plugins: [],
 };
