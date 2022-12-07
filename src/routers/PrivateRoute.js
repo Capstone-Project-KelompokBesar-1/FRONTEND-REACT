@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import Testimony from "../components/Testimony/Testimony";
 
 const PrivateRoute = () => {
-  return (
-    <div>PrivateRoute</div>
-  )
-}
+  return <Testimony />;
+};
 
-export default PrivateRoute
+export default PrivateRoute;
