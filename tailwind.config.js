@@ -51,6 +51,7 @@ module.exports = {
         web: {
           background: "#F6F5FA",
           webPrimary: "#31353D",
+          blue: "#3C444C",
         },
         gray: {
           100: "#f9f9f9",

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
     <div>
-      <nav className='container bg-web-webPrimary w-full h-16'>
+      <nav className='container bg-web-webPrimary w-full h-16 fixed -mt-16'>
         <ul className='flex mx-14 h-16 items-center'>
           <li className='font-avenirHeavy text-primary-500 text-2xl mr-6'>OurGym</li>
           <li className='menu-nav-landing'><Link>Beranda</Link></li>

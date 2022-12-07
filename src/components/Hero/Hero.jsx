@@ -7,7 +7,7 @@ import gplayIcon from '../../assets/icons/google-play-red.svg';
 const Hero = () => {
   return (
     <div>
-      <div className='h-screen bg-gradient-to-tr from-primary-500 to-black flex'>
+      <div className='h-screen bg-gradient-to-tr from-primary-500 to-black flex mt-16'>
         <img src={heroImage} alt="heroImage" className='h-screen' />
         <div className='w-1/2 self-center'>
           <h1 className='text-white text-5xl font-bold leading-relaxed'>Mulai Aktivitas Olahragamu Sekarang!</h1>
