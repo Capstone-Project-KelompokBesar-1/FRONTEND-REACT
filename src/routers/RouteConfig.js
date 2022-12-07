@@ -8,14 +8,15 @@ const RouteConfig = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LandingPage />}>
-          <Route path="dashboard" element={<LandingPage />}>
+        {/* <Route path="/" element={<PrivateRoute />}>
+          <Route path="dashboard" element>
           </Route>
         </Route>
         <Route path="/" element={<ProtectedRoute />}>
           <Route path="login" element />
           <Route path="register" element />
-        </Route>
+        </Route> */}
+        <Route path="/" element={<LandingPage />} />
       </Routes>
     </BrowserRouter>
   );
