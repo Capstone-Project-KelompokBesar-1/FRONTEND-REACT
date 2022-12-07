@@ -2,30 +2,17 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx}"],
   theme: {
-    screens: {
-      tablet: "926px",
-      desktop: "1440px",
-      sm: "640px",
-      md: "768px",
-      lg: "1024px",
-      xl: "1280px",
-      "2xl": "1536px",
-    },
-    boxShadow: {
-      default: "0px 4px 8px rgba(0, 0, 0, 0.12);",
-    },
     extend: {
-      spacing: {
-        88: "22rem",
+      screens: {
+        tablet: "926px",
+        desktop: "1440px",
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
+        2xl: "1536px",
       },
-      fontFamily: {
-        avenir: ["AVENIR", "sans-serif"],
-        avenirBlack: ["AVENIR-BLACK", "sans-serif"],
-        avenirHeavy: ["AVENIR-HEAVY", "sans-serif"],
-        inter: ["Inter", "sans-serif"],
-        righteous: ["Righteous", "sans-serif"],
-        sourceSansPro: ["Source Sans Pro", "sans-serif"],
-      },
+
       colors: {
         transparent: "transparent",
         current: "currentColor",
@@ -56,8 +43,21 @@ module.exports = {
         },
         web: {
           background: "#F6F5FA",
+          webPrimary: "#31353D",
           dark: "#31353D",
+          background: "#F6F5FA",
+          blue: "#3C444C",
         },
+      spacing: {
+        88: "22rem",
+      },
+      boxShadow: {
+        default: "0px 4px 8px rgba(0, 0, 0, 0.12);",
+      },
+      fontFamily: {
+        avenir: ["AVENIR", "sans-serif"],
+        avenirBlack: ["AVENIR-BLACK", "sans-serif"],
+        avenirHeavy: ["AVENIR-HEAVY", "sans-serif"],
       },
     },
   },

@@ -6,6 +6,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .menu-nav-landing {
+    @apply text-web-background text-sm ml-10 font-medium flex-col
+  }
+  
+  .darkbg {
+    @apply bg-web-dark bg-gradient-to-r from-black/[0.2] to-black/[0.2];
+  }
+}
+
 @font-face {
   font-family: "AVENIR";
   src: url("../src/assets/fonts/Avenir\ Regular.ttf") format("truetype");
@@ -31,10 +41,3 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-
-@layer components {
-  .darkbg {
-    @apply bg-web-dark bg-gradient-to-r from-black/[0.2] to-black/[0.2];
-  }
-}
