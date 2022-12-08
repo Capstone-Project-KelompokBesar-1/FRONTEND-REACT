@@ -1,5 +1,5 @@
 import React from "react";
-import Testimony from "../components/Testimony/Testimony";
+import Testimony from "../components/LandingPage/Testimony";
 
 const PrivateRoute = () => {
   return <Testimony />;
