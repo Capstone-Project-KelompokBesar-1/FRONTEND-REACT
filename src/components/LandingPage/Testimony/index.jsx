@@ -1,9 +1,9 @@
 import TestimonyCard from "./TestimonyCard";
 
-import { phone1, phone2 } from "../../assets/pics";
-import { appleIcon, googlePlay } from "../../assets/icons";
+import { phone1, phone2 } from "../../../assets/pics";
+import { appleIcon, googlePlay } from "../../../assets/icons";
 
-const Testimony = () => {
+export default () => {
   return (
     <div className="darkbg pb-28">
       <h1 className="pt-16 text-white font-black text-center p-8 text-[32px] font-avenirBlack">
@@ -64,5 +64,3 @@ const Testimony = () => {
     </div>
   );
 };
-
-export default Testimony;
