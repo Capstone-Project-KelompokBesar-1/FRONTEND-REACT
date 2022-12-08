@@ -2,11 +2,10 @@ import React from 'react'
 import iconLocation from '../../../assets/icons/location-white.svg'
 import iconPhone from '../../../assets/icons/phone.svg'
 import iconMail from '../../../assets/icons/mail.svg'
-import Footer from '../Footer/Footer'
 
 const Contact = () => {
   return (
-    <div className='h-[1358px] bg-gradient-to-r from-primary-500 to-web-blue text-white'>
+    <div className='h-[1200px] bg-gradient-to-r from-primary-500 to-web-blue text-white'>
       <h2 className='text-center font-avenirBlack text-3xl pt-16 pb-14'>Kontak</h2>
       <div className='flex mx-32'>
         <ul className='w-1/2'>
