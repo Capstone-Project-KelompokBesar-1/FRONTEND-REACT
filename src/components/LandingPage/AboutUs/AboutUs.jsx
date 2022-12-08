@@ -1,5 +1,6 @@
 import React from 'react'
 import AboutUsImage from '../../../assets/img/2. gym.png'
+import StatsAboutUs from './StatsAboutUs'
 
 const AboutUs = () => {
   return (
@@ -15,20 +16,7 @@ const AboutUs = () => {
         </div>
         <img src={AboutUsImage} alt="AboutUsImage" className='h-screen' />
       </div>
-      <div className='bg-gradient-to-r from-primary-500 to-web-blue flex h-52 justify-evenly text-white font-avenirHeavy text-center text-3xl items-center'>
-        <div>
-          <p className='mb-3'>000</p>
-          <p>ANGGOTA</p>
-        </div>
-        <div>
-          <p className='mb-3'>00</p>
-          <p>KELAS</p>
-        </div>
-        <div>
-          <p className='mb-3'>00</p>
-          <p>PELATIH</p>
-        </div>
-      </div>
+      <StatsAboutUs />
     </div>
   )
 }
