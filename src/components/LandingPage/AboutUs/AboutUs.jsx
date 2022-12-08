@@ -4,7 +4,7 @@ import AboutUsImage from '../../../assets/img/2. gym.png'
 const AboutUs = () => {
   return (
     <div>
-      <div className='bg-web-dark h-screen flex'>
+      <div className='darkbg h-screen flex'>
         <div className='w-auto h-screen flex justify-center'>
           <div className='text-white w-8/12 h-screen flex items-center'>
             <div>
@@ -15,7 +15,7 @@ const AboutUs = () => {
         </div>
         <img src={AboutUsImage} alt="AboutUsImage" className='h-screen' />
       </div>
-      <div className='stat bg-gradient-to-r from-primary-500 to-web-blue flex h-52 justify-evenly text-white font-avenirHeavy text-center text-3xl items-center'>
+      <div className='bg-gradient-to-r from-primary-500 to-web-blue flex h-52 justify-evenly text-white font-avenirHeavy text-center text-3xl items-center'>
         <div>
           <p className='mb-3'>000</p>
           <p>ANGGOTA</p>
