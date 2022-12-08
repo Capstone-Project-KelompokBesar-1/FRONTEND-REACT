@@ -1,6 +1,6 @@
 import { superAdminIcon, menuDashboardIcon } from "../../assets/icons";
 
-const Navbar = () => {
+const DashboardNavbar = () => {
   return (
     <nav className="darkbg flex items-center">
       <h1>OurGym</h1>
@@ -16,4 +16,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default DashboardNavbar;
