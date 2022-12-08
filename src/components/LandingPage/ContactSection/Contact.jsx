@@ -21,7 +21,7 @@ const Contact = () => {
           <button className='w-36 h-14 bg-primary-500 shadow-md rounded-lg'>Kirim</button>
         </div>
       </div>
-      <iframe className='w-[1159px] h-[468px] rounded-lg flex mx-auto mt-24' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15804.631965068473!2d112.62205652411063!3d-7.982614408013226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd628181bac60c7%3A0xe71f0ef69b3810b4!2sAlun-Alun%20Kota%20Malang!5e0!3m2!1sid!2sid!4v1670519088021!5m2!1sid!2sid" title='mapsWeb'></iframe>
+      <iframe className='w-[1159px] h-[468px] rounded-lg flex mx-auto mt-24' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2469.3027018207645!2d-0.44712338433286736!3d51.764073179678135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487641339c96c6ab%3A0x7ba82f0926ed326b!2sOur%20Gym!5e0!3m2!1sid!2sid!4v1670537180065!5m2!1sid!2sid" title='mapsWeb'></iframe>
     </div>
   )
 }
