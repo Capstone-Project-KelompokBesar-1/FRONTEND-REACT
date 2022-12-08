@@ -1,8 +1,9 @@
 import React from "react";
-import Testimony from "../components/LandingPage/Testimony";
 
 const PrivateRoute = () => {
-  return <Testimony />;
+  return (
+    <div>s</div>
+  );
 };
 
 export default PrivateRoute;

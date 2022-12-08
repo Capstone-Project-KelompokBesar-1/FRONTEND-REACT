@@ -1,10 +1,10 @@
 import React from 'react'
-import AboutUsImage from '../../assets/img/2. gym.png'
+import AboutUsImage from '../../../assets/img/2. gym.png'
 
 const AboutUs = () => {
   return (
     <div>
-      <div className='bg-web-webPrimary h-screen flex'>
+      <div className='bg-web-dark h-screen flex'>
         <div className='w-auto h-screen flex justify-center'>
           <div className='text-white w-8/12 h-screen flex items-center'>
             <div>

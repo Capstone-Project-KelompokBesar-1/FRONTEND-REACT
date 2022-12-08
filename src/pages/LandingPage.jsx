@@ -1,24 +1,20 @@
 import React from "react";
+import AboutUs from "../components/LandingPage/AboutUs/AboutUs";
+import Contact from "../components/LandingPage/ContactSection/Contact";
+import Footer from "../components/LandingPage/Footer/Footer";
+import Hero from "../components/LandingPage/Hero/Hero";
+import Navbar from "../components/LandingPage/LandingPageNavbar/LandingPageNavbar";
+import Testimony from "../components/LandingPage/Testimony/Testimony";
 
 const LandingPage = () => {
   return (
-    <div className="landing__page">
-      <section className="hero__section">
-        <div className="hero__container"> tes</div>
-      </section>
-
-      <section className="about__section">
-        <div className="about__container">tes</div>
-      </section>
-
-      <section className="review__section">
-        <div className="review__container">tes</div>
-      </section>
-
-      <section className="contact__section">
-        <div className="contact__container"></div>
-      </section>
-
+    <div>
+      <Navbar />
+      <Hero />
+      <AboutUs />
+      <Testimony />
+      <Contact />
+      <Footer />
     </div>
   );
 };
