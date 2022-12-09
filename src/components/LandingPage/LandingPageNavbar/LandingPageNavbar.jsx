@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <div>
-      <nav className="container darkbg w-full h-16 fixed -mt-16 z-10">
+      <nav className="container bg-web-dark w-full h-16 fixed -mt-16">
         <ul className="flex mx-14 h-16 items-center">
           <li className="font-avenirHeavy text-primary-500 text-2xl mr-6">
             OurGym
