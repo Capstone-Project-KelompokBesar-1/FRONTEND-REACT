@@ -26,10 +26,13 @@ module.exports = {
         },
         success: {
           100: "#ebfacf",
-          500: "#22b542",
+          500: "#56aa19",
           700: "#2e7a0c",
         },
-        info: "#029BED",
+        info: {
+          100: "#c8faf5",
+          500: "#004b73",
+        },
         warning: "#B37600",
         danger: {
           100: "#fce6cf",
