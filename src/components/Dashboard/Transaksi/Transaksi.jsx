@@ -69,16 +69,20 @@ const Transaksi = () => {
               <td className="py-4 px-6">Alfamart</td>
               <td className="py-4 px-6">BERHASIL</td>
               <td className="py-4 px-6 text-center">
-                <img
-                  src={editIcon}
-                  alt="Edit"
-                  className="w-5 inline-block mr-5"
-                />
-                <img
-                  src={deleteIcon}
-                  alt="Delete"
-                  className="w-5 inline-block"
-                />
+                <button>
+                  <img
+                    src={editIcon}
+                    alt="Edit"
+                    className="w-5 inline-block mr-5"
+                  />
+                </button>
+                <button>
+                  <img
+                    src={deleteIcon}
+                    alt="Delete"
+                    className="w-5 inline-block"
+                  />
+                </button>
               </td>
             </tr>
           </tbody>
