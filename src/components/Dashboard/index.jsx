@@ -1,6 +1,14 @@
+import DashboardNavbar from "./DashboardNavbar";
+import MainMenu from "./MainMenu";
+import Sidebar from "./Sidebar";
+
 const Dashboard = () => {
   return (
-    <div className="">INI KOMPONEN NAVBAR BUAT DASBORD YG NGERJAIN PAUJUL</div>
+    <>
+      <DashboardNavbar />
+      <Sidebar />
+      <MainMenu />
+    </>
   );
 };
 
