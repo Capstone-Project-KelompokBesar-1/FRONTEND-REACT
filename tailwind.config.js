@@ -8,6 +8,12 @@ module.exports = {
         desktop: "1440px",
       },
 
+      fontFamily: {
+        avenir: ["AVENIR", "sans-serif"],
+        avenirBlack: ["AVENIR-BLACK", "sans-serif"],
+        avenirHeavy: ["AVENIR-HEAVY", "sans-serif"],
+      },
+
       colors: {
         primary: {
           100: "#fcddcc",
@@ -23,11 +29,7 @@ module.exports = {
           100: "#c8faf5",
           500: "#004b73",
         },
-        warning: {
-          100: "#fcfccb",
-          500: "#c4c407",
-          700: "#8d8d03",
-        },
+        warning: "#B37600",
         danger: {
           100: "#fce6cf",
           500: "#cc3d16",
@@ -40,11 +42,6 @@ module.exports = {
         },
         spacing: {
           88: "22rem",
-        },
-        fontFamily: {
-          avenir: ["AVENIR", "sans-serif"],
-          avenirBlack: ["AVENIR-BLACK", "sans-serif"],
-          avenirHeavy: ["AVENIR-HEAVY", "sans-serif"],
         },
       },
     },
