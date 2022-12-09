@@ -1,8 +1,11 @@
 import React from 'react'
+import 
 
 const Kelas = () => {
   return (
-    <div>Kelas</div>
+    <div className='mt-[100px] ml-16'>
+      kelas
+    </div>
   )
 }
 
