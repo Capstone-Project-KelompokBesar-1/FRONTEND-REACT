@@ -8,6 +8,10 @@ module.exports = {
         desktop: "1440px",
       },
 
+      spacing: {
+        88: "22rem",
+      },
+
       fontFamily: {
         avenir: ["AVENIR", "sans-serif"],
         avenirBlack: ["AVENIR-BLACK", "sans-serif"],
@@ -36,9 +40,6 @@ module.exports = {
           background: "#F6F5FA",
           dark: "#31353D",
           blue: "#3C444C",
-        },
-        spacing: {
-          88: "22rem",
         },
       },
     },

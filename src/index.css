@@ -20,10 +20,12 @@
   font-family: "AVENIR";
   src: url("../src/assets/fonts/Avenir\ Regular.ttf") format("truetype");
 }
+
 @font-face {
   font-family: "AVENIR-BLACK";
   src: url("../src/assets/fonts/Avenir\ Black.ttf") format("truetype");
 }
+
 @font-face {
   font-family: "AVENIR-HEAVY";
   src: url("../src/assets/fonts/Avenir\ Heavy.ttf") format("truetype");
