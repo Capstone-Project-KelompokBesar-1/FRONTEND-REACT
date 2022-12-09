@@ -6,12 +6,12 @@ import {
   deleteIcon,
 } from "../../../assets/icons";
 
-const Kelas = () => {
+const Transaksi = () => {
   return (
     <div className="ml-[292px] mt-6 mr-9">
       <div className="flex justify-between">
         <h1 className="font-avenirBlack text-black text-[40px]">
-          DATA ANGGOTA
+          DATA TRANSAKSI
         </h1>
         <i className="mt-[71px]">
           <img
@@ -51,21 +51,23 @@ const Kelas = () => {
         <table>
           <thead className="uppercase bg-primary-700 text-left">
             <tr className="text-white">
-              <th className="py-4 px-6 w-5"><input type="checkbox" /></th>
-              <th className="py-4 px-6 w-80 mr-12">NAMA KELAS</th>
-              <th className="py-4 px-6 w-96 mr-12">JENIS KELAS</th>
-              <th className="py-4 px-6 w-72 mr-12">KATEGORI KELAS</th>
-              <th className="py-4 px-6 w-96 mr-12">HARGA</th>
+              <th className="py-4 px-6 w-5 mr-12"><input type="checkbox" /></th>
+              <th className="py-4 px-6 w-80 mr-12">ID PEMBAYARAN</th>
+              <th className="py-4 px-6 w-96 mr-12">WAKTU PEMBAYARAN</th>
+              <th className="py-4 px-6 w-72 mr-12">TOTAL BAYAR</th>
+              <th className="py-4 px-6 w-96 mr-12">METODE BAYAR</th>
+              <th className="py-4 px-6 w-96 mr-12">STATUS PEMBAYARAN</th>
               <th className="py-4 px-6 w-52 mr-12 text-center">TINDAKAN</th>
             </tr>
           </thead>
           <tbody className="font-avenirHeavy text-web-dark">
             <tr>
               <td className="py-4 px-6"><input type="checkbox" /></td>
-              <td className="py-4 px-6">Yoga untuk Pemula</td>
-              <td className="py-4 px-6">OFFLINE</td>
-              <td className="py-4 px-6">Pikiran dan Tubuh</td>
-              <td className="py-4 px-6">125.000</td>
+              <td className="py-4 px-6">OFFCLASS001</td>
+              <td className="py-4 px-6">26 Nov 2022 17:30</td>
+              <td className="py-4 px-6">325.000</td>
+              <td className="py-4 px-6">Alfamart</td>
+              <td className="py-4 px-6">BERHASIL</td>
               <td className="py-4 px-6 text-center">
                 <img
                   src={editIcon}
@@ -86,4 +88,4 @@ const Kelas = () => {
   )
 }
 
-export default Kelas
+export default Transaksi
