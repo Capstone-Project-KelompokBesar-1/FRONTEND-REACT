@@ -2,7 +2,7 @@ import { superAdminIcon, loncengIcon, angleDownIcon } from "../../assets/icons";
 
 const DashboardNavbar = () => {
   return (
-    <nav className="darkbg flex items-center justify-between h-[100px]">
+    <nav className="fixed darkbg flex items-center justify-between h-[100px] w-full">
       <h1 className="font-avenirBlack text-primary-500 text-[32px] ml-14">
         OurGym
       </h1>
