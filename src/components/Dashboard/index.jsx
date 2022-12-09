@@ -1,3 +1,4 @@
+import Anggota from "./Anggota";
 import DashboardNavbar from "./DashboardNavbar";
 import MainMenu from "./MainMenu";
 import Sidebar from "./Sidebar";
@@ -7,7 +8,7 @@ const Dashboard = () => {
     <>
       <DashboardNavbar />
       <Sidebar />
-      <MainMenu />
+      <Anggota />
     </>
   );
 };

@@ -1,10 +1,12 @@
 import Transaksi from "./Transaksi";
+import Sidebar from "../Sidebar";
 
-import { anggotaDashBoardIcon, calenderIcon } from "../../assets/icons";
+import { anggotaDashBoardIcon, calenderIcon } from "../../../assets/icons";
 
-const MainMenu = () => {
+export default () => {
   return (
-    <div className="">
+    <>
+      <Sidebar />
       <div className="ml-[292px] mt-6 mr-9">
         <div className="flex justify-between">
           <h1 className="font-avenirBlack text-black text-[40px]">Dashboard</h1>
@@ -75,8 +77,6 @@ const MainMenu = () => {
 
         <Transaksi />
       </div>
-    </div>
+    </>
   );
 };
-
-export default MainMenu;
