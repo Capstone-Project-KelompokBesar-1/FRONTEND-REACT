@@ -1,7 +1,9 @@
-const Dashboard = () => {
+const Dashboardindex = () => {
   return (
-    <div className="">INI KOMPONEN NAVBAR BUAT DASBORD YG NGERJAIN PAUJUL</div>
+    <div className="">
+      Dashboardindex
+    </div>
   );
 };
 
-export default Dashboard;
+export default Dashboardindex;
