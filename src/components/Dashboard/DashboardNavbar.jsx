@@ -1,4 +1,11 @@
-import { superAdminIcon, loncengIcon, angleDownIcon } from "../../assets/icons";
+import {
+  superAdminIcon,
+  loncengIcon,
+  angleDownIcon,
+  LoncengIcon,
+  SuperAdminIcon,
+  AngleDownIcon,
+} from "../../assets/icons";
 
 const DashboardNavbar = () => {
   return (
@@ -8,13 +15,13 @@ const DashboardNavbar = () => {
       </h1>
       <div className="flex items-center pr-16">
         <i>
-          <img src={loncengIcon} alt="Menu" className="w-9 mr-3" />
+          <LoncengIcon className="w-9 mr-3" />
         </i>
         <i>
-          <img src={superAdminIcon} alt="Admin Avatar" className="w-9 mr-3" />
+          <SuperAdminIcon className="w-9 mr-3" />
         </i>
         <i>
-          <img src={angleDownIcon} alt="Admin Avatar" className="w-5" />
+          <AngleDownIcon className="w-5" />
         </i>
       </div>
     </nav>

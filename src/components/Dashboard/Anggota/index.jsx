@@ -1,11 +1,17 @@
-import {
-  calenderIcon,
-  searchIcon,
-  editIcon,
-  deleteIcon,
-} from "../../../assets/icons";
+// import {
+//   calenderIcon,
+//   searchIcon,
+//   editIcon,
+//   deleteIcon,
+//   CalenderIcon,
+// } from "../../../assets/icons";
 
-import { ReactComponent as EditIcon } from "../../../assets/icons/edit.svg";
+import {
+  EditIcon,
+  CalenderIcon,
+  DeleteIcon,
+  SearchIcon,
+} from "../../../assets/icons";
 
 import { BiCheckbox, BiCheckboxSquare } from "react-icons/bi";
 
@@ -17,12 +23,9 @@ export default () => {
           <h1 className="font-avenirBlack text-black text-[40px]">
             DATA ANGGOTA
           </h1>
+
           <i className="mt-[71px]">
-            <img
-              src={calenderIcon}
-              alt="Date Icon"
-              className="w-4 inline mr-1"
-            />
+            <CalenderIcon className="w-4 h-4 inline mr-1" />
             <p className="inline not-italic">Rabu, 30 November 2022</p>
           </i>
         </div>
@@ -34,11 +37,7 @@ export default () => {
               className="w-80 h-11 border-2 border-primary-500 rounded-[60px] p-5"
               placeholder="Pencarian"
             />
-            <img
-              src={searchIcon}
-              alt="Search Icon"
-              className="relative w-4 -top-[30px] left-[285px]"
-            />
+            <SearchIcon className="relative w-4 h-4 -top-[30px] left-[285px]" />
           </div>
 
           <div className="tableButton flex gap-2 text-black text-[10px]">
@@ -70,7 +69,7 @@ export default () => {
             </thead>
             <tbody className="font-avenirHeavy text-web-dark">
               <tr>
-                <td className="py-3 px-4 text-3xl">
+                <td className="py-4 px-4 text-3xl">
                   <BiCheckboxSquare />
                 </td>
                 <td className="py-4 px-6">Hamidun</td>
@@ -78,12 +77,12 @@ export default () => {
                 <td className="py-4 px-6">08123456789</td>
                 <td className="py-4 px-6">Jl. Raya Cibaduyut No. 1</td>
                 <td className="py-4 px-6 text-center">
-                  <EditIcon className="w-5 inline-block mr-5" />
-                  <img
-                    src={deleteIcon}
-                    alt="Delete"
-                    className="w-5 inline-block"
-                  />
+                  <div className="p-2 bg-info-700 w-10 rounded-[3px] inline-block mr-3">
+                    <EditIcon className="w-6 h-6 inline-block" fill="white" />
+                  </div>
+                  <div className="p-2 bg-primary-700 w-10 rounded-[3px] inline-block">
+                    <DeleteIcon className="w-5 h-6 inline-block" />
+                  </div>
                 </td>
               </tr>
             </tbody>
