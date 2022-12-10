@@ -5,6 +5,10 @@ import {
   deleteIcon,
 } from "../../../assets/icons";
 
+import { ReactComponent as EditIcon } from "../../../assets/icons/edit.svg";
+
+import { BiCheckbox, BiCheckboxSquare } from "react-icons/bi";
+
 export default () => {
   return (
     <>
@@ -41,7 +45,7 @@ export default () => {
             <button className="w-32 h-11 bg-primary-500 rounded-md shadow-md">
               Hapus yang dipilih
             </button>
-            <button className="w-[75px] h-11 bg-info rounded-md shadow-md">
+            <button className="w-[75px] h-11 bg-info-100 rounded-md shadow-md">
               Unduh
             </button>
             <button className="w-24 h-11 bg-success-500 rounded-md shadow-md">
@@ -54,7 +58,9 @@ export default () => {
           <table>
             <thead className="uppercase bg-primary-700 text-left">
               <tr className="text-white">
-                <th className="py-4 px-6 w-5 mr-12">O</th>
+                <th className="py-3 px-4 w-5 mr-12 text-3xl">
+                  <BiCheckbox />
+                </th>
                 <th className="py-4 px-6 w-80 mr-12">NAMA LENGKAP</th>
                 <th className="py-4 px-6 w-96 mr-12">EMAIL</th>
                 <th className="py-4 px-6 w-72 mr-12">NO. HANDPHONE</th>
@@ -64,17 +70,15 @@ export default () => {
             </thead>
             <tbody className="font-avenirHeavy text-web-dark">
               <tr>
-                <td className="py-4 px-6">O</td>
+                <td className="py-3 px-4 text-3xl">
+                  <BiCheckboxSquare />
+                </td>
                 <td className="py-4 px-6">Hamidun</td>
                 <td className="py-4 px-6">hamidin@mail.com</td>
                 <td className="py-4 px-6">08123456789</td>
                 <td className="py-4 px-6">Jl. Raya Cibaduyut No. 1</td>
                 <td className="py-4 px-6 text-center">
-                  <img
-                    src={editIcon}
-                    alt="Edit"
-                    className="w-5 inline-block mr-5"
-                  />
+                  <EditIcon className="w-5 inline-block mr-5" />
                   <img
                     src={deleteIcon}
                     alt="Delete"
