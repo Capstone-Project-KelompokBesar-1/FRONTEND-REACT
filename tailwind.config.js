@@ -25,7 +25,10 @@ module.exports = {
           500: "#22b542",
           700: "#2e7a0c",
         },
-        info: "#029BED",
+        info: {
+          100: "#029BED",
+          700: "#005092",
+        },
         warning: "#B37600",
         danger: {
           100: "#fce6cf",
