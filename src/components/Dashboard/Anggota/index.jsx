@@ -1,16 +1,12 @@
-// import {
-//   calenderIcon,
-//   searchIcon,
-//   editIcon,
-//   deleteIcon,
-//   CalenderIcon,
-// } from "../../../assets/icons";
+import { TbDownload } from "react-icons/tb";
 
 import {
   EditIcon,
   CalenderIcon,
   DeleteIcon,
   SearchIcon,
+  DeleteBlackIcon,
+  TambahDataIcon,
 } from "../../../assets/icons";
 
 import { BiCheckbox, BiCheckboxSquare } from "react-icons/bi";
@@ -42,13 +38,14 @@ export default () => {
 
           <div className="tableButton flex gap-2 text-black text-[10px]">
             <button className="w-32 h-11 bg-primary-500 rounded-md shadow-md">
+              <DeleteBlackIcon className="w-2 h-2 inline-block mr-1" />
               Hapus yang dipilih
             </button>
             <button className="w-[75px] h-11 bg-info-100 rounded-md shadow-md">
-              Unduh
+              <TbDownload className="inline-block mr-1" /> Unduh
             </button>
             <button className="w-24 h-11 bg-success-500 rounded-md shadow-md">
-              + Tambah Baru
+              <TambahDataIcon className="w-2 h-2 inline-block" /> Tambah Baru
             </button>
           </div>
         </div>
