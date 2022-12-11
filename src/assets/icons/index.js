@@ -2,6 +2,7 @@ import { ReactComponent as AppleIcon } from "./apple.svg";
 import { ReactComponent as BackIcon } from "./back.svg";
 import { ReactComponent as CalenderIcon } from "./calender.svg";
 import { ReactComponent as DeleteIcon } from "./delete.svg";
+import { ReactComponent as DeleteBlackIcon } from "./deleteBlack.svg";
 import { ReactComponent as EditIcon } from "./edit.svg";
 import { ReactComponent as EyeslashIcon } from "./eye-slash.svg";
 import { ReactComponent as EyeIcon } from "./eye.svg";
@@ -33,6 +34,7 @@ export {
   BackIcon,
   CalenderIcon,
   DeleteIcon,
+  DeleteBlackIcon,
   EditIcon,
   EyeslashIcon,
   EyeIcon,
