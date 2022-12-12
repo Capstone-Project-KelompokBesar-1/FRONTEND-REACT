@@ -1,6 +1,6 @@
 import React from "react";
 import AboutUs from "../../components/LandingPage/AboutUs/AboutUs";
-import Contact from "../../components/LandingPage/ContactSection/Contact";
+import Contact from "../../components/LandingPage/Contact/Contact";
 import Footer from "../../components/LandingPage/Footer/Footer";
 import Hero from "../../components/LandingPage/Hero/Hero";
 import Navbar from "../../components/LandingPage/LandingPageNavbar/LandingPageNavbar";

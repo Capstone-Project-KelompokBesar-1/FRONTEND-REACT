@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <div>
-      <nav className="container bg-web-webPrimary w-full h-16 fixed -mt-16">
+      <nav className="container darkbg w-full h-16 fixed -mt-16 z-10">
         <ul className="flex mx-14 h-16 items-center">
           <li className="font-avenirHeavy text-primary-500 text-2xl mr-6">
             OurGym
@@ -22,11 +22,9 @@ const Navbar = () => {
             <Link>Kontak</Link>
           </li>
           <li>
-            <Link>
-              <button className="bg-primary-500 text-white h-9 text-sm w-24 rounded absolute right-16 top-4">
-                Masuk
-              </button>
-            </Link>
+            <button className="bg-primary-500 text-white h-9 text-sm w-24 rounded absolute right-16 top-4">
+              Masuk
+            </button>
           </li>
         </ul>
       </nav>
