@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from "../components/LandingPage/Login/Login";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import LandingPage from "../pages/LandingPage/LandingPage";
 
@@ -15,6 +16,7 @@ const RouteConfig = () => {
           <Route path="kelas" element={<Dashboard />} />
           <Route path="transaksi" element={<Dashboard />} />
         </Route>
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

@@ -9,7 +9,7 @@ const Dashboard = () => {
     <div>
       <DashboardNavbar />
       <Sidebar />
-      {/* <Transaksi /> */}
+      <Transaksi />
     </div>
   )
 }
