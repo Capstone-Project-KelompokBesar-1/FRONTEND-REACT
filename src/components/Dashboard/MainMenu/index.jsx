@@ -1,7 +1,13 @@
 import Transaksi from "./Transaksi";
 import Sidebar from "../Sidebar";
 
-import { AnggotaDashBoardIcon, CalenderIcon } from "../../../assets/icons";
+import {
+  AnggotaDashBoardIcon,
+  CalenderIcon,
+  PelatihDashBoardIcon,
+  KelasDashBoardIcon,
+  TotalDashBoardIcon,
+} from "../../../assets/icons";
 
 export default () => {
   return (
@@ -27,29 +33,29 @@ export default () => {
             </div>
           </div>
           <div className="w-60 h-36 border-[3px] border-primary-500 rounded-lg p-3">
-            <h4 className="text-2xl ml-3">Anggota</h4>
+            <h4 className="text-2xl ml-3">Pelatih</h4>
             <div className="flex justify-between items-center mt-7">
-              <AnggotaDashBoardIcon className="w-12 h-12 inline-block ml-3" />
+              <PelatihDashBoardIcon className="w-12 h-12 inline-block ml-3" />
               <h3 className="inline-block font-avenirBlack text-5xl mr-3">
-                542
+                42
               </h3>
             </div>
           </div>
           <div className="w-60 h-36 border-[3px] border-primary-500 rounded-lg p-3">
-            <h4 className="text-2xl ml-3">Anggota</h4>
+            <h4 className="text-2xl ml-3">Kelas</h4>
             <div className="flex justify-between items-center mt-7">
-              <AnggotaDashBoardIcon className="w-12 h-12 inline-block ml-3" />
+              <KelasDashBoardIcon className="w-12 h-12 inline-block ml-3" />
               <h3 className="inline-block font-avenirBlack text-5xl mr-3">
-                542
+                65
               </h3>
             </div>
           </div>
           <div className="w-[395px] h-36 border-[3px] border-primary-500 rounded-lg p-3">
-            <h4 className="text-2xl ml-3">Anggota</h4>
+            <h4 className="text-2xl ml-3">Total Penjualan</h4>
             <div className="flex justify-between items-center mt-7">
-              <AnggotaDashBoardIcon className="w-12 h-12 inline-block ml-3" />
+              <TotalDashBoardIcon className="w-12 h-12 inline-block ml-3" />
               <h3 className="inline-block font-avenirBlack text-5xl mr-3">
-                542
+                Rp 759.000
               </h3>
             </div>
           </div>
