@@ -1,5 +1,5 @@
 import Transaksi from "./Transaksi";
-import Sidebar from "../Sidebar";
+import Sidebar from "../DashboardNavbar/Sidebar";
 
 import {
   AnggotaDashBoardIcon,

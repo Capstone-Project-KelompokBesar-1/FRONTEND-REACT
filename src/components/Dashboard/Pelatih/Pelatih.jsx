@@ -1,5 +1,4 @@
 import { TbDownload } from "react-icons/tb";
-
 import {
   EditIcon,
   CalenderIcon,
@@ -8,12 +7,11 @@ import {
   DeleteBlackIcon,
   TambahDataIcon,
 } from "../../../assets/icons";
-
 import { BiCheckbox, BiCheckboxSquare } from "react-icons/bi";
 
-export default () => {
+const Pelatih = () => {
   return (
-    <>
+    <div>
       <div className="ml-[292px] mt-6 mr-9">
         <div className="flex justify-between">
           <h1 className="font-avenirBlack text-black text-[40px]">
@@ -86,6 +84,8 @@ export default () => {
           </table>
         </div>
       </div>
-    </>
-  );
-};
+    </div>
+  )
+}
+
+export default Pelatih

@@ -1,7 +1,7 @@
 import React from 'react'
-import DashboardNavbar from '../../components/Dashboard/DashboardNavbar'
+import DashboardNavbar from '../../components/Dashboard/DashboardNavbar/DashboardNavbar'
 import Kelas from '../../components/Dashboard/Kelas/Kelas'
-import Sidebar from '../../components/Dashboard/Sidebar'
+import Sidebar from '../../components/Dashboard/DashboardNavbar/Sidebar'
 import Transaksi from '../../components/Dashboard/Transaksi/Transaksi'
 
 const Dashboard = () => {

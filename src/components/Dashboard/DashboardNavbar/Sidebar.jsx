@@ -4,7 +4,7 @@ import {
   MenuDashboardIcon,
   MenuKelasIcon,
   MenuPelatihIcon,
-} from "../../assets/icons";
+} from "../../../assets/icons";
 
 const Sidebar = () => {
   return (

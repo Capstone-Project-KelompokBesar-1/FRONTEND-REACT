@@ -5,7 +5,7 @@ import {
   LoncengIcon,
   SuperAdminIcon,
   AngleDownIcon,
-} from "../../assets/icons";
+} from "../../../assets/icons";
 
 const DashboardNavbar = () => {
   return (
