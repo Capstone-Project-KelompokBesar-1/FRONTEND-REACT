@@ -22,9 +22,11 @@ const Navbar = () => {
             <Link>Kontak</Link>
           </li>
           <li>
-            <button className="bg-primary-500 text-white h-9 text-sm w-24 rounded absolute right-16 top-4">
-              Masuk
-            </button>
+            <Link>
+              <button className="bg-primary-500 text-white h-9 text-sm w-24 rounded absolute right-16 top-4">
+                Masuk
+              </button>
+            </Link>
           </li>
         </ul>
       </nav>
