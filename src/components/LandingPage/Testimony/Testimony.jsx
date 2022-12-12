@@ -1,6 +1,6 @@
 import TestimonyCard from "./TestimonyCard";
 import { phone1, phone2 } from "../../../assets/pics";
-import { appleIcon, googlePlay } from "../../../assets/icons";
+import { AppleIcon, GooglePlay } from "../../../assets/icons";
 
 const Testimony = () => {
   return (
@@ -28,7 +28,7 @@ const Testimony = () => {
             {/* Button Download */}
             <div className="flex ml-10 gap-6">
               <button className="flex bg-primary-500 text-white px-6 py-1 items-center rounded-[50px]">
-                <img src={appleIcon} alt="" className="mb-1 mr-2" />
+                <AppleIcon className="mb-1 mr-2" />
                 <div>
                   <h6 className="text-[11px] text-start font-avenir">Unduh di</h6>
                   <h4 className="font-avenirHeavy">Apple Store</h4>
@@ -36,7 +36,7 @@ const Testimony = () => {
               </button>
 
               <button className="flex text-primary-500 border-2 border-primary-500 px-6 py-1 items-center rounded-[50px]">
-                <img src={googlePlay} alt="" className="w-7 mr-3" />
+                <GooglePlay className="w-7 mr-3" />
                 <div>
                   <h6 className="text-[11px] text-start font-avenir">
                     Dapatkan dari
