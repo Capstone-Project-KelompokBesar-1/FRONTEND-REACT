@@ -28,6 +28,9 @@ import { ReactComponent as LoncengIcon } from "./lonceng.svg";
 import { ReactComponent as AngleDownWhiteIcon } from "./angle-down-white.svg";
 import { ReactComponent as AngleDownIcon } from "./angle-down.svg";
 import { ReactComponent as AnggotaDashBoardIcon } from "./anggota-dashboard.svg";
+import { ReactComponent as PelatihDashBoardIcon } from "./pelatih-dashboard.svg";
+import { ReactComponent as KelasDashBoardIcon } from "./kelas-dashboard.svg";
+import { ReactComponent as TotalDashBoardIcon } from "./total-dashboard.svg";
 
 export {
   AppleIcon,
@@ -60,4 +63,7 @@ export {
   AngleDownWhiteIcon,
   AngleDownIcon,
   AnggotaDashBoardIcon,
+  PelatihDashBoardIcon,
+  KelasDashBoardIcon,
+  TotalDashBoardIcon,
 };
