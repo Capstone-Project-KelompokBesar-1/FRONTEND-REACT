@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import heroImage from '../../assets/img/1. landing page.png';
-import appleIcon from '../../assets/icons/apple-white.svg';
-import gplayIcon from '../../assets/icons/google-play-red.svg';
+import heroImage from '../../../assets/img/1. landing page.png';
+import appleIcon from '../../../assets/icons/apple-white.svg';
+import gplayIcon from '../../../assets/icons/google-play-red.svg';
 
 const Hero = () => {
   return (
@@ -20,7 +20,7 @@ const Hero = () => {
                 <p>Apple Store</p>
               </div>
             </Link>
-            <Link className='bg-white text-primary-500 h-14 w-44 rounded-full flex justify-center items-center border border-primary-500'>
+            <Link className='bg-white text-primary-500 h-14 w-44 rounded-full flex justify-center items-center border-2 border-primary-500'>
               <img src={gplayIcon} className='h-7 mr-2' alt="GooglePlayIcon" />
               <div>
                 <span className='text-xs'>Dapatkan dari</span>

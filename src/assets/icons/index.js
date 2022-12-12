@@ -23,6 +23,10 @@ import superAdminIcon from "./superadmin.svg";
 import tambahDataIcon from "./tambah-data.svg";
 import timeIcon from "./time.svg";
 import unggahIcon from "./unggah.svg";
+import loncengIcon from "./lonceng.svg";
+import angledownWhiteIcon from "./angle-down-white.svg";
+import angleDownIcon from "./angle-down.svg";
+import anggotaDashBoardIcon from "./anggota-dashboard.svg";
 
 export {
   appleIcon,
@@ -50,4 +54,8 @@ export {
   tambahDataIcon,
   timeIcon,
   unggahIcon,
+  loncengIcon,
+  angledownWhiteIcon,
+  angleDownIcon,
+  anggotaDashBoardIcon,
 };

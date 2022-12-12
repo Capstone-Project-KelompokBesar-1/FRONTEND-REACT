@@ -1,7 +1,7 @@
 import React from "react";
-import "./login.css";
+// import "./login.css";
 
-import { logo, phone3 } from "../../assets/pics";
+// import { logo, phone3 } from "../../assets/pics";
 
 const Login = () => {
   const handleSubmit = (e) => {
@@ -12,7 +12,7 @@ const Login = () => {
   return (
     <div className="darkbg pb-28 flex justify-center items-center">
       <div className="mr-28">
-        <img src={phone3} alt="Mobile App" className="w-[300px]" />
+        {/* <img src={phone3} alt="Mobile App" className="w-[300px]" /> */}
       </div>
       <div className="loginpage dark w-[650px] h-[730px] mt-[91px] rounded-[50px]">
         <form
@@ -22,7 +22,7 @@ const Login = () => {
           <h1 className="font-avenirHeavy text-white font-extrabold text-5xl text-center mt-[73px] mb-12">
             Selamat Datang
           </h1>
-          <img src={logo} alt="Logo" className="w-[166px] mb-12" />
+          {/* <img src={logo} alt="Logo" className="w-[166px] mb-12" /> */}
           <input
             type="text"
             placeholder="Username"
