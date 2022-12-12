@@ -1,10 +1,11 @@
 import React from "react";
-import RouteConfig from "./routers/RouteConfig";
+// import RouteConfig from "./routers/RouteConfig";
+import Dashboard from "./components/Dashboard/";
 
 const App = () => {
   return (
     <div className="App font-avenir">
-      <RouteConfig />
+      <Dashboard />
     </div>
   );
 };

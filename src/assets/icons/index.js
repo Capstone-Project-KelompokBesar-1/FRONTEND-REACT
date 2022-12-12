@@ -1,61 +1,69 @@
-import appleIcon from "./apple.svg";
-import backIcon from "./back.svg";
-import calenderIcon from "./calender.svg";
-import deleteIcon from "./delete.svg";
-import editIcon from "./edit.svg";
-import eyeslashIcon from "./eye-slash.svg";
-import eyeIcon from "./eye.svg";
-import googlePlay from "./google-play.svg";
-import locationIcon from "./location.svg";
-import logoutIcon from "./logout.svg";
-import menuAdminIcon from "./menu-admin.svg";
-import menuAnggotaIcon from "./menu-anggota.svg";
-import menuArticleIcon from "./menu-artikel.svg";
-import menuDashboardIcon from "./menu-dashboard.svg";
-import menuKelasIcon from "./menu-kelas.svg";
-import menuKontenIcon from "./menu-konten.svg";
-import menuPelatihIcon from "./menu-pelatih.svg";
-import menuPromoIcon from "./menu-promo.svg";
-import menuTroliIcon from "./menu-troli.svg";
-import nextIcon from "./next.svg";
-import searchIcon from "./search.svg";
-import superAdminIcon from "./superadmin.svg";
-import tambahDataIcon from "./tambah-data.svg";
-import timeIcon from "./time.svg";
-import unggahIcon from "./unggah.svg";
-import loncengIcon from "./lonceng.svg";
-import angledownWhiteIcon from "./angle-down-white.svg";
-import angleDownIcon from "./angle-down.svg";
-import anggotaDashBoardIcon from "./anggota-dashboard.svg";
+import { ReactComponent as AppleIcon } from "./apple.svg";
+import { ReactComponent as BackIcon } from "./back.svg";
+import { ReactComponent as CalenderIcon } from "./calender.svg";
+import { ReactComponent as DeleteIcon } from "./delete.svg";
+import { ReactComponent as DeleteBlackIcon } from "./deleteBlack.svg";
+import { ReactComponent as EditIcon } from "./edit.svg";
+import { ReactComponent as EyeslashIcon } from "./eye-slash.svg";
+import { ReactComponent as EyeIcon } from "./eye.svg";
+import { ReactComponent as GooglePlay } from "./google-play.svg";
+import { ReactComponent as LocationIcon } from "./location.svg";
+import { ReactComponent as LogoutIcon } from "./logout.svg";
+import { ReactComponent as MenuAdminIcon } from "./menu-admin.svg";
+import { ReactComponent as MenuAnggotaIcon } from "./menu-anggota.svg";
+import { ReactComponent as MenuArticleIcon } from "./menu-artikel.svg";
+import { ReactComponent as MenuDashboardIcon } from "./menu-dashboard.svg";
+import { ReactComponent as MenuKelasIcon } from "./menu-kelas.svg";
+import { ReactComponent as MenuKontenIcon } from "./menu-konten.svg";
+import { ReactComponent as MenuPelatihIcon } from "./menu-pelatih.svg";
+import { ReactComponent as MenuPromoIcon } from "./menu-promo.svg";
+import { ReactComponent as MenuTroliIcon } from "./menu-troli.svg";
+import { ReactComponent as NextIcon } from "./next.svg";
+import { ReactComponent as SearchIcon } from "./search.svg";
+import { ReactComponent as SuperAdminIcon } from "./superadmin.svg";
+import { ReactComponent as TambahDataIcon } from "./tambah-data.svg";
+import { ReactComponent as TimeIcon } from "./time.svg";
+import { ReactComponent as UnggahIcon } from "./unggah.svg";
+import { ReactComponent as LoncengIcon } from "./lonceng.svg";
+import { ReactComponent as AngleDownWhiteIcon } from "./angle-down-white.svg";
+import { ReactComponent as AngleDownIcon } from "./angle-down.svg";
+import { ReactComponent as AnggotaDashBoardIcon } from "./anggota-dashboard.svg";
+import { ReactComponent as PelatihDashBoardIcon } from "./pelatih-dashboard.svg";
+import { ReactComponent as KelasDashBoardIcon } from "./kelas-dashboard.svg";
+import { ReactComponent as TotalDashBoardIcon } from "./total-dashboard.svg";
 
 export {
-  appleIcon,
-  backIcon,
-  calenderIcon,
-  deleteIcon,
-  editIcon,
-  eyeslashIcon,
-  eyeIcon,
-  googlePlay,
-  locationIcon,
-  logoutIcon,
-  menuAdminIcon,
-  menuAnggotaIcon,
-  menuArticleIcon,
-  menuDashboardIcon,
-  menuKelasIcon,
-  menuKontenIcon,
-  menuPelatihIcon,
-  menuPromoIcon,
-  menuTroliIcon,
-  nextIcon,
-  searchIcon,
-  superAdminIcon,
-  tambahDataIcon,
-  timeIcon,
-  unggahIcon,
-  loncengIcon,
-  angledownWhiteIcon,
-  angleDownIcon,
-  anggotaDashBoardIcon,
+  AppleIcon,
+  BackIcon,
+  CalenderIcon,
+  DeleteIcon,
+  DeleteBlackIcon,
+  EditIcon,
+  EyeslashIcon,
+  EyeIcon,
+  GooglePlay,
+  LocationIcon,
+  LogoutIcon,
+  MenuAdminIcon,
+  MenuAnggotaIcon,
+  MenuArticleIcon,
+  MenuDashboardIcon,
+  MenuKelasIcon,
+  MenuKontenIcon,
+  MenuPelatihIcon,
+  MenuPromoIcon,
+  MenuTroliIcon,
+  NextIcon,
+  SearchIcon,
+  SuperAdminIcon,
+  TambahDataIcon,
+  TimeIcon,
+  UnggahIcon,
+  LoncengIcon,
+  AngleDownWhiteIcon,
+  AngleDownIcon,
+  AnggotaDashBoardIcon,
+  PelatihDashBoardIcon,
+  KelasDashBoardIcon,
+  TotalDashBoardIcon,
 };
