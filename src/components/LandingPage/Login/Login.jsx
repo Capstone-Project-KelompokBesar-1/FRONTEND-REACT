@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 // import "./login.css";
 
-import { logo, phone3 } from "../../../assets/pics";
+import { logo, phone3 } from "../../../assets/img";
 
 const Login = () => {
   return (

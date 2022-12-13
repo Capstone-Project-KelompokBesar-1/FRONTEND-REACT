@@ -1,5 +1,5 @@
 import TestimonyCard from "./TestimonyCard";
-import { phone1, phone2 } from "../../../assets/pics";
+import { phone1, phone2 } from "../../../assets/img";
 import { AppleIcon, GooglePlay } from "../../../assets/icons";
 
 const Testimony = () => {

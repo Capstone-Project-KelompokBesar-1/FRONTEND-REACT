@@ -8,7 +8,7 @@ const LandingNavbar = () => {
       <nav className="container darkbg w-full h-16 fixed -mt-16 z-10">
         <ul className="flex mx-14 h-16 items-center">
           <li className="font-avenirHeavy text-primary-500 text-2xl mr-6">
-            OurGym
+            <AnchorLink href="#hero">OurGym</AnchorLink>
           </li>
           <li className="menu-nav-landing">
             <AnchorLink href="#hero">Beranda</AnchorLink>

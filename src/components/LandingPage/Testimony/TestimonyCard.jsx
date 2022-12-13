@@ -1,4 +1,4 @@
-import { review1, review2, review3 } from "../../../assets/pics";
+import { review1, review2, review3 } from "../../../assets/img";
 
 const TestimonyCard = () => {
   return (
