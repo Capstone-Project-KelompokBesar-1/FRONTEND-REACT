@@ -28,9 +28,12 @@ const LandingNavbar = () => {
             </li>
           </ul>
         </div>
-        <button className="bg-primary-500 text-white h-9 text-sm w-24 rounded mt-4 mr-16">
-          <Link to="/login">Masuk</Link>
-        </button>
+
+        <Link to="/login">
+          <button className="bg-primary-500 text-white h-9 text-sm w-24 rounded mt-4 mr-16">
+            Masuk
+          </button>
+        </Link>
       </nav>
     </div>
   );
