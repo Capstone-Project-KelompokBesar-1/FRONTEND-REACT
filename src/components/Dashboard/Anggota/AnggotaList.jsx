@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const AnggotaList = ({ id, name, phone, email, address }) => {
   return (
-    <tbody className="font-avenirHeavy text-web-dark">
+    <tbody className="font-avenirHeavy text-web-dark border-t">
       <tr>
         <td className="py-4 px-4 text-3xl">
           <BiCheckboxSquare />
