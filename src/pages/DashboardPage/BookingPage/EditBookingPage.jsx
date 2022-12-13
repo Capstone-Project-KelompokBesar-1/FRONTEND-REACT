@@ -3,7 +3,7 @@ import DashboardNavbar from '../../../components/Dashboard/DashboardNavbar/Dashb
 import Sidebar from '../../../components/Dashboard/DashboardNavbar/Sidebar'
 import EditBooking from '../../../components/Dashboard/Booking/EditBooking'
 
-const BookingPage = () => {
+const EditBookingPage = () => {
   return (
     <div>
       <DashboardNavbar />
@@ -13,4 +13,4 @@ const BookingPage = () => {
   )
 }
 
-export default BookingPage
+export default EditBookingPage

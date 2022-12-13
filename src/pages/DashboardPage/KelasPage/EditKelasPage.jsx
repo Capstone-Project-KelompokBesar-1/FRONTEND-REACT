@@ -3,7 +3,7 @@ import DashboardNavbar from '../../../components/Dashboard/DashboardNavbar/Dashb
 import Sidebar from '../../../components/Dashboard/DashboardNavbar/Sidebar'
 import EditKelas from '../../../components/Dashboard/Kelas/EditKelas'
 
-const KelasPage = () => {
+const EditKelasPage = () => {
   return (
     <div>
       <DashboardNavbar />
@@ -13,4 +13,4 @@ const KelasPage = () => {
   )
 }
 
-export default KelasPage
+export default EditKelasPage

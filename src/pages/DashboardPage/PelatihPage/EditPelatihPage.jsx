@@ -3,7 +3,7 @@ import DashboardNavbar from '../../../components/Dashboard/DashboardNavbar/Dashb
 import Sidebar from '../../../components/Dashboard/DashboardNavbar/Sidebar'
 import EditPelatih from '../../../components/Dashboard/Pelatih/EditPelatih'
 
-const PelatihPage = () => {
+const EditPelatihPage = () => {
   return (
     <div>
       <DashboardNavbar />
@@ -13,4 +13,4 @@ const PelatihPage = () => {
   )
 }
 
-export default PelatihPage
+export default EditPelatihPage

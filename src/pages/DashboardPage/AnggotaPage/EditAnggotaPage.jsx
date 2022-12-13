@@ -3,7 +3,7 @@ import DashboardNavbar from '../../../components/Dashboard/DashboardNavbar/Dashb
 import Sidebar from '../../../components/Dashboard/DashboardNavbar/Sidebar'
 import EditAnggota from '../../../components/Dashboard/Anggota/EditAnggota'
 
-const AnggotaPage = () => {
+const EditAnggotaPage = () => {
   return (
     <div>
       <DashboardNavbar />
@@ -13,4 +13,4 @@ const AnggotaPage = () => {
   )
 }
 
-export default AnggotaPage
+export default EditAnggotaPage
