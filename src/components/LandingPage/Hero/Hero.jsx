@@ -6,7 +6,7 @@ import gplayIcon from '../../../assets/icons/google-play-red.svg';
 
 const Hero = () => {
   return (
-    <div>
+    <div id='hero'>
       <div className='h-screen bg-gradient-to-tr from-primary-500 to-black flex mt-16'>
         <img src={heroImage} alt="heroImage" className='h-screen' />
         <div className='w-1/2 self-center'>

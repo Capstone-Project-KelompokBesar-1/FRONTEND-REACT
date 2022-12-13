@@ -1,7 +1,8 @@
 import React from "react";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const LandingNavbar = () => {
   return (
     <div>
       <nav className="container darkbg w-full h-16 fixed -mt-16 z-10">
@@ -10,16 +11,16 @@ const Navbar = () => {
             OurGym
           </li>
           <li className="menu-nav-landing">
-            <Link>Beranda</Link>
+            <AnchorLink href="#hero">Beranda</AnchorLink>
           </li>
           <li className="menu-nav-landing">
-            <Link>Tentang Kami</Link>
+            <AnchorLink href="#aboutus">Tentang Kami</AnchorLink>
           </li>
           <li className="menu-nav-landing">
-            <Link>Ulasan</Link>
+            <AnchorLink href="#testimony">Ulasan</AnchorLink>
           </li>
           <li className="menu-nav-landing">
-            <Link>Kontak</Link>
+            <AnchorLink href="#contact">Kontak</AnchorLink>
           </li>
           <li>
             <Link to="/login">
@@ -34,4 +35,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default LandingNavbar;

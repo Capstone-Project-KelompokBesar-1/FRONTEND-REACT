@@ -4,7 +4,7 @@ import StatsAboutUs from './StatsAboutUs'
 
 const AboutUs = () => {
   return (
-    <div>
+    <div id='aboutus'>
       <div className='darkbg h-screen flex'>
         <div className='w-auto h-screen flex justify-center'>
           <div className='text-white w-8/12 h-screen flex items-center'>

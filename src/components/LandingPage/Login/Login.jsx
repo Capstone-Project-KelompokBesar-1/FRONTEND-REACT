@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 // import "./login.css";
 
 import { logo, phone3 } from "../../../assets/pics";
@@ -28,12 +29,13 @@ const Login = () => {
             placeholder="Password"
             className=" w-[380px] h-14 rounded-lg font-avenirHeavy p-5 border border-primary-500"
           />
-          <button
-            type="submit"
-            className="mt-12 w-[380px] h-14 rounded-lg font-avenirHeavy bg-primary-500 text-white"
-          >
-            Masuk
-          </button>
+          <Link to="/dashboard/main">
+            <button
+              type="submit"
+              className="mt-12 w-[380px] h-14 rounded-lg font-avenirHeavy bg-primary-500 text-white">
+              Masuk
+            </button>
+          </Link>
         </form>
       </div>
     </div>

@@ -4,7 +4,7 @@ import { AppleIcon, GooglePlay } from "../../../assets/icons";
 
 const Testimony = () => {
   return (
-    <div>
+    <div id="testimony">
       <div className="darkbg pb-28">
         <h1 className="pt-16 text-white font-black text-center p-8 text-[32px] font-avenirBlack">
           Ulasan Pengguna

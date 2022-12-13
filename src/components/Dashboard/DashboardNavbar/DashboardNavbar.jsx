@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   LoncengIcon,
   SuperAdminIcon,
@@ -7,9 +8,9 @@ import {
 const DashboardNavbar = () => {
   return (
     <nav className="fixed darkbg flex items-center justify-between h-[100px] w-full z-20">
-      <h1 className="font-avenirBlack text-primary-500 text-[32px] ml-14">
+      <Link to="/" className="font-avenirBlack text-primary-500 text-[32px] ml-14">
         OurGym
-      </h1>
+      </Link>
       <div className="flex items-center pr-16">
         <i>
           <LoncengIcon className="w-9 mr-3" />

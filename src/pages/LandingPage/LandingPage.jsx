@@ -3,13 +3,13 @@ import AboutUs from "../../components/LandingPage/AboutUs/AboutUs";
 import Contact from "../../components/LandingPage/Contact/Contact";
 import Footer from "../../components/LandingPage/Footer/Footer";
 import Hero from "../../components/LandingPage/Hero/Hero";
-import Navbar from "../../components/LandingPage/LandingPageNavbar/LandingPageNavbar";
+import LandingNavbar from "../../components/LandingPage/LandingPageNavbar/LandingNavbar";
 import Testimony from "../../components/LandingPage/Testimony/Testimony";
 
 const LandingPage = () => {
   return (
     <div>
-      <Navbar />
+      <LandingNavbar />
       <Hero />
       <AboutUs />
       <Testimony />
