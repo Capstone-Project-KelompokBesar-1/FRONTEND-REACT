@@ -1,9 +1,9 @@
 import {
-  MenuAdminIcon,
   MenuAnggotaIcon,
   MenuDashboardIcon,
   MenuKelasIcon,
   MenuPelatihIcon,
+  MenuTroliIcon,
 } from "../../../assets/icons";
 
 const Sidebar = () => {
@@ -17,20 +17,20 @@ const Sidebar = () => {
             <h3 className="font-avenirBlack text-white ml-4">DASHBOARD</h3>
           </div>
           <div className="w-52 h-11 flex justify-start items-center rounded-lg mb-8">
-            <MenuAdminIcon className="w-6 ml-3" />
-            <h3 className="font-avenirBlack text-white ml-4">ADMIN</h3>
-          </div>
-          <div className="w-52 h-11 flex justify-start items-center rounded-lg mb-8">
             <MenuPelatihIcon className="w-6 ml-3" />
             <h3 className="font-avenirBlack text-white ml-4">PELATIH</h3>
+          </div>
+          <div className="w-52 h-11 flex justify-start items-center rounded-lg mb-8">
+            <MenuKelasIcon className="w-6 ml-3" />
+            <h3 className="font-avenirBlack text-white ml-4">ANGGOTA</h3>
           </div>
           <div className="w-52 h-11 flex justify-start items-center rounded-lg mb-8">
             <MenuAnggotaIcon className="w-6 ml-3" />
             <h3 className="font-avenirBlack text-white ml-4">KELAS</h3>
           </div>
           <div className="w-52 h-11 flex justify-start items-center rounded-lg mb-8">
-            <MenuKelasIcon className="w-6 ml-3" />
-            <h3 className="font-avenirBlack text-white ml-4">ANGGOTA</h3>
+            <MenuTroliIcon className="w-6 ml-3" />
+            <h3 className="font-avenirBlack text-white ml-4">TRANSAKSI</h3>
           </div>
         </div>
       </div>

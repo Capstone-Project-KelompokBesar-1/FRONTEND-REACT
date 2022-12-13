@@ -1,7 +1,4 @@
 import {
-  superAdminIcon,
-  loncengIcon,
-  angleDownIcon,
   LoncengIcon,
   SuperAdminIcon,
   AngleDownIcon,
