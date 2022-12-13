@@ -14,6 +14,10 @@ module.exports = {
         avenirHeavy: ["AVENIR-HEAVY", "sans-serif"],
       },
 
+      spacing: {
+        88: "22rem",
+      },
+
       colors: {
         primary: {
           100: "#fcddcc",
@@ -39,9 +43,6 @@ module.exports = {
           background: "#F6F5FA",
           dark: "#31353D",
           blue: "#3C444C",
-        },
-        spacing: {
-          88: "22rem",
         },
       },
     },
