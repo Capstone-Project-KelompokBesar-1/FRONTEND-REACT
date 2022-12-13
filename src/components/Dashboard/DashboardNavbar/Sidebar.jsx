@@ -10,7 +10,7 @@ const Sidebar = () => {
   return (
     <>
       <div className="w-64 h-[833px] absolute darkbg"></div>
-      <div className="sidebar darkbg w-64 h-[833px] fixed z-10">
+      <div className="sidebar darkbg w-64 h-[833px] fixed z-10 mt-[100px]">
         <div className="menu-container flex flex-col justify-center p-5">
           <div className="w-52 h-11 bg-primary-500 flex justify-start items-center rounded-lg mb-8">
             <MenuDashboardIcon className="w-6 ml-3" />

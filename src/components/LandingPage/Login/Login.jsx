@@ -5,7 +5,7 @@ import { logo, phone3 } from "../../../assets/pics";
 
 const Login = () => {
   return (
-    <div className="darkbg pb-28 flex justify-center items-center">
+    <div className="h-screen darkbg pb-28 flex justify-center items-center">
       <div className="mr-28">
         <img src={phone3} alt="Mobile App" className="w-[300px]" />
       </div>

@@ -1,6 +1,5 @@
 import Transaksi from "./Transaksi";
 import Sidebar from "../DashboardNavbar/Sidebar";
-
 import {
   AnggotaDashBoardIcon,
   CalenderIcon,
@@ -9,11 +8,10 @@ import {
   TotalDashBoardIcon,
 } from "../../../assets/icons";
 
-export default () => {
+const MainMenu = () => {
   return (
-    <>
-      <Sidebar />
-      <div className="ml-[292px] mt-6 mr-9">
+    <div>
+      <div className="ml-[292px] pt-[124px] mr-9">
         <div className="flex justify-between">
           <h1 className="font-avenirBlack text-black text-[40px]">Dashboard</h1>
           <i className="mt-[71px]">
@@ -60,9 +58,10 @@ export default () => {
             </div>
           </div>
         </div>
-
         <Transaksi />
       </div>
-    </>
-  );
-};
+    </div>
+  )
+}
+
+export default MainMenu

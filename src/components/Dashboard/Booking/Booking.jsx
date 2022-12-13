@@ -9,10 +9,10 @@ import {
 } from "../../../assets/icons";
 import { BiCheckbox, BiCheckboxSquare } from "react-icons/bi";
 
-const Transaksi = () => {
+const Booking = () => {
   return (
     <div>
-      <div className="ml-[292px] mt-6 mr-9">
+      <div className="ml-[292px] pt-[124px] mr-9">
         <div className="flex justify-between">
           <h1 className="font-avenirBlack text-black text-[40px]">
             DATA TRANSAKSI
@@ -90,4 +90,4 @@ const Transaksi = () => {
   )
 }
 
-export default Transaksi;
+export default Booking;
