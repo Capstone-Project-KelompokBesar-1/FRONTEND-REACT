@@ -17,7 +17,7 @@ const Sidebar = () => {
             <MenuDashboardIcon className="w-6 ml-3" />
             <h3 className="font-avenirBlack text-white ml-4">DASHBOARD</h3>
           </Link>
-          <Link to="/dashboard/pelatih" className="w-52 h-11 flex justify-start items-center rounded-lg mb-8">
+          <Link to="/dashboard/pelatih/page" className="w-52 h-11 flex justify-start items-center rounded-lg mb-8">
             <MenuPelatihIcon className="w-6 ml-3" />
             <h3 className="font-avenirBlack text-white ml-4">PELATIH</h3>
           </Link>

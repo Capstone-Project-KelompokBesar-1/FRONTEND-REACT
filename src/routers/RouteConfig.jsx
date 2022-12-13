@@ -7,6 +7,7 @@ import DashboardMainPage from "../pages/DashboardPage/MainPage/MainPage";
 import KelasPage from "../pages/DashboardPage/KelasPage/KelasPage";
 import PelatihPage from "../pages/DashboardPage/PelatihPage/PelatihPage";
 import LandingPage from "../pages/LandingPage/LandingPage";
+import EditPelatihPage from "../pages/DashboardPage/PelatihPage/EditPelatihPage";
 
 const RouteConfig = () => {
   return (
@@ -15,7 +16,10 @@ const RouteConfig = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/dashboard">
           <Route path="main" element={<DashboardMainPage />} />
-          <Route path="pelatih" element={<PelatihPage />} />
+          <Route path="pelatih">
+            <Route path="page" element={<PelatihPage />}/>
+            <Route path="edit" element={<EditPelatihPage />}/>
+          </Route>
           <Route path="anggota" element={<AnggotaPage />} />
           <Route path="kelas" element={<KelasPage />} />
           <Route path="booking" element={<BookingPage />} />
