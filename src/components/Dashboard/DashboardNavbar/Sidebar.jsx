@@ -17,19 +17,19 @@ const Sidebar = () => {
             <MenuDashboardIcon className="w-6 ml-3" />
             <h3 className="font-avenirBlack text-white ml-4">DASHBOARD</h3>
           </Link>
-          <Link to="/dashboard/pelatih" className="w-52 h-11 flex justify-start items-center rounded-lg mb-8">
+          <Link to="/dashboard/pelatih/page" className="w-52 h-11 flex justify-start items-center rounded-lg mb-8">
             <MenuPelatihIcon className="w-6 ml-3" />
             <h3 className="font-avenirBlack text-white ml-4">PELATIH</h3>
           </Link>
-          <Link to="/dashboard/anggota" className="w-52 h-11 flex justify-start items-center rounded-lg mb-8">
+          <Link to="/dashboard/anggota/page" className="w-52 h-11 flex justify-start items-center rounded-lg mb-8">
             <MenuKelasIcon className="w-6 ml-3" />
             <h3 className="font-avenirBlack text-white ml-4">ANGGOTA</h3>
           </Link>
-          <Link to="/dashboard/kelas" className="w-52 h-11 flex justify-start items-center rounded-lg mb-8">
+          <Link to="/dashboard/kelas/page" className="w-52 h-11 flex justify-start items-center rounded-lg mb-8">
             <MenuAnggotaIcon className="w-6 ml-3" />
             <h3 className="font-avenirBlack text-white ml-4">KELAS</h3>
           </Link>
-          <Link to="/dashboard/booking" className="w-52 h-11 flex justify-start items-center rounded-lg mb-8">
+          <Link to="/dashboard/booking/page" className="w-52 h-11 flex justify-start items-center rounded-lg mb-8">
             <MenuTroliIcon className="w-6 ml-3" />
             <h3 className="font-avenirBlack text-white ml-4">TRANSAKSI</h3>
           </Link>
