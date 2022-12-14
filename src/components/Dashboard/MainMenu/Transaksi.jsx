@@ -14,7 +14,7 @@ const Transaksi = ({ gymClass, classType, date, userName, status, price }) => {
       <tr>
         <td className="py-4 px-6 capitalize">{gymClass}</td>
         <td className="py-4 px-6 capitalize">{classType}</td>
-        <td className="py-4 px-6">{date}</td>
+        <td className="py-4 px-6">{date.toString().substring(0, 10)}</td>
         <td className="py-4 px-6 capitalize">{userName}</td>
         <td className={`py-4 px-6 font-avenirBlack ${statusCheck()} uppercase`}>
           {status}
