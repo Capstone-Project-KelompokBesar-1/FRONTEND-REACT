@@ -73,7 +73,7 @@ const Kelas = () => {
                 <td className="py-4 px-6">Pikiran dan Tubuh</td>
                 <td className="py-4 px-6">125.000</td>
                 <td className="py-4 px-6 text-center">
-                  <Link to="/dashboard/kelas/edit" className="p-2 bg-info-700 w-10 rounded-[3px] inline-block mr-3">
+                  <Link to="/kelas/edit" className="p-2 bg-info-700 w-10 rounded-[3px] inline-block mr-3">
                     <EditIcon className="w-6 h-6 inline-block" fill="white" />
                   </Link>
                   <div className="p-2 bg-primary-700 w-10 rounded-[3px] inline-block">

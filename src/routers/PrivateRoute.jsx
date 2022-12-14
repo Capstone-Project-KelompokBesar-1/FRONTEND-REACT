@@ -1,9 +1,11 @@
-import React from "react";
+import { Navigate, Outlet } from "react-router-dom";
+import Auth from "../utils/Auth";
 
-const PrivateRoute = () => {
-  return (
-    <div>PrivateRoute</div>
-  );
-};
+function PrivateRoute() {
+  if (!Auth.isAuthorization()) {
+    return <Navigate to="/login" replace />;
+  }
+  return <Outlet />;
+}
 
 export default PrivateRoute;
