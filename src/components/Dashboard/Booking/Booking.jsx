@@ -75,7 +75,7 @@ const Booking = () => {
                 <td className="py-4 px-6">Alfamart</td>
                 <td className="py-4 px-6">BERHASIL</td>
                 <td className="py-4 px-6 text-center">
-                  <Link to="/dashboard/booking/edit" className="p-2 bg-info-700 w-10 rounded-[3px] inline-block mr-3">
+                  <Link to="/booking/edit" className="p-2 bg-info-700 w-10 rounded-[3px] inline-block mr-3">
                     <EditIcon className="w-6 h-6 inline-block" fill="white" />
                   </Link>
                   <div className="p-2 bg-primary-700 w-10 rounded-[3px] inline-block">
