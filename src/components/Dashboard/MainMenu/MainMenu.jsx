@@ -17,7 +17,7 @@ const MainMenu = () => {
     try {
       const {
         data: { data },
-      } = await client.get("/transactions");
+      } = await client.get("/transactions/history");
       setData(data);
       // console.log(data[0]);
     } catch (error) {
