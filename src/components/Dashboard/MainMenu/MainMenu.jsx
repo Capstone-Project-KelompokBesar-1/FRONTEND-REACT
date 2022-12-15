@@ -1,6 +1,6 @@
 import Transaksi from "./Transaksi";
 import { useEffect, useState } from "react";
-import client from "../../../apis/client";
+import APIClient from "../../../apis/APIClient";
 
 import {
   AnggotaDashBoardIcon,
@@ -17,7 +17,7 @@ const MainMenu = () => {
     try {
       const {
         data: { data },
-      } = await client.get("/transactions/history");
+      } = await APIClient.get("/transactions/history");
       setData(data);
       // console.log(data[0]);
     } catch (error) {

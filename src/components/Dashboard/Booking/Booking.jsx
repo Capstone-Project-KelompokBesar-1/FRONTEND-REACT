@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import client from "../../../apis/client";
+import APIClient from "../../../apis/APIClient";
 
 import { TbDownload } from "react-icons/tb";
 import {
@@ -18,7 +18,7 @@ const Booking = () => {
     try {
       const {
         data: { data },
-      } = await client.get("/transactions");
+      } = await APIClient.get("/transactions");
       setData(data);
       console.log(data);
     } catch (error) {

@@ -8,7 +8,7 @@ import {
 import { BiCheckbox } from "react-icons/bi";
 
 import { useEffect, useState } from "react";
-import client from "../../../apis/client";
+import APIClient from "../../../apis/APIClient";
 import AnggotaList from "./AnggotaList";
 
 const Anggota = () => {
@@ -18,7 +18,7 @@ const Anggota = () => {
     try {
       const {
         data: { data },
-      } = await client.get("/users");
+      } = await APIClient.get("/users");
       setData(data);
       console.log(data);
     } catch (error) {

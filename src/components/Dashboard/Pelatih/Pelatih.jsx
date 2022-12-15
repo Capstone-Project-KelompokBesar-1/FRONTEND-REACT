@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import client from "../../../apis/client";
+import APIClient from "../../../apis/APIClient";
 
 import { TbDownload } from "react-icons/tb";
 import {
@@ -21,7 +21,7 @@ const Pelatih = () => {
     try {
       const {
         data: { data },
-      } = await client.get("/trainers");
+      } = await APIClient.get("/trainers");
       setData(data);
       // console.log(data);
     } catch (error) {
