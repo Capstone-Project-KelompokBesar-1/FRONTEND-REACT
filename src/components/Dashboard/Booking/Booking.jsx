@@ -8,7 +8,7 @@ import {
   DeleteBlackIcon,
   TambahDataIcon,
 } from "../../../assets/icons";
-import { BiCheckbox, BiCheckboxSquare } from "react-icons/bi";
+import { BiCheckbox } from "react-icons/bi";
 import BookingList from "./BookingList";
 
 const Booking = () => {

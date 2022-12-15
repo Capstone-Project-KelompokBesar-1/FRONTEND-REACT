@@ -8,8 +8,7 @@ import {
   DeleteBlackIcon,
   TambahDataIcon,
 } from "../../../assets/icons";
-import { BiCheckbox, BiCheckboxSquare } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { BiCheckbox } from "react-icons/bi";
 import KelasList from "./KelasList";
 
 const Kelas = () => {
