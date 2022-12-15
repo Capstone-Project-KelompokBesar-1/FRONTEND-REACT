@@ -1,21 +1,21 @@
 import { EditIcon, DeleteIcon } from "../../../assets/icons";
-import { BiCheckbox, BiCheckboxSquare } from "react-icons/bi";
+import { BiCheckboxSquare } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
-const PelatihList = ({ name, expertise, gender, description }) => {
+const KelasList = ({ gymClass, classType, classCategory, price }) => {
   return (
     <tbody className="font-avenirHeavy text-web-dark border-t">
       <tr>
         <td className="py-4 px-4 text-3xl">
           <BiCheckboxSquare />
         </td>
-        <td className="py-4 px-6 capitalize">{name}</td>
-        <td className="py-4 px-6 capitalize">{expertise}</td>
-        <td className="py-4 px-6 capitalize">{gender}</td>
-        <td className="py-4 px-6">{description}</td>
+        <td className="py-4 px-6 capitalize">{gymClass}</td>
+        <td className="py-4 px-6 capitalize">{classType}</td>
+        <td className="py-4 px-6 capitalize">{classCategory}</td>
+        <td className="py-4 px-6">{price}</td>
         <td className="py-4 px-6 text-center">
           <Link
-            to="/pelatih/edit"
+            to="/dashboard/kelas/edit"
             className="p-2 bg-info-700 w-10 rounded-[3px] inline-block mr-3"
           >
             <EditIcon className="w-6 h-6 inline-block" fill="white" />
@@ -29,4 +29,4 @@ const PelatihList = ({ name, expertise, gender, description }) => {
   );
 };
 
-export default PelatihList;
+export default KelasList;

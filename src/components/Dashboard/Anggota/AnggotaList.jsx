@@ -9,10 +9,10 @@ const AnggotaList = ({ name, phone, email, address }) => {
         <td className="py-4 px-4 text-3xl">
           <BiCheckboxSquare />
         </td>
-        <td className="py-4 px-6">{name}</td>
+        <td className="py-4 px-6 capitalize">{name}</td>
         <td className="py-4 px-6">{email}</td>
         <td className="py-4 px-6">{phone}</td>
-        <td className="py-4 px-6">{address}</td>
+        <td className="py-4 px-6 capitalize">{address}</td>
         <td className="py-4 px-6 text-center">
           <Link
             to="/anggota/edit"
