@@ -1,16 +1,35 @@
+import { useEffect, useState } from "react";
+import client from "../../../apis/client";
+
 import { TbDownload } from "react-icons/tb";
 import {
-  EditIcon,
   CalenderIcon,
-  DeleteIcon,
   SearchIcon,
   DeleteBlackIcon,
   TambahDataIcon,
 } from "../../../assets/icons";
 import { BiCheckbox, BiCheckboxSquare } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import BookingList from "./BookingList";
 
 const Booking = () => {
+  const [data, setData] = useState([]);
+
+  const fetchUsers = async () => {
+    try {
+      const {
+        data: { data },
+      } = await client.get("/transactions");
+      setData(data);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
   return (
     <div>
       <div className="ml-[292px] pt-[124px] mr-9">
@@ -57,38 +76,31 @@ const Booking = () => {
                   <BiCheckbox />
                 </th>
                 <th className="py-4 px-6 w-80 mr-12">ID PEMBAYARAN</th>
-                <th className="py-4 px-6 w-96 mr-12">WAKTU PEMBAYARAN</th>
+                <th className="py-4 px-6 w-96 mr-12 text-center">
+                  WAKTU PEMBAYARAN
+                </th>
                 <th className="py-4 px-6 w-72 mr-12">TOTAL BAYAR</th>
                 <th className="py-4 px-6 w-96 mr-12">METODE BAYAR</th>
                 <th className="py-4 px-6 w-96 mr-12">STATUS PEMBAYARAN</th>
                 <th className="py-4 px-6 w-52 mr-12 text-center">TINDAKAN</th>
               </tr>
             </thead>
-            <tbody className="font-avenirHeavy text-web-dark">
-              <tr>
-                <td className="py-4 px-4 text-3xl">
-                  <BiCheckboxSquare />
-                </td>
-                <td className="py-4 px-6">OFFCLASS001</td>
-                <td className="py-4 px-6">26 Nov 2022 17:30</td>
-                <td className="py-4 px-6">325.000</td>
-                <td className="py-4 px-6">Alfamart</td>
-                <td className="py-4 px-6">BERHASIL</td>
-                <td className="py-4 px-6 text-center">
-                  <Link to="/dashboard/booking/edit" className="p-2 bg-info-700 w-10 rounded-[3px] inline-block mr-3">
-                    <EditIcon className="w-6 h-6 inline-block" fill="white" />
-                  </Link>
-                  <div className="p-2 bg-primary-700 w-10 rounded-[3px] inline-block">
-                    <DeleteIcon className="w-5 h-6 inline-block" />
-                  </div>
-                </td>
-              </tr>
-            </tbody>
+
+            {data.map((item) => (
+              <BookingList
+                key={item.id}
+                bookingId={item.id}
+                date={item.updated_at}
+                amount={item.amount}
+                method={item.payment_method}
+                status={item.status}
+              />
+            ))}
           </table>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Booking;

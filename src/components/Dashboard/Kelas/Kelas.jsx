@@ -1,16 +1,36 @@
+import { useEffect, useState } from "react";
+import client from "../../../apis/client";
+
 import { TbDownload } from "react-icons/tb";
 import {
-  EditIcon,
   CalenderIcon,
-  DeleteIcon,
   SearchIcon,
   DeleteBlackIcon,
   TambahDataIcon,
 } from "../../../assets/icons";
 import { BiCheckbox, BiCheckboxSquare } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import KelasList from "./KelasList";
 
 const Kelas = () => {
+  const [data, setData] = useState([]);
+
+  const fetchClasses = async () => {
+    try {
+      const {
+        data: { data },
+      } = await client.get("/classes");
+      setData(data);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchClasses();
+  }, []);
+
   return (
     <div>
       <div className="ml-[292px] pt-[124px] mr-9">
@@ -63,30 +83,21 @@ const Kelas = () => {
                 <th className="py-4 px-6 w-52 mr-12 text-center">TINDAKAN</th>
               </tr>
             </thead>
-            <tbody className="font-avenirHeavy text-web-dark">
-              <tr>
-                <td className="py-4 px-4 text-3xl">
-                  <BiCheckboxSquare />
-                </td>
-                <td className="py-4 px-6">Yoga untuk Pemula</td>
-                <td className="py-4 px-6">OFFLINE</td>
-                <td className="py-4 px-6">Pikiran dan Tubuh</td>
-                <td className="py-4 px-6">125.000</td>
-                <td className="py-4 px-6 text-center">
-                  <Link to="/dashboard/kelas/edit" className="p-2 bg-info-700 w-10 rounded-[3px] inline-block mr-3">
-                    <EditIcon className="w-6 h-6 inline-block" fill="white" />
-                  </Link>
-                  <div className="p-2 bg-primary-700 w-10 rounded-[3px] inline-block">
-                    <DeleteIcon className="w-5 h-6 inline-block" />
-                  </div>
-                </td>
-              </tr>
-            </tbody>
+
+            {data.map((item) => (
+              <KelasList
+                key={item.id}
+                gymClass={item.name}
+                classType={item.type}
+                classCategory={item.category.name}
+                price={item.price}
+              />
+            ))}
           </table>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Kelas;
