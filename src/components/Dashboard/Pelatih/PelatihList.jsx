@@ -1,5 +1,5 @@
 import { EditIcon, DeleteIcon } from "../../../assets/icons";
-import { BiCheckbox, BiCheckboxSquare } from "react-icons/bi";
+import { BiCheckboxSquare } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
 const PelatihList = ({ name, expertise, gender, description }) => {
