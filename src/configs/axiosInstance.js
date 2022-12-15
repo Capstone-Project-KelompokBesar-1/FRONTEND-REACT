@@ -1,10 +1,9 @@
-import axios from "axios";
 import CONST from "../utils/Constants";
+import axios from "axios";
 
-const config = {
+export default axios.create({
   baseURL: CONST.BASE_URL_API,
-};
-
-const axiosInstance = axios.create(config);
-
-export default axiosInstance;
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
