@@ -3,15 +3,12 @@ import APIClient from "../../../apis/APIClient";
 
 import { TbDownload } from "react-icons/tb";
 import {
-  EditIcon,
   CalenderIcon,
-  DeleteIcon,
   SearchIcon,
   DeleteBlackIcon,
   TambahDataIcon,
 } from "../../../assets/icons";
-import { BiCheckbox, BiCheckboxSquare } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { BiCheckbox } from "react-icons/bi";
 import PelatihList from "./PelatihList";
 
 const Pelatih = () => {
@@ -23,7 +20,6 @@ const Pelatih = () => {
         data: { data },
       } = await APIClient.get("/trainers");
       setData(data);
-      // console.log(data);
     } catch (error) {
       console.log(error);
     }
