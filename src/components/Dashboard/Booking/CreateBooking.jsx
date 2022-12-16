@@ -1,11 +1,11 @@
 import React from 'react'
 
-const EditBooking = () => {
+const CreateBooking = () => {
   return (
     <div className="ml-[292px] pt-[124px] mr-9">
       <div>
         <h1 className="font-avenirBlack text-black text-[40px]">
-          PERUBAHAN DATA TRANSAKSI
+          TAMBAH TRANSAKSI BARU
         </h1>
         <div className="flex justify-between mb-6">
           <p>Transaksi &gt; Ubah Data</p>
@@ -156,4 +156,4 @@ const EditBooking = () => {
   )
 }
 
-export default EditBooking
+export default CreateBooking

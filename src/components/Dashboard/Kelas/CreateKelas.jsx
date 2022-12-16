@@ -1,12 +1,12 @@
 import React from 'react'
 import { TambahDataRed } from '../../../assets/icons'
 
-const EditKelas = () => {
+const CreateKelas = () => {
   return (
     <div className="ml-[292px] pt-[124px] mr-9">
       <div>
         <h1 className="font-avenirBlack text-black text-[40px]">
-          PERUBAHAN DATA KELAS
+          TAMBAH KELAS BARU
         </h1>
         <div className="flex justify-between mb-6">
           <p>Kelas &gt; Ubah Data</p>
@@ -105,4 +105,4 @@ const EditKelas = () => {
   )
 }
 
-export default EditKelas
+export default CreateKelas

@@ -15,7 +15,7 @@ const KelasList = ({ gymClass, classType, classCategory, price }) => {
         <td className="py-4 px-6">{price}</td>
         <td className="py-4 px-6 text-center">
           <Link
-            to="/dashboard/kelas/edit"
+            to="/kelas/edit"
             className="p-2 bg-info-700 w-10 rounded-[3px] inline-block mr-3"
           >
             <EditIcon className="w-6 h-6 inline-block" fill="white" />

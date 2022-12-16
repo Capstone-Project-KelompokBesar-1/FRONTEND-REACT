@@ -30,7 +30,7 @@ const BookingList = ({ bookingId, date, amount, method, status }) => {
         </td>
         <td className="py-4 px-6 text-center">
           <Link
-            to="/dashboard/booking/edit"
+            to="/booking/edit"
             className="p-2 bg-info-700 w-10 rounded-[3px] inline-block mr-3"
           >
             <EditIcon className="w-6 h-6 inline-block" fill="white" />
