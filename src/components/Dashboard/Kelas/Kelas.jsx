@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import APIClient from "../../../apis/APIClient";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchDatas, setSearchField } from "../../../redux/gymSlice";
 
 import { TbDownload } from "react-icons/tb";
 import {
@@ -12,23 +13,38 @@ import { BiCheckbox } from "react-icons/bi";
 import KelasList from "./KelasList";
 
 const Kelas = () => {
-  const [data, setData] = useState([]);
-
-  const fetchClasses = async () => {
-    try {
-      const {
-        data: { data },
-      } = await APIClient.get("/classes");
-      setData(data);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.gym.classes);
+  const searchField = useSelector((state) => state.gym.searchField);
 
   useEffect(() => {
-    fetchClasses();
+    dispatch(fetchDatas({ url: "/classes", state: "classes" }));
+
+    // eslint-disable-next-line
   }, []);
+
+  const handleSearch = (e) => {
+    dispatch(setSearchField(e.target.value.toLocaleLowerCase()));
+  };
+
+  const renderSearch = () => {
+    const searchFilter = data.filter((data) => {
+      return data.name.toLowerCase().includes(searchField);
+    });
+
+    return searchFilter.map((item, index) => {
+      return (
+        <KelasList
+          key={item.id}
+          gymClass={item.name}
+          classType={item.type}
+          classCategory={item.category.name}
+          price={item.price}
+          index={index}
+        />
+      );
+    });
+  };
 
   return (
     <div>
@@ -50,6 +66,7 @@ const Kelas = () => {
               type="text"
               className="w-80 h-11 border-2 border-primary-500 rounded-[60px] p-5"
               placeholder="Pencarian"
+              onChange={handleSearch}
             />
             <SearchIcon className="relative w-4 h-4 -top-[30px] left-[285px]" />
           </div>
@@ -83,15 +100,7 @@ const Kelas = () => {
               </tr>
             </thead>
 
-            {data.map((item) => (
-              <KelasList
-                key={item.id}
-                gymClass={item.name}
-                classType={item.type}
-                classCategory={item.category.name}
-                price={item.price}
-              />
-            ))}
+            {renderSearch()}
           </table>
         </div>
       </div>

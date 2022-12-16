@@ -1,3 +1,7 @@
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchDatas, setSearchField } from "../../../redux/gymSlice";
+
 import { TbDownload } from "react-icons/tb";
 import {
   CalenderIcon,
@@ -7,28 +11,41 @@ import {
 } from "../../../assets/icons";
 import { BiCheckbox } from "react-icons/bi";
 
-import { useEffect, useState } from "react";
-import APIClient from "../../../apis/APIClient";
 import AnggotaList from "./AnggotaList";
 
 const Anggota = () => {
-  const [data, setData] = useState([]);
-
-  const fetchUsers = async () => {
-    try {
-      const {
-        data: { data },
-      } = await APIClient.get("/users");
-      setData(data);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.gym.users);
+  const searchField = useSelector((state) => state.gym.searchField);
 
   useEffect(() => {
-    fetchUsers();
+    dispatch(fetchDatas({ url: "/users", state: "users" }));
+
+    // eslint-disable-next-line
   }, []);
+
+  const handleSearch = (e) => {
+    dispatch(setSearchField(e.target.value.toLocaleLowerCase()));
+  };
+
+  const renderSearch = () => {
+    const searchFilter = data.filter((data) => {
+      return data.name.toLowerCase().includes(searchField);
+    });
+
+    return searchFilter.map((item, index) => {
+      return (
+        <AnggotaList
+          key={item.id}
+          name={item.name}
+          phone={item.phone}
+          email={item.email}
+          address={item.address}
+          index={index}
+        />
+      );
+    });
+  };
 
   return (
     <div>
@@ -50,6 +67,7 @@ const Anggota = () => {
               type="text"
               className="w-80 h-11 border-2 border-primary-500 rounded-[60px] p-5"
               placeholder="Pencarian"
+              onChange={handleSearch}
             />
             <SearchIcon className="relative w-4 h-4 -top-[30px] left-[285px]" />
           </div>
@@ -83,16 +101,7 @@ const Anggota = () => {
               </tr>
             </thead>
 
-            {data.map((item, index) => (
-              <AnggotaList
-                key={item.id}
-                name={item.name}
-                phone={item.phone}
-                email={item.email}
-                address={item.address}
-                index={index}
-              />
-            ))}
+            {renderSearch()}
           </table>
         </div>
       </div>

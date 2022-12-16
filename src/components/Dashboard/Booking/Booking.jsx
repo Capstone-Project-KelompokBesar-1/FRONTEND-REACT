@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import APIClient from "../../../apis/APIClient";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchDatas, setSearchField } from "../../../redux/gymSlice";
 
 import { TbDownload } from "react-icons/tb";
 import {
@@ -12,23 +13,39 @@ import { BiCheckbox } from "react-icons/bi";
 import BookingList from "./BookingList";
 
 const Booking = () => {
-  const [data, setData] = useState([]);
-
-  const fetchUsers = async () => {
-    try {
-      const {
-        data: { data },
-      } = await APIClient.get("/transactions");
-      setData(data);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.gym.transactions);
+  const searchField = useSelector((state) => state.gym.searchField);
 
   useEffect(() => {
-    fetchUsers();
+    dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
+
+    // eslint-disable-next-line
   }, []);
+
+  const handleSearch = (e) => {
+    dispatch(setSearchField(e.target.value.toLocaleLowerCase()));
+  };
+
+  const RenderedSearch = () => {
+    const searchFilter = data.filter((data) => {
+      return data.id.toLowerCase().includes(searchField);
+    });
+
+    return searchFilter.map((item, index) => {
+      return (
+        <BookingList
+          key={item.id}
+          bookingId={item.id}
+          date={item.updated_at}
+          amount={item.amount}
+          method={item.payment_method}
+          status={item.status}
+          index={index}
+        />
+      );
+    });
+  };
 
   return (
     <div>
@@ -50,6 +67,7 @@ const Booking = () => {
               type="text"
               className="w-80 h-11 border-2 border-primary-500 rounded-[60px] p-5"
               placeholder="Pencarian"
+              onChange={handleSearch}
             />
             <SearchIcon className="relative w-4 h-4 -top-[30px] left-[285px]" />
           </div>
@@ -86,16 +104,7 @@ const Booking = () => {
               </tr>
             </thead>
 
-            {data.map((item) => (
-              <BookingList
-                key={item.id}
-                bookingId={item.id}
-                date={item.updated_at}
-                amount={item.amount}
-                method={item.payment_method}
-                status={item.status}
-              />
-            ))}
+            <RenderedSearch />
           </table>
         </div>
       </div>
