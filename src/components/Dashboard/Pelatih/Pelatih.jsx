@@ -84,6 +84,7 @@ const Pelatih = () => {
 
             {data.map((trainer) => (
               <PelatihList
+                key={trainer.id}
                 name={trainer.name}
                 expertise={trainer.expertise}
                 gender={trainer.gender}
