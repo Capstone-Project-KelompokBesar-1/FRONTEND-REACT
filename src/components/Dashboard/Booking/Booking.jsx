@@ -61,25 +61,41 @@ const Booking = () => {
           </i>
         </div>
 
-        <div className="my-6 flex justify-between">
-          <div className="searchbar">
-            <input
+        <div className="flex justify-between">
+          <div className="flex items-end pb-6">
+            <select
+              id="type_kelas"
               type="text"
-              className="w-80 h-11 border-2 border-primary-500 rounded-[60px] p-5"
-              placeholder="Pencarian"
-              onChange={handleSearch}
-            />
-            <SearchIcon className="relative w-4 h-4 -top-[30px] left-[285px]" />
+              className="w-[224px] h-10 border-2 text-primary-500 font-avenirHeavy border-primary-500 rounded-lg py-[7px] pl-4"
+            >
+              <option value="">SEMUA</option>
+              <option value="berhasil">BERHASIL</option>
+              <option value="gagal">GAGAL</option>
+              <option value="tertunda">TERTUNDA</option>
+            </select>
           </div>
+          <div>
+            <div className="my-6 flex flex-col items-end">
+              <div className="searchbar">
+                <input
+                  type="text"
+                  className="w-80 h-11 border-2 border-primary-500 rounded-[60px] p-5"
+                  placeholder="Pencarian"
+                  onChange={handleSearch}
+                />
+                <SearchIcon className="relative w-4 h-4 -top-[30px] left-[285px]" />
+              </div>
 
-          <div className="tableButton flex gap-2 text-black text-[10px]">
-            <button className="w-32 h-11 bg-primary-500 rounded-md shadow-md">
-              <DeleteBlackIcon className="w-2 h-2 inline-block mr-1" />
-              Hapus yang dipilih
-            </button>
-            <Link to="/booking/create" className="w-24 h-11 bg-success-500 rounded-md shadow-md flex justify-center items-center">
-              <TambahDataIcon className="w-2 h-2 inline-block" /> Tambah Baru
-            </Link>
+              <div className="tableButton flex gap-2 text-black text-[10px]">
+                <button className="w-32 h-11 bg-primary-500 rounded-md shadow-md">
+                  <DeleteBlackIcon className="w-2 h-2 inline-block mr-1" />
+                  Hapus yang dipilih
+                </button>
+                <Link to="/kelas/create" className="w-24 h-11 bg-success-500 rounded-md shadow-md flex justify-center items-center">
+                  <TambahDataIcon className="w-2 h-2 inline-block" /> Tambah Baru
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
 

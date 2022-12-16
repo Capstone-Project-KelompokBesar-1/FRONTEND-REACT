@@ -61,9 +61,9 @@ const Kelas = () => {
         </div>
         <div className="flex justify-between">
           <div className="flex flex-row items-end pb-6">
-            <button className="text-sm w-[86px] h-[40px] rounded-[40px] flex justify-center items-center border border-primary-500 text-white bg-primary-500 mr-4">Semua</button>
-            <button className="text-sm w-[110px] h-[40px] rounded-[40px] flex justify-center items-center border border-primary-500 text-primary-500 bg-white mr-4">Kelas Online</button>
-            <button className="text-sm w-[110px] h-[40px] rounded-[40px] flex justify-center items-center border border-primary-500 text-primary-500 bg-white">Kelas Offline</button>
+            <button className="text-sm w-[86px] h-[40px] rounded-[40px] flex justify-center items-center border-2 border-primary-500 text-white bg-primary-500 mr-4">Semua</button>
+            <button className="text-sm w-[110px] h-[40px] rounded-[40px] flex justify-center items-center border-2 border-primary-500 text-primary-500 bg-white mr-4">Kelas Online</button>
+            <button className="text-sm w-[110px] h-[40px] rounded-[40px] flex justify-center items-center border-2 border-primary-500 text-primary-500 bg-white">Kelas Offline</button>
           </div>
           <div>
             <div className="my-6 flex flex-col items-end">
