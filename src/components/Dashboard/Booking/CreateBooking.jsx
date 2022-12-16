@@ -1,4 +1,5 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
 
 const CreateBooking = () => {
   return (
@@ -92,7 +93,7 @@ const CreateBooking = () => {
           <div className="flex w-full h-12 justify-start pl-[118px] items-center font-avenirBlack mb-2 bg-primary-100">
             <label htmlFor="status">Detail Kelas</label>
           </div>
-          <div className='flex flex-row'>
+          <div className="flex flex-row">
             <div>
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="type_kelas">Jenis Kelas</label>
@@ -105,7 +106,7 @@ const CreateBooking = () => {
               </div>
             </div>
             <div>
-            <select
+              <select
                 id="type_kelas"
                 type="text"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
@@ -143,9 +144,11 @@ const CreateBooking = () => {
 
           {/* Submit Button */}
           <div className="mt-52 flex justify-end">
-            <button className="w-28 h-14 bg-white text-primary-500 font-avenirBlack rounded-lg mr-4 border border-primary-500 shadow-md">
-              Batal
-            </button>
+            <Link to="/booking">
+              <button className="w-28 h-14 bg-white text-primary-500 font-avenirBlack rounded-lg mr-4 border border-primary-500 shadow-md">
+                Batal
+              </button>
+            </Link>
             <button className="w-52 h-14 bg-primary-500 text-white font-avenirBlack rounded-lg shadow-md">
               Simpan Perubahan
             </button>
@@ -153,7 +156,7 @@ const CreateBooking = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CreateBooking
+export default CreateBooking;
