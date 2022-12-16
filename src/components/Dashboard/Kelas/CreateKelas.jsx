@@ -1,5 +1,6 @@
-import React from 'react'
-import { TambahDataRed } from '../../../assets/icons'
+import React from "react";
+import { Link } from "react-router-dom";
+import { TambahDataRed } from "../../../assets/icons";
 
 const CreateKelas = () => {
   return (
@@ -67,7 +68,7 @@ const CreateKelas = () => {
               />
               <textarea
                 id="description"
-                className="w-[523px] h-[145px] ml-12 mb-2 border rounded-lg p-2"
+                className="w-[523px] h-[145px] ml-12 mb-2 border rounded-lg p-2 resize-none"
               />
               <input
                 id="meet"
@@ -80,21 +81,25 @@ const CreateKelas = () => {
                 className="w-[523px] h-12 ml-12 mb-2 border rounded-lg p-2"
               />
             </div>
-          
-            <div className='flex flex-col ml-10'>
-              <label htmlFor="meet" className='font-avenirHeavy mb-3'>Thumbnail</label>
+
+            <div className="flex flex-col ml-10">
+              <label htmlFor="meet" className="font-avenirHeavy mb-3">
+                Thumbnail
+              </label>
               <button className="text-primary-500 border-[3px] border-primary-500 w-[318px] h-[40px] flex py-4 px-8 font-avenirBlack items-center justify-center rounded-lg">
-                <TambahDataRed className="w-3 h-3 inline-block mr-3" /> Tambahkan File
+                <TambahDataRed className="w-3 h-3 inline-block mr-3" />{" "}
+                Tambahkan File
               </button>
             </div>
-
           </div>
 
           {/* Submit Button */}
-          <div className="mt-52 flex justify-end">
-            <button className="w-28 h-14 bg-white text-primary-500 font-avenirBlack rounded-lg mr-4 border border-primary-500 shadow-md">
-              Batal
-            </button>
+          <div className="mt-20 flex justify-end">
+            <Link to="/kelas">
+              <button className="w-28 h-14 bg-white text-primary-500 font-avenirBlack rounded-lg mr-4 border border-primary-500 shadow-md">
+                Batal
+              </button>
+            </Link>
             <button className="w-52 h-14 bg-primary-500 text-white font-avenirBlack rounded-lg shadow-md">
               Simpan Perubahan
             </button>
@@ -102,7 +107,7 @@ const CreateKelas = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CreateKelas
+export default CreateKelas;
