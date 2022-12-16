@@ -1,5 +1,4 @@
 import React from 'react'
-import { TambahDataIcon } from '../../../assets/icons'
 
 const EditBooking = () => {
   return (

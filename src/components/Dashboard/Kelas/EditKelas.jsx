@@ -1,5 +1,5 @@
 import React from 'react'
-import { TambahDataIcon } from '../../../assets/icons'
+import { TambahDataRed } from '../../../assets/icons'
 
 const EditKelas = () => {
   return (
@@ -84,7 +84,7 @@ const EditKelas = () => {
             <div className='flex flex-col ml-10'>
               <label htmlFor="meet" className='font-avenirHeavy mb-3'>Thumbnail</label>
               <button className="text-primary-500 border-[3px] border-primary-500 w-[318px] h-[40px] flex py-4 px-8 font-avenirBlack items-center justify-center rounded-lg">
-                <TambahDataIcon className="w-3 h-3 inline-block mr-3" /> Tambahkan File
+                <TambahDataRed className="w-3 h-3 inline-block mr-3" /> Tambahkan File
               </button>
             </div>
 

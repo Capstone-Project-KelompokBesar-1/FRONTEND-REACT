@@ -22,6 +22,7 @@ import { ReactComponent as NextIcon } from "./next.svg";
 import { ReactComponent as SearchIcon } from "./search.svg";
 import { ReactComponent as SuperAdminIcon } from "./superadmin.svg";
 import { ReactComponent as TambahDataIcon } from "./tambah-data.svg";
+import { ReactComponent as TambahDataRed } from "./tambah-data-red.svg";
 import { ReactComponent as TimeIcon } from "./time.svg";
 import { ReactComponent as UnggahIcon } from "./unggah.svg";
 import { ReactComponent as LoncengIcon } from "./lonceng.svg";
@@ -57,6 +58,7 @@ export {
   SearchIcon,
   SuperAdminIcon,
   TambahDataIcon,
+  TambahDataRed,
   TimeIcon,
   UnggahIcon,
   LoncengIcon,
