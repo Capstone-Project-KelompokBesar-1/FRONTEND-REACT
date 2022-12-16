@@ -1,6 +1,7 @@
 import Transaksi from "./Transaksi";
-import { useEffect, useState } from "react";
-import APIClient from "../../../apis/APIClient";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchDatas } from "../../../redux/gymSlice";
 
 import {
   AnggotaDashBoardIcon,
@@ -11,22 +12,15 @@ import {
 } from "../../../assets/icons";
 
 const MainMenu = () => {
-  const [data, setData] = useState([]);
-
-  const fetchTransactions = async () => {
-    try {
-      const {
-        data: { data },
-      } = await APIClient.get("/transactions/history");
-      setData(data);
-      // console.log(data[0]);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.gym.transactions);
 
   useEffect(() => {
-    fetchTransactions();
+    dispatch(
+      fetchDatas({ url: "/transactions/history", state: "transactions" })
+    );
+
+    // eslint-disable-next-line
   }, []);
 
   return (
