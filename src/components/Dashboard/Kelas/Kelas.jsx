@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchDatas, setSearchField } from "../../../redux/gymSlice";
 
-import { TbDownload } from "react-icons/tb";
 import {
   CalenderIcon,
   SearchIcon,
