@@ -13,6 +13,12 @@ import EditKelasPage from "../pages/DashboardPage/KelasPage/EditKelasPage";
 import EditBookingPage from "../pages/DashboardPage/BookingPage/EditBookingPage";
 import ProtectedRoute from "./ProtectedRoute";
 import PrivateRoute from "./PrivateRoute";
+import CreateAnggota from "../components/Dashboard/Anggota/CreateAnggota";
+import CreateKelas from "../components/Dashboard/Kelas/CreateKelas";
+import CreateBooking from "../components/Dashboard/Booking/CreateBooking";
+import CreateAnggotaPage from "../pages/DashboardPage/AnggotaPage/CreateAnggotaPage";
+import CreateKelasPage from "../pages/DashboardPage/KelasPage/CreateKelasPage";
+import CreateBookingPage from "../pages/DashboardPage/BookingPage/CreateBookingPage";
 
 const RouteConfig = () => {
   return (
@@ -35,14 +41,17 @@ const RouteConfig = () => {
           </Route>
           <Route path="anggota">
             <Route path="page" element={<AnggotaPage />}/>
+            <Route path="create" element={<CreateAnggotaPage />}/>
             <Route path="edit" element={<EditAnggotaPage />}/>
           </Route>
           <Route path="kelas">
             <Route path="page" element={<KelasPage />}/>
+            <Route path="create" element={<CreateKelasPage />}/>
             <Route path="edit" element={<EditKelasPage />}/>
           </Route>
           <Route path="booking">
             <Route path="page" element={<BookingPage />}/>
+            <Route path="create" element={<CreateBookingPage />}/>
             <Route path="edit" element={<EditBookingPage />}/>
           </Route>
         </Route>

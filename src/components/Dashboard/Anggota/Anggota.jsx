@@ -12,6 +12,7 @@ import {
 import { BiCheckbox } from "react-icons/bi";
 
 import AnggotaList from "./AnggotaList";
+import { Link } from "react-router-dom";
 
 const Anggota = () => {
   const dispatch = useDispatch();
@@ -80,9 +81,9 @@ const Anggota = () => {
             <button className="w-[75px] h-11 bg-info-100 rounded-md shadow-md">
               <TbDownload className="inline-block mr-1" /> Unduh
             </button>
-            <button className="w-24 h-11 bg-success-500 rounded-md shadow-md">
+            <Link to="/anggota/create" className="w-24 h-11 bg-success-500 rounded-md shadow-md flex justify-center items-center">
               <TambahDataIcon className="w-2 h-2 inline-block" /> Tambah Baru
-            </button>
+            </Link>
           </div>
         </div>
 
