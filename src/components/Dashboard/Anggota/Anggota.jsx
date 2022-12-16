@@ -1,16 +1,52 @@
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchDatas, setSearchField } from "../../../redux/gymSlice";
+
 import { TbDownload } from "react-icons/tb";
 import {
-  EditIcon,
   CalenderIcon,
-  DeleteIcon,
   SearchIcon,
   DeleteBlackIcon,
   TambahDataIcon,
 } from "../../../assets/icons";
-import { BiCheckbox, BiCheckboxSquare } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { BiCheckbox } from "react-icons/bi";
+
+import AnggotaList from "./AnggotaList";
 
 const Anggota = () => {
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.gym.users);
+  const searchField = useSelector((state) => state.gym.searchField);
+
+  useEffect(() => {
+    dispatch(fetchDatas({ url: "/users", state: "users" }));
+
+    // eslint-disable-next-line
+  }, []);
+
+  const handleSearch = (e) => {
+    dispatch(setSearchField(e.target.value.toLocaleLowerCase()));
+  };
+
+  const renderSearch = () => {
+    const searchFilter = data.filter((data) => {
+      return data.name.toLowerCase().includes(searchField);
+    });
+
+    return searchFilter.map((item, index) => {
+      return (
+        <AnggotaList
+          key={item.id}
+          name={item.name}
+          phone={item.phone}
+          email={item.email}
+          address={item.address}
+          index={index}
+        />
+      );
+    });
+  };
+
   return (
     <div>
       <div className="ml-[292px] pt-[124px] mr-9">
@@ -31,6 +67,7 @@ const Anggota = () => {
               type="text"
               className="w-80 h-11 border-2 border-primary-500 rounded-[60px] p-5"
               placeholder="Pencarian"
+              onChange={handleSearch}
             />
             <SearchIcon className="relative w-4 h-4 -top-[30px] left-[285px]" />
           </div>
@@ -63,30 +100,13 @@ const Anggota = () => {
                 <th className="py-4 px-6 w-52 mr-12 text-center">TINDAKAN</th>
               </tr>
             </thead>
-            <tbody className="font-avenirHeavy text-web-dark">
-              <tr>
-                <td className="py-4 px-4 text-3xl">
-                  <BiCheckboxSquare />
-                </td>
-                <td className="py-4 px-6">Hamidun</td>
-                <td className="py-4 px-6">hamidin@mail.com</td>
-                <td className="py-4 px-6">08123456789</td>
-                <td className="py-4 px-6">Jl. Raya Cibaduyut No. 1</td>
-                <td className="py-4 px-6 text-center">
-                  <Link to="/dashboard/anggota/edit" className="p-2 bg-info-700 w-10 rounded-[3px] inline-block mr-3">
-                    <EditIcon className="w-6 h-6 inline-block" fill="white" />
-                  </Link>
-                  <div className="p-2 bg-primary-700 w-10 rounded-[3px] inline-block">
-                    <DeleteIcon className="w-5 h-6 inline-block" />
-                  </div>
-                </td>
-              </tr>
-            </tbody>
+
+            {renderSearch()}
           </table>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Anggota;

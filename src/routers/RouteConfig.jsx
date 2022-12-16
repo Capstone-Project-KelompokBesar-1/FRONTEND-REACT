@@ -11,14 +11,24 @@ import EditPelatihPage from "../pages/DashboardPage/PelatihPage/EditPelatihPage"
 import EditAnggotaPage from "../pages/DashboardPage/AnggotaPage/EditAnggotaPage";
 import EditKelasPage from "../pages/DashboardPage/KelasPage/EditKelasPage";
 import EditBookingPage from "../pages/DashboardPage/BookingPage/EditBookingPage";
+import ProtectedRoute from "./ProtectedRoute";
+import PrivateRoute from "./PrivateRoute";
 
 const RouteConfig = () => {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Landing Route */}
         <Route path="/" element={<LandingPage />} />
-        <Route path="/dashboard">
-          <Route path="main" element={<DashboardMainPage />} />
+        
+        {/* Login Route */}
+        <Route path="/" element={<ProtectedRoute />}>
+          <Route path="/login" element={<Login />} />
+        </Route>
+
+        {/* Admin Route */}
+        <Route path="/" element={<PrivateRoute />}>
+          <Route path="dashboard" element={<DashboardMainPage />} />
           <Route path="pelatih">
             <Route path="page" element={<PelatihPage />}/>
             <Route path="edit" element={<EditPelatihPage />}/>
@@ -36,7 +46,6 @@ const RouteConfig = () => {
             <Route path="edit" element={<EditBookingPage />}/>
           </Route>
         </Route>
-        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

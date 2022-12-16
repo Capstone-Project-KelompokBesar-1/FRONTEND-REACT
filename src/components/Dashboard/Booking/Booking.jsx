@@ -1,16 +1,52 @@
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchDatas, setSearchField } from "../../../redux/gymSlice";
+
 import { TbDownload } from "react-icons/tb";
 import {
-  EditIcon,
   CalenderIcon,
-  DeleteIcon,
   SearchIcon,
   DeleteBlackIcon,
   TambahDataIcon,
 } from "../../../assets/icons";
-import { BiCheckbox, BiCheckboxSquare } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { BiCheckbox } from "react-icons/bi";
+import BookingList from "./BookingList";
 
 const Booking = () => {
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.gym.transactions);
+  const searchField = useSelector((state) => state.gym.searchField);
+
+  useEffect(() => {
+    dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
+
+    // eslint-disable-next-line
+  }, []);
+
+  const handleSearch = (e) => {
+    dispatch(setSearchField(e.target.value.toLocaleLowerCase()));
+  };
+
+  const RenderedSearch = () => {
+    const searchFilter = data.filter((data) => {
+      return data.id.toLowerCase().includes(searchField);
+    });
+
+    return searchFilter.map((item, index) => {
+      return (
+        <BookingList
+          key={item.id}
+          bookingId={item.id}
+          date={item.updated_at}
+          amount={item.amount}
+          method={item.payment_method}
+          status={item.status}
+          index={index}
+        />
+      );
+    });
+  };
+
   return (
     <div>
       <div className="ml-[292px] pt-[124px] mr-9">
@@ -31,6 +67,7 @@ const Booking = () => {
               type="text"
               className="w-80 h-11 border-2 border-primary-500 rounded-[60px] p-5"
               placeholder="Pencarian"
+              onChange={handleSearch}
             />
             <SearchIcon className="relative w-4 h-4 -top-[30px] left-[285px]" />
           </div>
@@ -57,38 +94,22 @@ const Booking = () => {
                   <BiCheckbox />
                 </th>
                 <th className="py-4 px-6 w-80 mr-12">ID PEMBAYARAN</th>
-                <th className="py-4 px-6 w-96 mr-12">WAKTU PEMBAYARAN</th>
+                <th className="py-4 px-6 w-96 mr-12 text-center">
+                  WAKTU PEMBAYARAN
+                </th>
                 <th className="py-4 px-6 w-72 mr-12">TOTAL BAYAR</th>
                 <th className="py-4 px-6 w-96 mr-12">METODE BAYAR</th>
                 <th className="py-4 px-6 w-96 mr-12">STATUS PEMBAYARAN</th>
                 <th className="py-4 px-6 w-52 mr-12 text-center">TINDAKAN</th>
               </tr>
             </thead>
-            <tbody className="font-avenirHeavy text-web-dark">
-              <tr>
-                <td className="py-4 px-4 text-3xl">
-                  <BiCheckboxSquare />
-                </td>
-                <td className="py-4 px-6">OFFCLASS001</td>
-                <td className="py-4 px-6">26 Nov 2022 17:30</td>
-                <td className="py-4 px-6">325.000</td>
-                <td className="py-4 px-6">Alfamart</td>
-                <td className="py-4 px-6">BERHASIL</td>
-                <td className="py-4 px-6 text-center">
-                  <Link to="/dashboard/booking/edit" className="p-2 bg-info-700 w-10 rounded-[3px] inline-block mr-3">
-                    <EditIcon className="w-6 h-6 inline-block" fill="white" />
-                  </Link>
-                  <div className="p-2 bg-primary-700 w-10 rounded-[3px] inline-block">
-                    <DeleteIcon className="w-5 h-6 inline-block" />
-                  </div>
-                </td>
-              </tr>
-            </tbody>
+
+            <RenderedSearch />
           </table>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Booking;
