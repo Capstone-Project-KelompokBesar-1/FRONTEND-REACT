@@ -77,9 +77,6 @@ const Kelas = () => {
               <DeleteBlackIcon className="w-2 h-2 inline-block mr-1" />
               Hapus yang dipilih
             </button>
-            <button className="w-[75px] h-11 bg-info-100 rounded-md shadow-md">
-              <TbDownload className="inline-block mr-1" /> Unduh
-            </button>
             <Link to="/kelas/create" className="w-24 h-11 bg-success-500 rounded-md shadow-md flex justify-center items-center">
               <TambahDataIcon className="w-2 h-2 inline-block" /> Tambah Baru
             </Link>
