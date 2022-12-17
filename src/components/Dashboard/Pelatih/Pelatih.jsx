@@ -27,7 +27,7 @@ const Pelatih = () => {
     dispatch(setSearchField(e.target.value.toLocaleLowerCase()));
   };
 
-  const renderSearch = () => {
+  const RenderedSearch = () => {
     const searchFilter = data.filter((data) => {
       return data.name.toLowerCase().includes(searchField);
     });
@@ -97,7 +97,7 @@ const Pelatih = () => {
               </tr>
             </thead>
 
-            {renderSearch()}
+            <RenderedSearch />
           </table>
         </div>
       </div>

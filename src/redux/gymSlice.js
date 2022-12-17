@@ -7,6 +7,7 @@ const initialState = {
   trainers: [],
   users: [],
   classes: [],
+  edit: [],
   searchField: "",
 };
 
@@ -37,6 +38,12 @@ export const gymSlice = createSlice({
       //   console.log("State Transaction", state[action.payload.state]);
     },
 
+    // --- Edit --- //
+    setEdit: (state, action) => {
+      console.log(action.payload);
+      state.edit = action.payload;
+    },
+
     // --- Search --- //
     setSearchField: (state, action) => {
       state.searchField = action.payload;
@@ -44,6 +51,6 @@ export const gymSlice = createSlice({
   },
 });
 
-export const { getData, setSearchField } = gymSlice.actions;
+export const { getData, setSearchField, setEdit } = gymSlice.actions;
 
 export default gymSlice.reducer;

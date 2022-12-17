@@ -27,7 +27,7 @@ const Kelas = () => {
     dispatch(setSearchField(e.target.value.toLocaleLowerCase()));
   };
 
-  const renderSearch = () => {
+  const RenderedSearch = () => {
     const searchFilter = data.filter((data) => {
       return data.name.toLowerCase().includes(searchField);
     });
@@ -35,11 +35,15 @@ const Kelas = () => {
     return searchFilter.map((item, index) => {
       return (
         <KelasList
+          id={item.id}
           key={item.id}
           gymClass={item.name}
           classType={item.type}
           classCategory={item.category.name}
           price={item.price}
+          description={item.description}
+          total_meeting={item.total_meeting}
+          trainer={item.trainer.name}
           index={index}
         />
       );
@@ -61,9 +65,15 @@ const Kelas = () => {
         </div>
         <div className="flex justify-between">
           <div className="flex flex-row items-end pb-6">
-            <button className="text-sm w-[86px] h-[40px] rounded-[40px] flex justify-center items-center border-2 border-primary-500 text-white bg-primary-500 mr-4">Semua</button>
-            <button className="text-sm w-[110px] h-[40px] rounded-[40px] flex justify-center items-center border-2 border-primary-500 text-primary-500 bg-white mr-4">Kelas Online</button>
-            <button className="text-sm w-[110px] h-[40px] rounded-[40px] flex justify-center items-center border-2 border-primary-500 text-primary-500 bg-white">Kelas Offline</button>
+            <button className="text-sm w-[86px] h-[40px] rounded-[40px] flex justify-center items-center border-2 border-primary-500 text-white bg-primary-500 mr-4">
+              Semua
+            </button>
+            <button className="text-sm w-[110px] h-[40px] rounded-[40px] flex justify-center items-center border-2 border-primary-500 text-primary-500 bg-white mr-4">
+              Kelas Online
+            </button>
+            <button className="text-sm w-[110px] h-[40px] rounded-[40px] flex justify-center items-center border-2 border-primary-500 text-primary-500 bg-white">
+              Kelas Offline
+            </button>
           </div>
           <div>
             <div className="my-6 flex flex-col items-end">
@@ -82,15 +92,19 @@ const Kelas = () => {
                   <DeleteBlackIcon className="w-2 h-2 inline-block mr-1" />
                   Hapus yang dipilih
                 </button>
-                <Link to="/kelas/create" className="w-24 h-11 bg-success-500 rounded-md shadow-md flex justify-center items-center">
-                  <TambahDataIcon className="w-2 h-2 inline-block" /> Tambah Baru
+                <Link
+                  to="/kelas/create"
+                  className="w-24 h-11 bg-success-500 rounded-md shadow-md flex justify-center items-center"
+                >
+                  <TambahDataIcon className="w-2 h-2 inline-block" /> Tambah
+                  Baru
                 </Link>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="border rounded-2xl h-[580px] overflow-auto">
+        <div className="border rounded-2xl h-[530px] overflow-auto">
           <table>
             <thead className="uppercase bg-primary-700 text-left">
               <tr className="text-white">
@@ -105,7 +119,7 @@ const Kelas = () => {
               </tr>
             </thead>
 
-            {renderSearch()}
+            <RenderedSearch />
           </table>
         </div>
       </div>

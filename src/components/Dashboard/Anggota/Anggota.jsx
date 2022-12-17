@@ -28,7 +28,7 @@ const Anggota = () => {
     dispatch(setSearchField(e.target.value.toLocaleLowerCase()));
   };
 
-  const renderSearch = () => {
+  const RenderedSearch = () => {
     const searchFilter = data.filter((data) => {
       return data.name.toLowerCase().includes(searchField);
     });
@@ -36,11 +36,14 @@ const Anggota = () => {
     return searchFilter.map((item, index) => {
       return (
         <AnggotaList
+          id={item.id}
           key={item.id}
           name={item.name}
           phone={item.phone}
           email={item.email}
           address={item.address}
+          birth_date={item.birth_date}
+          gender={item.gender}
           index={index}
         />
       );
@@ -77,7 +80,10 @@ const Anggota = () => {
               <DeleteBlackIcon className="w-2 h-2 inline-block mr-1" />
               Hapus yang dipilih
             </button>
-            <Link to="/anggota/create" className="w-24 h-11 bg-success-500 rounded-md shadow-md flex justify-center items-center">
+            <Link
+              to="/anggota/create"
+              className="w-24 h-11 bg-success-500 rounded-md shadow-md flex justify-center items-center"
+            >
               <TambahDataIcon className="w-2 h-2 inline-block" /> Tambah Baru
             </Link>
           </div>
@@ -98,7 +104,7 @@ const Anggota = () => {
               </tr>
             </thead>
 
-            {renderSearch()}
+            <RenderedSearch />
           </table>
         </div>
       </div>
