@@ -1,6 +1,10 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchDatas, setSearchField } from "../../../redux/gymSlice";
+import {
+  fetchDatas,
+  setSearchField,
+  deleteData,
+} from "../../../redux/gymSlice";
 
 import {
   CalenderIcon,
@@ -9,13 +13,16 @@ import {
   TambahDataIcon,
 } from "../../../assets/icons";
 import { BiCheckbox } from "react-icons/bi";
+
 import KelasList from "./KelasList";
 import { Link } from "react-router-dom";
 
 const Kelas = () => {
   const dispatch = useDispatch();
+
   const data = useSelector((state) => state.gym.classes);
   const searchField = useSelector((state) => state.gym.searchField);
+  const edit = useSelector((state) => state.gym.edit);
 
   useEffect(() => {
     dispatch(fetchDatas({ url: "/classes", state: "classes" }));
@@ -36,7 +43,6 @@ const Kelas = () => {
       return (
         <KelasList
           id={item.id}
-          key={item.id}
           gymClass={item.name}
           classType={item.type}
           classCategory={item.category.name}
@@ -48,6 +54,15 @@ const Kelas = () => {
         />
       );
     });
+  };
+
+  const handleDelete = () => {
+    if (edit.length < 1) return alert("Pilih data yang akan dihapus");
+    dispatch(deleteData({ url: "/classes", type: "many" }));
+
+    setTimeout(() => {
+      dispatch(fetchDatas({ url: "/classes", state: "classes" }));
+    }, 1000);
   };
 
   return (
@@ -88,7 +103,10 @@ const Kelas = () => {
               </div>
 
               <div className="tableButton flex gap-2 text-black text-[10px]">
-                <button className="w-32 h-11 bg-primary-500 rounded-md shadow-md">
+                <button
+                  className="w-32 h-11 bg-primary-500 rounded-md shadow-md"
+                  onClick={handleDelete}
+                >
                   <DeleteBlackIcon className="w-2 h-2 inline-block mr-1" />
                   Hapus yang dipilih
                 </button>
