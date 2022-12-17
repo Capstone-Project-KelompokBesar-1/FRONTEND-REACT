@@ -37,9 +37,11 @@ const Booking = () => {
         <BookingList
           key={item.id}
           bookingId={item.id}
+          userId={item.user_id}
+          classId={item.class_id}
           date={item.updated_at}
           amount={item.amount}
-          method={item.payment_method}
+          method={item.payment_method_id}
           status={item.status}
           index={index}
         />
@@ -91,7 +93,7 @@ const Booking = () => {
                   <DeleteBlackIcon className="w-2 h-2 inline-block mr-1" />
                   Hapus yang dipilih
                 </button>
-                <Link to="/kelas/create" className="w-24 h-11 bg-success-500 rounded-md shadow-md flex justify-center items-center">
+                <Link to="/booking/create" className="w-24 h-11 bg-success-500 rounded-md shadow-md flex justify-center items-center">
                   <TambahDataIcon className="w-2 h-2 inline-block" /> Tambah Baru
                 </Link>
               </div>

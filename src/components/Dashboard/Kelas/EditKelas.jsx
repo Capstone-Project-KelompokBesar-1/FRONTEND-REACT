@@ -169,7 +169,7 @@ const EditKelas = () => {
                 id="trainer"
                 name="trainer_id"
                 className="w-[523px] h-12 ml-12 mb-2 border rounded-lg p-2"
-                value={data.gender}
+                value={data.trainer_id}
                 onChange={handleNumberEdit}
               >
                 <option value="">-- Pilih Trainer --</option>
