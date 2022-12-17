@@ -23,6 +23,7 @@ const EditAnggota = () => {
   useEffect(() => {
     console.log(data);
     setData(baseData);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleEdit = (e) => {
