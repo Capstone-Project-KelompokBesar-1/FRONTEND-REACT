@@ -1,8 +1,23 @@
+import { useDispatch } from "react-redux";
+import { setEdit } from "../../../redux/gymSlice";
+
 import { EditIcon, DeleteIcon } from "../../../assets/icons";
 import { BiCheckboxSquare } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
-const KelasList = ({ gymClass, classType, classCategory, price }) => {
+const KelasList = ({
+  id,
+  key,
+  gymClass,
+  classType,
+  classCategory,
+  price,
+  description,
+  total_meeting,
+  trainer,
+}) => {
+  const dispatch = useDispatch();
+
   return (
     <tbody className="font-avenirHeavy text-web-dark border-t">
       <tr>
@@ -17,6 +32,21 @@ const KelasList = ({ gymClass, classType, classCategory, price }) => {
           <Link
             to="/kelas/edit"
             className="p-2 bg-info-700 w-10 rounded-[3px] inline-block mr-3"
+            onClick={() =>
+              dispatch(
+                setEdit({
+                  id,
+                  key,
+                  gymClass,
+                  classType,
+                  classCategory,
+                  price,
+                  description,
+                  total_meeting,
+                  trainer,
+                })
+              )
+            }
           >
             <EditIcon className="w-6 h-6 inline-block" fill="white" />
           </Link>
