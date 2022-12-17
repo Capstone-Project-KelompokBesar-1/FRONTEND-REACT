@@ -125,7 +125,7 @@ const EditAnggota = () => {
                 onChange={handleEdit}
               >
                 <option value="Pilih">-- Pilih Jenis Kelamin --</option>
-                <option value={"Laki-laki"}>Laki-laki</option>
+                <option value="Laki-Laki">Laki-laki</option>
                 <option value="Perempuan">Perempuan</option>
               </select>
               <input
