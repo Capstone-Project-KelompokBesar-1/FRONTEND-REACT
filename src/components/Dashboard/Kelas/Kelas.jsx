@@ -35,11 +35,15 @@ const Kelas = () => {
     return searchFilter.map((item, index) => {
       return (
         <KelasList
+          id={item.id}
           key={item.id}
           gymClass={item.name}
           classType={item.type}
           classCategory={item.category.name}
           price={item.price}
+          description={item.description}
+          total_meeting={item.total_meeting}
+          trainer={item.trainer.name}
           index={index}
         />
       );
@@ -100,7 +104,7 @@ const Kelas = () => {
           </div>
         </div>
 
-        <div className="border rounded-2xl h-[580px] overflow-auto">
+        <div className="border rounded-2xl h-[530px] overflow-auto">
           <table>
             <thead className="uppercase bg-primary-700 text-left">
               <tr className="text-white">
