@@ -26,15 +26,15 @@ const BookingList = ({
 
   const methodCheck = () => {
     if (method === 1) {
-      return "Indomaret";
+      return "INDOMARET";
     } else if (method === 2) {
-      return "BRI Virtual Account";
+      return "BRI";
     } else if (method === 3) {
-      return "BNI Virtual Account";
+      return "BNI";
     } else if (method === 4) {
-      return "Mandiri Virtual Account";
+      return "MANDIRI";
     } else if (method === 5) {
-      return "BCA Virtual Account";
+      return "BCA";
     }
   };
 
