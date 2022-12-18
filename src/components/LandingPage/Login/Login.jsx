@@ -20,12 +20,15 @@ const Login = () => {
       password,
     })
       .then(() => {
-        Swal.fire("Login Berhasil", "Masuk sebagai akun admin", "success");
+        Swal.fire("Login Berhasil", "Masuk sebagai Akun Admin", "success");
         navigate("/dashboard");
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
       })
       .catch((error) => {
         console.log("error", error);
-        Swal.fire("Login Gagal", "Email atau password mungkin salah", "error");
+        Swal.fire("Login Gagal", "Email atau Password mungkin salah", "error");
       });
   };
 
