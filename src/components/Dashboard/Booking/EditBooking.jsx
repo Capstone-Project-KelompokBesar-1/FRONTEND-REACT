@@ -52,7 +52,7 @@ const EditBooking = () => {
       try {
         e.preventDefault();
         // add content-type json & charset=UTF-8 to header
-        await APIClient.put(`/transactions/${state.userId}`, data);
+        await APIClient.put(`/transactions/${state.bookingId}`, data);
 
         dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
         navigate("/booking");
@@ -207,9 +207,9 @@ const EditBooking = () => {
               <select
                 id="name_kelas"
                 type="number"
-                name="classId"
+                name="class_id"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
-                value={data.classId}
+                value={data.class_id}
                 onChange={handleNumberEdit}
               >
                 <option value="">-- Pilih Kelas --</option>
