@@ -1,12 +1,74 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import APIClient from "../../../apis/APIClient";
+import { fetchDatas } from "../../../redux/gymSlice";
 
 const CreateBooking = () => {
+  const dispatch = useDispatch();
+  // const state = useSelector((state) => state.gym.edit);
+  const navigate = useNavigate();
+
+  const baseData = {
+    // bookingId: "",
+    classId: "",
+    userId: "",
+    date: "",
+    amount: "",
+    method: "",
+    status: "",
+  };
+  const [data, setData] = useState(baseData);
+
+  useEffect(() => {
+    console.log(data);
+    setData(baseData);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleEdit = (e) => {
+    setData((data) => {
+      return { ...data, [e.target.name]: e.target.value };
+    });
+  };
+
+  const handleNumberEdit = (e) => {
+    setData((data) => {
+      return { ...data, [e.target.name]: parseInt(e.target.value) };
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    // if (
+    //   !data.name ||
+    //   !data.type ||
+    //   !data.category_id ||
+    //   !data.price ||
+    //   !data.description ||
+    //   !data.total_meeting ||
+    //   !data.thumbnail
+    // ) {
+    //   alert("Data tidak boleh kosong");
+    // } else {
+      try {
+        e.preventDefault();
+        // add content-type json & charset=UTF-8 to header
+        await APIClient.post(`/transactions`, data);
+
+        dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
+        navigate("/booking");
+      } catch (error) {
+        console.log(error);
+      }
+    // }
+  };
+  console.log(data);
+
   return (
-    <div className="ml-[292px] pt-[124px] mr-9">
+    <form className="ml-[292px] pt-[124px] mr-9" onSubmit={handleSubmit}>
       <div>
         <h1 className="font-avenirBlack text-black text-[40px]">
-          TAMBAH TRANSAKSI BARU
+          PERUBAHAN DATA TRANSAKSI
         </h1>
         <div className="flex justify-between mb-6">
           <p>Transaksi &gt; Ubah Data</p>
@@ -17,21 +79,21 @@ const CreateBooking = () => {
           {/* Label, Input, & img */}
           <div className="main flex">
             <div>
-              <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
+              {/* <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="id">ID Pembayaran</label>
-              </div>
+              </div> */}
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="time">Waktu Pembelian</label>
               </div>
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
-                <label htmlFor="name">Nama Anggota</label>
+                <label htmlFor="name">ID Anggota</label>
               </div>
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="price">Total Bayar</label>
               </div>
-              <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
+              {/* <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="promo">Kode Promo</label>
-              </div>
+              </div> */}
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="method">Metode Pembayaran</label>
               </div>
@@ -41,52 +103,59 @@ const CreateBooking = () => {
             </div>
 
             <div className="flex flex-col">
-              <input
+              {/* <input
                 id="id"
                 type="text"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
-              />
+                value={data.bookingId}
+                onChange={handleEdit}
+              /> */}
               <input
                 id="time"
-                type="datetime-local"
+                type="text"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
+                value={data.date}
+                onChange={handleEdit}
               />
               <input
                 id="name"
-                type="text"
+                type="number"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
+                value={data.userId}
+                onChange={handleEdit}
               />
               <input
                 id="price"
                 type="number"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
-              />
-              <input
-                id="promo"
-                type="text"
-                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
+                value={data.amount}
+                onChange={handleNumberEdit}
               />
               <select
                 id="method"
                 type="text"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
+                value={data.method}
+                onChange={handleNumberEdit}
               >
                 <option value="">-- Pilih Metode Pembayaran --</option>
-                <option value="BRI">BRI</option>
-                <option value="BNI">BNI</option>
-                <option value="MANDIRI">MANDIRI</option>
-                <option value="BCA">BCA</option>
-                <option value="QRIS">QRIS</option>
+                <option value={1}>Indomaret</option>
+                <option value={2}>BRI</option>
+                <option value={3}>BNI</option>
+                <option value={4}>MANDIRI</option>
+                <option value={5}>BCA</option>
               </select>
               <select
                 id="status"
                 type="text"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
+                value={data.status}
+                onChange={handleEdit}
               >
                 <option value="">-- Pilih Status Pembayaran --</option>
-                <option value="BERHASIL">BERHASIL</option>
-                <option value="GAGAL">GAGAL</option>
-                <option value="TERTUNDA">TERTUNDA</option>
+                <option value={"berhasil"}>BERHASIL</option>
+                <option value={"tertunda"}>GAGAL</option>
+                <option value={"gagal"}>TERTUNDA</option>
               </select>
             </div>
           </div>
@@ -95,50 +164,46 @@ const CreateBooking = () => {
           </div>
           <div className="flex flex-row">
             <div>
-              <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
+              {/* <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="type_kelas">Jenis Kelas</label>
-              </div>
+              </div> */}
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="name_kelas">Nama Kelas</label>
               </div>
-              <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
+              {/* <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="price_kelas">Harga Kelas</label>
-              </div>
+              </div> */}
             </div>
             <div>
-              <select
+              {/* <select
                 id="type_kelas"
                 type="text"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
+                value={data.class.type}
+                onChange={handleEdit}
               >
                 <option value="">-- Pilih Jenis Kelas --</option>
-                <option value="Online">Online</option>
-                <option value="Offline">Offline</option>
-              </select>
+                <option value={"online"}>Online</option>
+                <option value={"offline"}>Offline</option>
+              </select> */}
               <select
                 id="name_kelas"
                 type="text"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
+                value={data.class_id}
+                onChange={handleNumberEdit}
               >
                 <option value="">-- Pilih Kelas --</option>
-                <option value="yoga">Yoga untuk Pemula</option>
-                <option value="keseimbangan">Keseimbangan Tubuh</option>
-                <option value="tidur">Tidur Lebih Baik</option>
-                <option value="pompa">Pompa Tubuh</option>
-                <option value="perut">Perut Six Pack</option>
-                <option value="kardio">Langkah Kardio</option>
-                <option value="body">Body Combat</option>
-                <option value="aerobik">Aerobik Energy</option>
-                <option value="zumba">Zumba</option>
-                <option value="muay">Muay Thai</option>
-                <option value="pound">Pound Fit</option>
-                <option value="anti">Antigravity Yoga</option>
+                <option value={1}>Yoga</option>
+                <option value={2}>Atletik</option>
               </select>
-              <input
+              {/* <input
                 id="price_kelas"
                 type="number"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
-              />
+                value={data.amount}
+                onChange={handleNumberEdit}
+              /> */}
             </div>
           </div>
 
@@ -149,13 +214,16 @@ const CreateBooking = () => {
                 Batal
               </button>
             </Link>
-            <button className="w-52 h-14 bg-primary-500 text-white font-avenirBlack rounded-lg shadow-md">
+            <button
+              className="w-52 h-14 bg-primary-500 text-white font-avenirBlack rounded-lg shadow-md"
+              type="submit"
+            >
               Simpan Perubahan
             </button>
           </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 

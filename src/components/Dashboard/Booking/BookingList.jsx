@@ -2,12 +2,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { setEdit, deleteData, fetchDatas } from "../../../redux/gymSlice";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setEdit } from "../../../redux/gymSlice";
 
-import { EditIcon, DeleteIcon } from "../../../assets/icons";
-import { BiCheckboxSquare, BiCheckbox } from "react-icons/bi";
 
-const BookingList = ({ id, date, amount, method, status }) => {
-  console.log(id, date, amount, method, status);
+const BookingList = ({
+  bookingId,
+  classId,
+  userId,
+  date,
+  amount,
+  method,
+  status,
+}) => {
+  const dispatch = useDispatch();
+
   const statusCheck = () => {
     if (status === "tertunda") {
       return "text-warning";
@@ -17,6 +26,22 @@ const BookingList = ({ id, date, amount, method, status }) => {
       return "text-primary-500";
     }
   };
+
+
+  const methodCheck = () => {
+    if (method === 1) {
+      return "INDOMARET";
+    } else if (method === 2) {
+      return "BRI";
+    } else if (method === 3) {
+      return "BNI";
+    } else if (method === 4) {
+      return "MANDIRI";
+    } else if (method === 5) {
+      return "BCA";
+    }
+  };
+
 
   // Kode Paujul //
 
@@ -59,7 +84,7 @@ const BookingList = ({ id, date, amount, method, status }) => {
           WIB
         </td>
         <td className="py-4 px-6">Rp{amount}</td>
-        <td className="py-4 px-6 capitalize">{method}</td>
+        <td className="py-4 px-6 capitalize">{methodCheck({method})}</td>
         <td className={`py-4 px-6 font-avenirBlack ${statusCheck()} uppercase`}>
           {status}
         </td>
@@ -67,6 +92,19 @@ const BookingList = ({ id, date, amount, method, status }) => {
           <Link
             to="/booking/edit"
             className="p-2 bg-info-700 w-10 rounded-[3px] inline-block mr-3"
+            onClick={() =>
+              dispatch(
+                setEdit({
+                  bookingId,
+                  classId,
+                  userId,
+                  date,
+                  amount,
+                  method,
+                  status,
+                })
+              )
+            }
           >
             <EditIcon className="w-6 h-6 inline-block" fill="white" />
           </Link>
