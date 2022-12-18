@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import APIClient from "../../../apis/APIClient";
-import { fetchDatas, setEdit } from "../../../redux/gymSlice";
+import { fetchDatas } from "../../../redux/gymSlice";
 
 const CreateBooking = () => {
   const dispatch = useDispatch();
@@ -26,12 +26,6 @@ const CreateBooking = () => {
     setData(baseData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const handleEdit = (e) => {
-    setData((data) => {
-      return { ...data, [e.target.name]: e.target.value };
-    });
-  };
 
   const handleNumberEdit = (e) => {
     setData((data) => {
