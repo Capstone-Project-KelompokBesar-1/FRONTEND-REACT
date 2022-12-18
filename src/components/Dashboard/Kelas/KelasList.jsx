@@ -33,7 +33,9 @@ const KelasList = ({
     dispatch(setEdit([]));
     // ntar tambahin swal trs kl Yes pake kode bawah ini
     dispatch(deleteData({ url: "/classes", type: "one", id }));
-    dispatch(fetchDatas({ url: "/classes", state: "classes" }));
+    setTimeout(() => {
+      dispatch(fetchDatas({ url: "/classes", state: "classes" }));
+    }, 500);
   };
 
   return (
