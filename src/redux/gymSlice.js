@@ -2,11 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import APIClient from "../apis/APIClient";
 
 const initialState = {
-  items: [],
   transactions: [],
   trainers: [],
   users: [],
   classes: [],
+  categories: [],
   edit: [],
   searchField: "",
 };
