@@ -10,21 +10,20 @@ const EditBooking = () => {
   const navigate = useNavigate();
 
   const baseData = {
-    bookingId: state.bookingId,
-    classId: state.classId,
-    userId: state.userId,
-    date: state.date,
+    user_id: state.userId,
+    class_id: state.classId,
     amount: state.amount,
-    method: state.method,
-    status: "",
+    payment_method_id: state.method,
+    status: state.status,
   };
-  console.log(baseData);
+  // console.log("BASE DATA", baseData);
   const [data, setData] = useState(baseData);
+  console.log("DATA:", data);
 
   useEffect(() => {
     console.log(data);
     setData(baseData);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleEdit = (e) => {
@@ -41,21 +40,19 @@ const EditBooking = () => {
 
   const handleSubmit = async (e) => {
     if (
-      !data.bookingId ||
-      !data.classId ||
-      !data.userId ||
-      !data.date ||
+      !data.user_id ||
+      !data.class_id ||
       !data.amount ||
-      !data.method ||
+      !data.payment_method_id ||
       !data.status
     ) {
       alert("Data tidak boleh kosong");
-      navigate("/booking")
+      navigate("/booking");
     } else {
       try {
         e.preventDefault();
         // add content-type json & charset=UTF-8 to header
-        await APIClient.put(`/transactions/${state.id}`, data);
+        await APIClient.put(`/transactions/${state.userId}`, data);
 
         dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
         navigate("/booking");
@@ -97,7 +94,7 @@ const EditBooking = () => {
                 <label htmlFor="promo">Kode Promo</label>
               </div> */}
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
-                <label htmlFor="method">Metode Pembayaran</label>
+                <label htmlFor="payment_method_id">Metode Pembayaran</label>
               </div>
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="status">Status Pembayaran</label>
@@ -112,7 +109,9 @@ const EditBooking = () => {
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2 text-gray-500"
                 // value=
                 // onChange={handleEdit}
-              >{data.bookingId}</p>
+              >
+                {state.bookingId}
+              </p>
               <p
                 id="time"
                 type="text"
@@ -120,14 +119,16 @@ const EditBooking = () => {
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2 text-gray-500"
                 // value=
                 // onChange={handleEdit}
-              >{data.date.toString().substring(0, 10)} - {data.date.match(/\d\d:\d\d/)}{" "} WIB
+              >
+                {state.date.toString().substring(0, 10)} -{" "}
+                {state.date.match(/\d\d:\d\d/)} WIB
               </p>
               <input
                 id="name"
                 type="number"
-                name="userId"
+                name="user_id"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
-                value={data.userId}
+                value={data.user_id}
                 onChange={handleEdit}
               />
               <input
@@ -149,7 +150,7 @@ const EditBooking = () => {
               <select
                 id="method"
                 type="number"
-                name="method"
+                name="payment_method_id"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
                 value={data.method}
                 onChange={handleNumberEdit}
@@ -171,8 +172,8 @@ const EditBooking = () => {
               >
                 <option value="">-- Pilih Status Pembayaran --</option>
                 <option value="settlement">BERHASIL</option>
-                <option value="pending">GAGAL</option>
-                <option value="failure">TERTUNDA</option>
+                <option value="failure">GAGAL</option>
+                <option value="pending">TERTUNDA</option>
               </select>
             </div>
           </div>
