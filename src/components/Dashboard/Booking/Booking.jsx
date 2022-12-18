@@ -4,7 +4,6 @@ import {
   fetchDatas,
   setSearchField,
   deleteData,
-  setEdit,
 } from "../../../redux/gymSlice";
 
 import {
