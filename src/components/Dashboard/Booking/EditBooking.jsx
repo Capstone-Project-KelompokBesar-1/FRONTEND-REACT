@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import APIClient from "../../../apis/APIClient";
-import { fetchDatas } from "../../../redux/gymSlice";
+import { fetchDatas, setEdit } from "../../../redux/gymSlice";
 
 const EditBooking = () => {
   const dispatch = useDispatch();
@@ -23,6 +23,11 @@ const EditBooking = () => {
   useEffect(() => {
     console.log(data);
     setData(baseData);
+
+    return () => {
+      dispatch(setEdit([]));
+    };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -229,7 +234,10 @@ const EditBooking = () => {
           {/* Submit Button */}
           <div className="mt-52 flex justify-end">
             <Link to="/booking">
-              <button className="w-28 h-14 bg-white text-primary-500 font-avenirBlack rounded-lg mr-4 border border-primary-500 shadow-md">
+              <button
+                className="w-28 h-14 bg-white text-primary-500 font-avenirBlack rounded-lg mr-4 border border-primary-500 shadow-md"
+                onClick={() => dispatch(setEdit([]))}
+              >
                 Batal
               </button>
             </Link>

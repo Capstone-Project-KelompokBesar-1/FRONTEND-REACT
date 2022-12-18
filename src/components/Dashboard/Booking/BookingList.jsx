@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setEdit, deleteData, fetchDatas } from "../../../redux/gymSlice";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setEdit } from "../../../redux/gymSlice";
 
+import { BiCheckbox, BiCheckboxSquare } from "react-icons/bi";
+import { EditIcon, DeleteIcon } from "../../../assets/icons";
 
 const BookingList = ({
   bookingId,
@@ -15,8 +15,6 @@ const BookingList = ({
   method,
   status,
 }) => {
-  const dispatch = useDispatch();
-
   const statusCheck = () => {
     if (status === "tertunda") {
       return "text-warning";
@@ -26,7 +24,6 @@ const BookingList = ({
       return "text-primary-500";
     }
   };
-
 
   const methodCheck = () => {
     if (method === 1) {
@@ -42,7 +39,6 @@ const BookingList = ({
     }
   };
 
-
   // Kode Paujul //
 
   const dispatch = useDispatch();
@@ -50,10 +46,10 @@ const BookingList = ({
   const [checked, setChecked] = useState(false);
 
   const checkItem = () => {
-    if (edit.includes(id)) {
-      dispatch(setEdit(edit.filter((item) => item !== id)));
+    if (edit.includes(bookingId)) {
+      dispatch(setEdit(edit.filter((item) => item !== bookingId)));
     } else {
-      dispatch(setEdit([...edit, id]));
+      dispatch(setEdit([...edit, bookingId]));
     }
     setChecked(!checked);
   };
@@ -61,7 +57,7 @@ const BookingList = ({
   const handleDelete = () => {
     dispatch(setEdit([]));
     // ntar tambahin swal trs kl Yes pake kode bawah ini
-    dispatch(deleteData({ url: "/transactions", type: "one", id }));
+    dispatch(deleteData({ url: "/transactions", type: "one", bookingId }));
 
     setTimeout(() => {
       dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
@@ -75,16 +71,16 @@ const BookingList = ({
       <tr>
         <td className="py-4 px-4 text-3xl">
           <div onClick={checkItem}>
-            {edit.includes(id) ? <BiCheckboxSquare /> : <BiCheckbox />}
+            {edit.includes(bookingId) ? <BiCheckboxSquare /> : <BiCheckbox />}
           </div>
         </td>
-        <td className="py-4 px-6">{id}</td>
+        <td className="py-4 px-6">{bookingId}</td>
         <td className="py-4 px-6 text-center">
           {date.toString().substring(0, 10)} <br /> {date.match(/\d\d:\d\d/)}{" "}
           WIB
         </td>
         <td className="py-4 px-6">Rp{amount}</td>
-        <td className="py-4 px-6 capitalize">{methodCheck({method})}</td>
+        <td className="py-4 px-6 capitalize">{methodCheck({ method })}</td>
         <td className={`py-4 px-6 font-avenirBlack ${statusCheck()} uppercase`}>
           {status}
         </td>

@@ -47,24 +47,29 @@ const Sidebar = ({ active }) => {
             </Link>
           </div>
 
-          <Link
-            to="/kelas"
-            className={`w-52 h-11 flex justify-start items-center rounded-lg mb-8 ${
-              active === "kelas" ? "bg-primary-500" : ""
-            }`}
-          >
-            <MenuAnggotaIcon className="w-6 ml-3" />
-            <h3 className="font-avenirBlack text-white ml-4">KELAS</h3>
-          </Link>
-          <Link
-            to="/booking"
-            className={`w-52 h-11 flex justify-start items-center rounded-lg mb-8 ${
-              active === "booking" ? "bg-primary-500" : ""
-            }`}
-          >
-            <MenuTroliIcon className="w-6 ml-3" />
-            <h3 className="font-avenirBlack text-white ml-4">TRANSAKSI</h3>
-          </Link>
+          <div onClick={() => dispatch(setEdit([]))}>
+            <Link
+              to="/kelas"
+              className={`w-52 h-11 flex justify-start items-center rounded-lg mb-8 ${
+                active === "kelas" ? "bg-primary-500" : ""
+              }`}
+            >
+              <MenuAnggotaIcon className="w-6 ml-3" />
+              <h3 className="font-avenirBlack text-white ml-4">KELAS</h3>
+            </Link>
+          </div>
+
+          <div onClick={() => dispatch(setEdit([]))}>
+            <Link
+              to="/booking"
+              className={`w-52 h-11 flex justify-start items-center rounded-lg mb-8 ${
+                active === "booking" ? "bg-primary-500" : ""
+              }`}
+            >
+              <MenuTroliIcon className="w-6 ml-3" />
+              <h3 className="font-avenirBlack text-white ml-4">TRANSAKSI</h3>
+            </Link>
+          </div>
         </div>
       </div>
     </>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import APIClient from "../../../apis/APIClient";
 import { fetchDatas } from "../../../redux/gymSlice";
@@ -23,7 +23,7 @@ const CreateBooking = () => {
   useEffect(() => {
     console.log(data);
     setData(baseData);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleEdit = (e) => {
@@ -50,16 +50,16 @@ const CreateBooking = () => {
     // ) {
     //   alert("Data tidak boleh kosong");
     // } else {
-      try {
-        e.preventDefault();
-        // add content-type json & charset=UTF-8 to header
-        await APIClient.post(`/transactions`, data);
+    try {
+      e.preventDefault();
+      // add content-type json & charset=UTF-8 to header
+      await APIClient.post(`/transactions`, data);
 
-        dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
-        navigate("/booking");
-      } catch (error) {
-        console.log(error);
-      }
+      dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
+      navigate("/booking");
+    } catch (error) {
+      console.log(error);
+    }
     // }
   };
   console.log(data);
