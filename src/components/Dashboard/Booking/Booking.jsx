@@ -4,6 +4,7 @@ import {
   fetchDatas,
   setSearchField,
   deleteData,
+  setEdit,
 } from "../../../redux/gymSlice";
 
 import {
@@ -46,7 +47,7 @@ const Booking = () => {
           id={item.id}
           date={item.updated_at}
           amount={item.amount}
-          method={item.payment_method}
+          method={item.payment_method.name}
           status={item.status}
           index={index}
         />

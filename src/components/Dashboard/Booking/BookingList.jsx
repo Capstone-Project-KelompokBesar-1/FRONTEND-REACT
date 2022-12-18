@@ -7,6 +7,7 @@ import { EditIcon, DeleteIcon } from "../../../assets/icons";
 import { BiCheckboxSquare, BiCheckbox } from "react-icons/bi";
 
 const BookingList = ({ id, date, amount, method, status }) => {
+  console.log(id, date, amount, method, status);
   const statusCheck = () => {
     if (status === "tertunda") {
       return "text-warning";
