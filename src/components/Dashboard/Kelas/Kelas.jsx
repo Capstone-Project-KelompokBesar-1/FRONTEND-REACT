@@ -26,6 +26,7 @@ const Kelas = () => {
 
   useEffect(() => {
     dispatch(fetchDatas({ url: "/classes", state: "classes" }));
+    dispatch(fetchDatas({ url: "/categories", state: "categories" }));
 
     // eslint-disable-next-line
   }, []);
