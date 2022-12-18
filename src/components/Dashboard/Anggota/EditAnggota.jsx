@@ -168,7 +168,6 @@ const EditAnggota = () => {
             <button
               className="w-52 h-14 bg-primary-500 text-white font-avenirBlack rounded-lg shadow-md"
               type="submit"
-              onClick={() => dispatch(setEdit([]))}
             >
               Simpan Perubahan
             </button>

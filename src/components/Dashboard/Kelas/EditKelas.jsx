@@ -27,7 +27,7 @@ const EditKelas = () => {
     setData(baseData);
 
     return(() => {
-      dispatch(setEdit({}));
+      dispatch(setEdit([]));
     })
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -62,6 +62,7 @@ const EditKelas = () => {
         await APIClient.put(`/classes/${state.id}`, data);
 
         dispatch(fetchDatas({ url: "/classes", state: "classes" }));
+        dispatch(setEdit([]));
         navigate("/kelas");
       } catch (error) {
         console.log(error);
@@ -207,7 +208,6 @@ const EditKelas = () => {
             <button
               className="w-52 h-14 bg-primary-500 text-white font-avenirBlack rounded-lg shadow-md"
               type="submit"
-              onClick={() => dispatch(setEdit([]))}
             >
               Simpan Perubahan
             </button>

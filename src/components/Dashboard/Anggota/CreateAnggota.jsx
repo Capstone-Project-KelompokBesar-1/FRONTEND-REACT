@@ -5,7 +5,7 @@ import { fetchDatas } from "../../../redux/gymSlice";
 import { Link, useNavigate } from "react-router-dom";
 import APIClient from "../../../apis/APIClient";
 
-const EditAnggota = () => {
+const CreateAnggota = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -174,4 +174,4 @@ const EditAnggota = () => {
   );
 };
 
-export default EditAnggota;
+export default CreateAnggota;

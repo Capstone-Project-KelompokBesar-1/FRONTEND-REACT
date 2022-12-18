@@ -52,7 +52,6 @@ const EditBooking = () => {
       !data.status
     ) {
       alert("Data tidak boleh kosong");
-      navigate("/booking");
     } else {
       try {
         e.preventDefault();
@@ -60,11 +59,13 @@ const EditBooking = () => {
         await APIClient.put(`/transactions/${state.bookingId}`, data);
 
         dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
+        dispatch(setEdit([]));
         navigate("/booking");
       } catch (error) {
         console.log(error);
       }
     }
+    setEdit([]);
   };
   // console.log(data);
 
@@ -118,8 +119,7 @@ const EditBooking = () => {
                 name="date"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2 text-gray-500"
               >
-                {state.date.toString().substring(0, 10)} -{" "}
-                {state.date.match(/\d\d:\d\d/)} WIB
+                {state.date}
               </p>
               <input
                 id="name"
@@ -221,6 +221,7 @@ const EditBooking = () => {
             <Link to="/booking">
               <button
                 className="w-28 h-14 bg-white text-primary-500 font-avenirBlack rounded-lg mr-4 border border-primary-500 shadow-md"
+                type="button"
                 onClick={() => dispatch(setEdit([]))}
               >
                 Batal
@@ -229,7 +230,6 @@ const EditBooking = () => {
             <button
               className="w-52 h-14 bg-primary-500 text-white font-avenirBlack rounded-lg shadow-md"
               type="submit"
-              onClick={() => dispatch(setEdit([]))}
             >
               Simpan Perubahan
             </button>

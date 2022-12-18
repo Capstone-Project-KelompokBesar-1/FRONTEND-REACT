@@ -1,29 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import APIClient from "../../../apis/APIClient";
-import { fetchDatas } from "../../../redux/gymSlice";
+import { fetchDatas, setEdit } from "../../../redux/gymSlice";
 
 const CreateBooking = () => {
   const dispatch = useDispatch();
-  // const state = useSelector((state) => state.gym.edit);
   const navigate = useNavigate();
 
   const baseData = {
-    // bookingId: "",
-    classId: "",
-    userId: "",
-    date: "",
+    user_id: "",
+    class_id: "",
     amount: "",
-    method: "",
-    status: "",
+    payment_method_id: "",
+    // status: "",
   };
+  // console.log("BASE DATA", baseData);
   const [data, setData] = useState(baseData);
+  console.log("DATA:", data);
 
   useEffect(() => {
     console.log(data);
     setData(baseData);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleEdit = (e) => {
@@ -39,28 +38,27 @@ const CreateBooking = () => {
   };
 
   const handleSubmit = async (e) => {
-    // if (
-    //   !data.name ||
-    //   !data.type ||
-    //   !data.category_id ||
-    //   !data.price ||
-    //   !data.description ||
-    //   !data.total_meeting ||
-    //   !data.thumbnail
-    // ) {
-    //   alert("Data tidak boleh kosong");
-    // } else {
-    try {
-      e.preventDefault();
-      // add content-type json & charset=UTF-8 to header
-      await APIClient.post(`/transactions`, data);
+    if (
+      !data.user_id ||
+      !data.class_id ||
+      !data.amount ||
+      !data.payment_method_id 
+      // ||
+      // !data.status
+    ) {
+      alert("Data tidak boleh kosong");
+    } else {
+      try {
+        e.preventDefault();
+        // add content-type json & charset=UTF-8 to header
+        await APIClient.post(`/transactions`, data);
 
-      dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
-      navigate("/booking");
-    } catch (error) {
-      console.log(error);
+        dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
+        navigate("/booking");
+      } catch (error) {
+        console.log(error);
+      }
     }
-    // }
   };
   console.log(data);
 
@@ -68,7 +66,7 @@ const CreateBooking = () => {
     <form className="ml-[292px] pt-[124px] mr-9" onSubmit={handleSubmit}>
       <div>
         <h1 className="font-avenirBlack text-black text-[40px]">
-          PERUBAHAN DATA TRANSAKSI
+          TAMBAH TRANSAKSI BARU
         </h1>
         <div className="flex justify-between mb-6">
           <p>Transaksi &gt; Ubah Data</p>
@@ -81,59 +79,61 @@ const CreateBooking = () => {
             <div>
               {/* <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="id">ID Pembayaran</label>
-              </div> */}
+              </div>
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="time">Waktu Pembelian</label>
-              </div>
+              </div> */}
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="name">ID Anggota</label>
               </div>
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="price">Total Bayar</label>
               </div>
+              <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
+                <label htmlFor="payment_method_id">Metode Pembayaran</label>
+              </div>
               {/* <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
-                <label htmlFor="promo">Kode Promo</label>
-              </div> */}
-              <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
-                <label htmlFor="method">Metode Pembayaran</label>
-              </div>
-              <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="status">Status Pembayaran</label>
-              </div>
+              </div> */}
             </div>
 
             <div className="flex flex-col">
-              {/* <input
+              {/* <p
                 id="id"
                 type="text"
-                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
-                value={data.bookingId}
-                onChange={handleEdit}
-              /> */}
-              <input
+                name="bookingId"
+                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2 text-gray-500"
+              >
+                {state.bookingId}
+              </p>
+              <p
                 id="time"
                 type="text"
-                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
-                value={data.date}
-                onChange={handleEdit}
-              />
+                name="date"
+                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2 text-gray-500"
+              >
+                {state.date}
+              </p> */}
               <input
                 id="name"
                 type="number"
+                name="user_id"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
-                value={data.userId}
-                onChange={handleEdit}
+                value={data.user_id}
+                onChange={handleNumberEdit}
               />
               <input
                 id="price"
                 type="number"
+                name="amount"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
                 value={data.amount}
                 onChange={handleNumberEdit}
               />
               <select
                 id="method"
-                type="text"
+                type="number"
+                name="payment_method_id"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
                 value={data.method}
                 onChange={handleNumberEdit}
@@ -145,18 +145,19 @@ const CreateBooking = () => {
                 <option value={4}>MANDIRI</option>
                 <option value={5}>BCA</option>
               </select>
-              <select
+              {/* <select
                 id="status"
                 type="text"
+                name="status"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
                 value={data.status}
                 onChange={handleEdit}
               >
                 <option value="">-- Pilih Status Pembayaran --</option>
-                <option value={"berhasil"}>BERHASIL</option>
-                <option value={"tertunda"}>GAGAL</option>
-                <option value={"gagal"}>TERTUNDA</option>
-              </select>
+                <option value="settlement">BERHASIL</option>
+                <option value="failure">GAGAL</option>
+                <option value="pending">TERTUNDA</option>
+              </select> */}
             </div>
           </div>
           <div className="flex w-full h-12 justify-start pl-[118px] items-center font-avenirBlack mb-2 bg-primary-100">
@@ -188,7 +189,8 @@ const CreateBooking = () => {
               </select> */}
               <select
                 id="name_kelas"
-                type="text"
+                type="number"
+                name="class_id"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
                 value={data.class_id}
                 onChange={handleNumberEdit}
@@ -210,7 +212,10 @@ const CreateBooking = () => {
           {/* Submit Button */}
           <div className="mt-52 flex justify-end">
             <Link to="/booking">
-              <button className="w-28 h-14 bg-white text-primary-500 font-avenirBlack rounded-lg mr-4 border border-primary-500 shadow-md">
+              <button
+                className="w-28 h-14 bg-white text-primary-500 font-avenirBlack rounded-lg mr-4 border border-primary-500 shadow-md"
+                type="button"
+              >
                 Batal
               </button>
             </Link>
