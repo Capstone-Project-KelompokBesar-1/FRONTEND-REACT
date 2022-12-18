@@ -22,7 +22,7 @@ const EditBooking = () => {
   const [data, setData] = useState(baseData);
 
   useEffect(() => {
-    // console.log(data);
+    console.log(data);
     setData(baseData);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

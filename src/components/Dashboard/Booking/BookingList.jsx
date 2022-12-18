@@ -24,6 +24,20 @@ const BookingList = ({
     }
   };
 
+  const methodCheck = () => {
+    if (method === 1) {
+      return "Indomaret";
+    } else if (method === 2) {
+      return "BRI Virtual Account";
+    } else if (method === 3) {
+      return "BNI Virtual Account";
+    } else if (method === 4) {
+      return "Mandiri Virtual Account";
+    } else if (method === 5) {
+      return "BCA Virtual Account";
+    }
+  };
+
   return (
     <tbody className="font-avenirHeavy text-web-dark border-t">
       <tr>
@@ -36,7 +50,7 @@ const BookingList = ({
           WIB
         </td>
         <td className="py-4 px-6">Rp{amount}</td>
-        <td className="py-4 px-6 capitalize">{method}</td>
+        <td className="py-4 px-6 capitalize">{methodCheck({method})}</td>
         <td className={`py-4 px-6 font-avenirBlack ${statusCheck()} uppercase`}>
           {status}
         </td>
