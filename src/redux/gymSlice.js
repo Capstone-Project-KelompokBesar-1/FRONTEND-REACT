@@ -2,11 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import APIClient from "../apis/APIClient";
 
 const initialState = {
-  items: [],
   transactions: [],
   trainers: [],
   users: [],
   classes: [],
+  categories: [],
   edit: [],
   searchField: "",
 };
@@ -34,14 +34,35 @@ export const gymSlice = createSlice({
     // --- Data --- //
     getData: (state, action) => {
       state[action.payload.state] = action.payload.data;
-      //   console.log("Payload", action.payload);
-      //   console.log("State Transaction", state[action.payload.state]);
     },
 
     // --- Edit --- //
     setEdit: (state, action) => {
-      console.log(action.payload);
       state.edit = action.payload;
+    },
+
+    deleteData: (state, action) => {
+      console.log(action.payload);
+      if (action.payload.type === "many") {
+        try {
+          APIClient.delete(`${action.payload.url}`, {
+            params: {
+              ids: `${state.edit}`,
+            },
+          });
+        } catch (error) {
+          console.log(error);
+          setEdit([]);
+        }
+      } else if (action.payload.type === "one") {
+        try {
+          APIClient.delete(`${action.payload.url}/${action.payload.id}`);
+        } catch (error) {
+          console.log(error);
+          setEdit([]);
+        }
+      }
+      setEdit([]);
     },
 
     // --- Search --- //
@@ -51,6 +72,7 @@ export const gymSlice = createSlice({
   },
 });
 
-export const { getData, setSearchField, setEdit } = gymSlice.actions;
+export const { getData, setSearchField, setEdit, deleteData } =
+  gymSlice.actions;
 
 export default gymSlice.reducer;

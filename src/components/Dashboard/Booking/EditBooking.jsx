@@ -1,9 +1,77 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import APIClient from "../../../apis/APIClient";
+import { fetchDatas, setEdit } from "../../../redux/gymSlice";
 
 const EditBooking = () => {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.gym.edit);
+  const classes = useSelector((state) => state.gym.classes);
+  const navigate = useNavigate();
+
+  const baseData = {
+    user_id: state.userId,
+    class_id: state.classId,
+    amount: state.amount,
+    payment_method_id: state.method,
+    status: state.status,
+  };
+  // console.log("BASE DATA", baseData);
+  const [data, setData] = useState(baseData);
+  console.log("DATA:", data);
+
+  useEffect(() => {
+    console.log(data);
+    setData(baseData);
+
+    return () => {
+      dispatch(setEdit([]));
+    };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleEdit = (e) => {
+    setData((data) => {
+      return { ...data, [e.target.name]: e.target.value };
+    });
+  };
+
+  const handleNumberEdit = (e) => {
+    setData((data) => {
+      return { ...data, [e.target.name]: parseInt(e.target.value) };
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    if (
+      !data.user_id ||
+      !data.class_id ||
+      !data.amount ||
+      !data.payment_method_id ||
+      !data.status
+    ) {
+      alert("Data tidak boleh kosong");
+    } else {
+      try {
+        e.preventDefault();
+        // add content-type json & charset=UTF-8 to header
+        await APIClient.put(`/transactions/${state.bookingId}`, data);
+
+        dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
+        dispatch(setEdit([]));
+        navigate("/booking");
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    setEdit([]);
+  };
+  // console.log(data);
+
   return (
-    <div className="ml-[292px] pt-[124px] mr-9">
+    <form className="ml-[292px] pt-[124px] mr-9" onSubmit={handleSubmit}>
       <div>
         <h1 className="font-avenirBlack text-black text-[40px]">
           PERUBAHAN DATA TRANSAKSI
@@ -30,10 +98,7 @@ const EditBooking = () => {
                 <label htmlFor="price">Total Bayar</label>
               </div>
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
-                <label htmlFor="promo">Kode Promo</label>
-              </div>
-              <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
-                <label htmlFor="method">Metode Pembayaran</label>
+                <label htmlFor="payment_method_id">Metode Pembayaran</label>
               </div>
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="status">Status Pembayaran</label>
@@ -41,52 +106,65 @@ const EditBooking = () => {
             </div>
 
             <div className="flex flex-col">
-              <input
+              <p
                 id="id"
                 type="text"
-                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
-              />
-              <input
+                name="bookingId"
+                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2 text-gray-500"
+              >
+                {state.bookingId}
+              </p>
+              <p
                 id="time"
-                type="datetime-local"
-                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
-              />
+                type="text"
+                name="date"
+                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2 text-gray-500"
+              >
+                {state.date}
+              </p>
               <input
                 id="name"
                 type="text"
+                name="user_id"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
+                value={data.user_id}
+                onChange={handleEdit}
               />
               <input
                 id="price"
                 type="number"
+                name="amount"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
-              />
-              <input
-                id="promo"
-                type="text"
-                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
+                value={data.amount}
+                onChange={handleNumberEdit}
               />
               <select
                 id="method"
-                type="text"
+                type="number"
+                name="payment_method_id"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
+                value={data.method}
+                onChange={handleNumberEdit}
               >
                 <option value="">-- Pilih Metode Pembayaran --</option>
-                <option value="BRI">BRI</option>
-                <option value="BNI">BNI</option>
-                <option value="MANDIRI">MANDIRI</option>
-                <option value="BCA">BCA</option>
-                <option value="QRIS">QRIS</option>
+                <option value={1}>Indomaret</option>
+                <option value={2}>BRI</option>
+                <option value={3}>BNI</option>
+                <option value={4}>MANDIRI</option>
+                <option value={5}>BCA</option>
               </select>
               <select
                 id="status"
                 type="text"
+                name="status"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
+                value={data.status}
+                onChange={handleEdit}
               >
                 <option value="">-- Pilih Status Pembayaran --</option>
-                <option value="BERHASIL">BERHASIL</option>
-                <option value="GAGAL">GAGAL</option>
-                <option value="TERTUNDA">TERTUNDA</option>
+                <option value="settlement">BERHASIL</option>
+                <option value="failure">GAGAL</option>
+                <option value="pending">TERTUNDA</option>
               </select>
             </div>
           </div>
@@ -95,67 +173,71 @@ const EditBooking = () => {
           </div>
           <div className="flex flex-row">
             <div>
-              <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
+              {/* <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="type_kelas">Jenis Kelas</label>
-              </div>
+              </div> */}
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="name_kelas">Nama Kelas</label>
               </div>
-              <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
+              {/* <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="price_kelas">Harga Kelas</label>
-              </div>
+              </div> */}
             </div>
             <div>
-              <select
+              {/* <select
                 id="type_kelas"
                 type="text"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
+                value={data.class.type}
+                onChange={handleEdit}
               >
                 <option value="">-- Pilih Jenis Kelas --</option>
-                <option value="Online">Online</option>
-                <option value="Offline">Offline</option>
-              </select>
+                <option value={"online"}>Online</option>
+                <option value={"offline"}>Offline</option>
+              </select> */}
               <select
                 id="name_kelas"
-                type="text"
+                type="number"
+                name="class_id"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
+                value={data.class_id}
+                onChange={handleNumberEdit}
               >
-                <option value="">-- Pilih Kelas --</option>
-                <option value="yoga">Yoga untuk Pemula</option>
-                <option value="keseimbangan">Keseimbangan Tubuh</option>
-                <option value="tidur">Tidur Lebih Baik</option>
-                <option value="pompa">Pompa Tubuh</option>
-                <option value="perut">Perut Six Pack</option>
-                <option value="kardio">Langkah Kardio</option>
-                <option value="body">Body Combat</option>
-                <option value="aerobik">Aerobik Energy</option>
-                <option value="zumba">Zumba</option>
-                <option value="muay">Muay Thai</option>
-                <option value="pound">Pound Fit</option>
-                <option value="anti">Antigravity Yoga</option>
+                {classes.map((item) => (
+                  <option value={item.id}>{item.name}</option>
+                ))}
               </select>
-              <input
+              {/* <input
                 id="price_kelas"
                 type="number"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
-              />
+                value={data.amount}
+                onChange={handleNumberEdit}
+              /> */}
             </div>
           </div>
 
           {/* Submit Button */}
           <div className="mt-52 flex justify-end">
             <Link to="/booking">
-              <button className="w-28 h-14 bg-white text-primary-500 font-avenirBlack rounded-lg mr-4 border border-primary-500 shadow-md">
+              <button
+                className="w-28 h-14 bg-white text-primary-500 font-avenirBlack rounded-lg mr-4 border border-primary-500 shadow-md"
+                type="button"
+                onClick={() => dispatch(setEdit([]))}
+              >
                 Batal
               </button>
             </Link>
-            <button className="w-52 h-14 bg-primary-500 text-white font-avenirBlack rounded-lg shadow-md">
+            <button
+              className="w-52 h-14 bg-primary-500 text-white font-avenirBlack rounded-lg shadow-md"
+              type="submit"
+            >
               Simpan Perubahan
             </button>
           </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 

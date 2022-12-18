@@ -1,6 +1,10 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchDatas, setSearchField } from "../../../redux/gymSlice";
+import {
+  fetchDatas,
+  setSearchField,
+  deleteData,
+} from "../../../redux/gymSlice";
 
 import {
   CalenderIcon,
@@ -9,13 +13,16 @@ import {
   TambahDataIcon,
 } from "../../../assets/icons";
 import { BiCheckbox } from "react-icons/bi";
+
 import BookingList from "./BookingList";
 import { Link } from "react-router-dom";
 
 const Booking = () => {
   const dispatch = useDispatch();
+
   const data = useSelector((state) => state.gym.transactions);
   const searchField = useSelector((state) => state.gym.searchField);
+  const edit = useSelector((state) => state.gym.edit);
 
   useEffect(() => {
     dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
@@ -37,14 +44,22 @@ const Booking = () => {
         <BookingList
           key={item.id}
           bookingId={item.id}
+          userId={item.user_id}
+          classId={item.class_id}
           date={item.updated_at}
           amount={item.amount}
-          method={item.payment_method}
+          method={item.payment_method_id}
           status={item.status}
           index={index}
         />
       );
     });
+  };
+
+  const handleDelete = () => {
+    if (edit.length < 1) return alert("Pilih data yang akan dihapus");
+    dispatch(deleteData({ url: "/transactions", type: "many" }));
+    dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
   };
 
   return (
@@ -87,12 +102,17 @@ const Booking = () => {
               </div>
 
               <div className="tableButton flex gap-2 text-black text-[10px]">
-                <button className="w-32 h-11 bg-primary-500 rounded-md shadow-md">
+                <button
+                  className="w-32 h-11 bg-primary-500 rounded-md shadow-md"
+                  onClick={handleDelete}
+                >
                   <DeleteBlackIcon className="w-2 h-2 inline-block mr-1" />
                   Hapus yang dipilih
                 </button>
-                <Link to="/kelas/create" className="w-24 h-11 bg-success-500 rounded-md shadow-md flex justify-center items-center">
+
+                <Link to="/booking/create" className="w-24 h-11 bg-success-500 rounded-md shadow-md flex justify-center items-center">
                   <TambahDataIcon className="w-2 h-2 inline-block" /> Tambah Baru
+
                 </Link>
               </div>
             </div>
