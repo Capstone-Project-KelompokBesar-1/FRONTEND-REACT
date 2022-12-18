@@ -16,7 +16,7 @@ const EditBooking = () => {
     date: state.date,
     amount: state.amount,
     method: state.method,
-    status:state.status,
+    status: "",
   };
   console.log(baseData);
   const [data, setData] = useState(baseData);
@@ -170,9 +170,9 @@ const EditBooking = () => {
                 onChange={handleEdit}
               >
                 <option value="">-- Pilih Status Pembayaran --</option>
-                <option value="berhasil">BERHASIL</option>
-                <option value="tertunda">GAGAL</option>
-                <option value="gagal">TERTUNDA</option>
+                <option value="settlement">BERHASIL</option>
+                <option value="pending">GAGAL</option>
+                <option value="failure">TERTUNDA</option>
               </select>
             </div>
           </div>
