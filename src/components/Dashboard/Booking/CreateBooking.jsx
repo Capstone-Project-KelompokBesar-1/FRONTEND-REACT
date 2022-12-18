@@ -8,6 +8,8 @@ const CreateBooking = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const classes = useSelector((state) => state.gym.classes);
+
   const baseData = {
     user_id: "",
     class_id: "",
@@ -22,7 +24,7 @@ const CreateBooking = () => {
   useEffect(() => {
     console.log(data);
     setData(baseData);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleEdit = (e) => {
@@ -42,7 +44,7 @@ const CreateBooking = () => {
       !data.user_id ||
       !data.class_id ||
       !data.amount ||
-      !data.payment_method_id 
+      !data.payment_method_id
       // ||
       // !data.status
     ) {
@@ -196,8 +198,9 @@ const CreateBooking = () => {
                 onChange={handleNumberEdit}
               >
                 <option value="">-- Pilih Kelas --</option>
-                <option value={1}>Yoga</option>
-                <option value={2}>Atletik</option>
+                {classes.map((item) => (
+                  <option value={item.id}>{item.name}</option>
+                ))}
               </select>
               {/* <input
                 id="price_kelas"

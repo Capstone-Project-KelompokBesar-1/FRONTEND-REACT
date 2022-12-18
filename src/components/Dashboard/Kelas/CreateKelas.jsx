@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchDatas } from "../../../redux/gymSlice";
 import APIClient from "../../../apis/APIClient";
 
@@ -9,6 +9,9 @@ import { TambahDataRed } from "../../../assets/icons";
 const CreateKelas = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const categories = useSelector((state) => state.gym.categories);
+  // console.log(categories[0].name);
 
   const baseData = {
     name: "",
@@ -24,7 +27,7 @@ const CreateKelas = () => {
   useEffect(() => {
     console.log(data);
     setData(baseData);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleEdit = (e) => {
@@ -87,7 +90,7 @@ const CreateKelas = () => {
                 <label htmlFor="type">Jenis Kelas</label>
               </div>
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
-                <label htmlFor="category">Kategori Kelas</label>
+                <label htmlFor="category_id">Kategori Kelas</label>
               </div>
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="price">Harga</label>
@@ -126,16 +129,19 @@ const CreateKelas = () => {
               </select>
 
               <select
-                id="type"
+                id="category_id"
                 type="number"
                 name="category_id"
-                className="w-[523px] h-12 ml-12 mb-2 border rounded-lg p-2"
-                alue={data.category_id}
+                className="w-[523px] h-12 ml-12 mb-2 border rounded-lg p-2 capitalize"
+                value={data.category_id}
                 onChange={handleNumberEdit}
               >
                 <option value="">-- Pilih Kategori Kelas --</option>
-                <option value={1}>Yoga</option>
-                <option value={2}>Atletik</option>
+                {categories.map((item) => (
+                  <option value={item.id} className="capitalize">
+                    {item.name}
+                  </option>
+                ))}
               </select>
 
               <input

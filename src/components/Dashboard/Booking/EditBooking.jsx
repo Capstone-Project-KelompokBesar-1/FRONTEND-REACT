@@ -7,6 +7,7 @@ import { fetchDatas, setEdit } from "../../../redux/gymSlice";
 const EditBooking = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.gym.edit);
+  const classes = useSelector((state) => state.gym.classes);
   const navigate = useNavigate();
 
   const baseData = {
@@ -91,7 +92,7 @@ const EditBooking = () => {
                 <label htmlFor="time">Waktu Pembelian</label>
               </div>
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
-                <label htmlFor="name">ID Anggota</label>
+                <label htmlFor="name">Nama Anggota</label>
               </div>
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="price">Total Bayar</label>
@@ -123,7 +124,7 @@ const EditBooking = () => {
               </p>
               <input
                 id="name"
-                type="number"
+                type="text"
                 name="user_id"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
                 value={data.user_id}
@@ -202,9 +203,9 @@ const EditBooking = () => {
                 value={data.class_id}
                 onChange={handleNumberEdit}
               >
-                <option value="">-- Pilih Kelas --</option>
-                <option value={1}>Yoga</option>
-                <option value={2}>Atletik</option>
+                {classes.map((item) => (
+                  <option value={item.id}>{item.name}</option>
+                ))}
               </select>
               {/* <input
                 id="price_kelas"
