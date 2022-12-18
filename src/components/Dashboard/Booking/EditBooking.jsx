@@ -15,7 +15,7 @@ const EditBooking = () => {
     userId: state.userId,
     date: state.date,
     amount: state.amount,
-    method: "",
+    method: state.method,
     status:state.status,
   };
   console.log(baseData);
@@ -113,14 +113,15 @@ const EditBooking = () => {
                 // value=
                 // onChange={handleEdit}
               >{data.bookingId}</p>
-              <input
+              <p
                 id="time"
                 type="text"
                 name="date"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
-                value={data.date}
-                onChange={handleEdit}
-              />
+                // value=
+                // onChange={handleEdit}
+              >{data.date.toString().substring(0, 10)} - {data.date.match(/\d\d:\d\d/)}{" "} WIB
+              </p>
               <input
                 id="name"
                 type="number"
