@@ -1,23 +1,22 @@
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchDatas } from "../../../redux/gymSlice";
 import APIClient from "../../../apis/APIClient";
 
 import { Link, useNavigate } from "react-router-dom";
 import { TambahDataRed } from "../../../assets/icons";
 
-const EditKelas = () => {
+const CreateKelas = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.gym.edit);
   const navigate = useNavigate();
 
   const baseData = {
-    name: state.gymClass,
-    type: state.classType,
-    category_id: state.classCategory,
-    price: state.price,
-    description: state.description,
-    total_meeting: state.total_meeting,
+    name: "",
+    type: "",
+    category_id: "",
+    price: "",
+    description: "",
+    total_meeting: "",
     thumbnail: "https://",
   };
   const [data, setData] = useState(baseData);
@@ -55,7 +54,7 @@ const EditKelas = () => {
       try {
         e.preventDefault();
         // add content-type json & charset=UTF-8 to header
-        await APIClient.put(`/classes/${state.id}`, data);
+        await APIClient.post(`/classes`, data);
 
         dispatch(fetchDatas({ url: "/classes", state: "classes" }));
         navigate("/kelas");
@@ -70,7 +69,7 @@ const EditKelas = () => {
     <form className="ml-[292px] pt-[124px] mr-9" onSubmit={handleSubmit}>
       <div>
         <h1 className="font-avenirBlack text-black text-[40px]">
-          PERUBAHAN DATA KELAS
+          TAMBAH KELAS BARU
         </h1>
         <div className="flex justify-between mb-6">
           <p>Kelas &gt; Ubah Data</p>
@@ -169,7 +168,7 @@ const EditKelas = () => {
                 id="trainer"
                 name="trainer_id"
                 className="w-[523px] h-12 ml-12 mb-2 border rounded-lg p-2"
-                value={data.trainer_id}
+                value={data.gender}
                 onChange={handleNumberEdit}
               >
                 <option value="">-- Pilih Trainer --</option>
@@ -210,4 +209,4 @@ const EditKelas = () => {
   );
 };
 
-export default EditKelas;
+export default CreateKelas;

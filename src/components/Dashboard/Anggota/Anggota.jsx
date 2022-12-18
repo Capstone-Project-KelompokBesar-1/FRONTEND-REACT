@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchDatas, setSearchField } from "../../../redux/gymSlice";
 
-import { TbDownload } from "react-icons/tb";
 import {
   CalenderIcon,
   SearchIcon,
@@ -12,6 +11,7 @@ import {
 import { BiCheckbox } from "react-icons/bi";
 
 import AnggotaList from "./AnggotaList";
+import { Link } from "react-router-dom";
 
 const Anggota = () => {
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const Anggota = () => {
     dispatch(setSearchField(e.target.value.toLocaleLowerCase()));
   };
 
-  const renderSearch = () => {
+  const RenderedSearch = () => {
     const searchFilter = data.filter((data) => {
       return data.name.toLowerCase().includes(searchField);
     });
@@ -36,11 +36,14 @@ const Anggota = () => {
     return searchFilter.map((item, index) => {
       return (
         <AnggotaList
+          id={item.id}
           key={item.id}
           name={item.name}
           phone={item.phone}
           email={item.email}
           address={item.address}
+          birth_date={item.birth_date}
+          gender={item.gender}
           index={index}
         />
       );
@@ -77,12 +80,12 @@ const Anggota = () => {
               <DeleteBlackIcon className="w-2 h-2 inline-block mr-1" />
               Hapus yang dipilih
             </button>
-            <button className="w-[75px] h-11 bg-info-100 rounded-md shadow-md">
-              <TbDownload className="inline-block mr-1" /> Unduh
-            </button>
-            <button className="w-24 h-11 bg-success-500 rounded-md shadow-md">
+            <Link
+              to="/anggota/create"
+              className="w-24 h-11 bg-success-500 rounded-md shadow-md flex justify-center items-center"
+            >
               <TambahDataIcon className="w-2 h-2 inline-block" /> Tambah Baru
-            </button>
+            </Link>
           </div>
         </div>
 
@@ -101,7 +104,7 @@ const Anggota = () => {
               </tr>
             </thead>
 
-            {renderSearch()}
+            <RenderedSearch />
           </table>
         </div>
       </div>

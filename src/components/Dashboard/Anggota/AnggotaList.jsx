@@ -1,8 +1,19 @@
 import { EditIcon, DeleteIcon } from "../../../assets/icons";
 import { BiCheckboxSquare } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setEdit } from "../../../redux/gymSlice";
 
-const AnggotaList = ({ name, phone, email, address }) => {
+const AnggotaList = ({
+  id,
+  name,
+  email,
+  phone,
+  birth_date,
+  gender,
+  address,
+}) => {
+  const dispatch = useDispatch();
   return (
     <tbody className="font-avenirHeavy text-web-dark border-t">
       <tr>
@@ -17,6 +28,19 @@ const AnggotaList = ({ name, phone, email, address }) => {
           <Link
             to="/anggota/edit"
             className="p-2 bg-info-700 w-10 rounded-[3px] inline-block mr-3"
+            onClick={() =>
+              dispatch(
+                setEdit({
+                  id,
+                  name,
+                  email,
+                  phone,
+                  birth_date,
+                  gender,
+                  address,
+                })
+              )
+            }
           >
             <EditIcon className="w-6 h-6 inline-block" fill="white" />
           </Link>

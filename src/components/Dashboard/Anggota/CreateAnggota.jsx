@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchDatas } from "../../../redux/gymSlice";
 
 import { Link, useNavigate } from "react-router-dom";
@@ -7,16 +7,18 @@ import APIClient from "../../../apis/APIClient";
 
 const EditAnggota = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.gym.edit);
   const navigate = useNavigate();
 
   const baseData = {
-    name: state.name,
-    email: state.email,
-    phone: state.phone,
-    birth_date: state.birth_date,
-    gender: state.gender,
-    address: state.address,
+    name: "",
+    email: "",
+    phone: "",
+    birth_date: "",
+    gender: "",
+    address: "",
+    password:
+      Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15),
   };
   const [data, setData] = useState(baseData);
 
@@ -39,7 +41,7 @@ const EditAnggota = () => {
       try {
         e.preventDefault();
         // add content-type json & charset=UTF-8 to header
-        await APIClient.put(`/users/${state.id}`, data);
+        await APIClient.post(`/users`, data);
 
         dispatch(fetchDatas({ url: "/users", state: "users" }));
         navigate("/anggota");
@@ -53,7 +55,7 @@ const EditAnggota = () => {
     <form className="ml-[292px] pt-[124px] mr-9" onSubmit={handleSubmit}>
       <div>
         <h1 className="font-avenirBlack text-black text-[40px]">
-          PERUBAHAN DATA ANGGOTA
+          TAMBAH ANGGOTA BARU
         </h1>
         <div className="flex justify-between mb-6">
           <p>Anggota &gt; Ubah Data</p>
@@ -126,7 +128,7 @@ const EditAnggota = () => {
                 onChange={handleEdit}
               >
                 <option value="Pilih">-- Pilih Jenis Kelamin --</option>
-                <option value="Laki-Laki">Laki-laki</option>
+                <option value={"Laki-laki"}>Laki-laki</option>
                 <option value="Perempuan">Perempuan</option>
               </select>
               <input

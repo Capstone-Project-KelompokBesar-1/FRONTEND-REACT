@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchDatas, setSearchField } from "../../../redux/gymSlice";
 
-import { TbDownload } from "react-icons/tb";
 import {
   CalenderIcon,
   SearchIcon,
@@ -11,6 +10,7 @@ import {
 } from "../../../assets/icons";
 import { BiCheckbox } from "react-icons/bi";
 import BookingList from "./BookingList";
+import { Link } from "react-router-dom";
 
 const Booking = () => {
   const dispatch = useDispatch();
@@ -37,9 +37,11 @@ const Booking = () => {
         <BookingList
           key={item.id}
           bookingId={item.id}
+          userId={item.user_id}
+          classId={item.class_id}
           date={item.updated_at}
           amount={item.amount}
-          method={item.payment_method}
+          method={item.payment_method_id}
           status={item.status}
           index={index}
         />
@@ -61,28 +63,41 @@ const Booking = () => {
           </i>
         </div>
 
-        <div className="my-6 flex justify-between">
-          <div className="searchbar">
-            <input
+        <div className="flex justify-between">
+          <div className="flex items-end pb-6">
+            <select
+              id="type_kelas"
               type="text"
-              className="w-80 h-11 border-2 border-primary-500 rounded-[60px] p-5"
-              placeholder="Pencarian"
-              onChange={handleSearch}
-            />
-            <SearchIcon className="relative w-4 h-4 -top-[30px] left-[285px]" />
+              className="w-[224px] h-10 border-2 text-primary-500 font-avenirHeavy border-primary-500 rounded-lg py-[7px] pl-4"
+            >
+              <option value="">SEMUA</option>
+              <option value="berhasil">BERHASIL</option>
+              <option value="gagal">GAGAL</option>
+              <option value="tertunda">TERTUNDA</option>
+            </select>
           </div>
+          <div>
+            <div className="my-6 flex flex-col items-end">
+              <div className="searchbar">
+                <input
+                  type="text"
+                  className="w-80 h-11 border-2 border-primary-500 rounded-[60px] p-5"
+                  placeholder="Pencarian"
+                  onChange={handleSearch}
+                />
+                <SearchIcon className="relative w-4 h-4 -top-[30px] left-[285px]" />
+              </div>
 
-          <div className="tableButton flex gap-2 text-black text-[10px]">
-            <button className="w-32 h-11 bg-primary-500 rounded-md shadow-md">
-              <DeleteBlackIcon className="w-2 h-2 inline-block mr-1" />
-              Hapus yang dipilih
-            </button>
-            <button className="w-[75px] h-11 bg-info-100 rounded-md shadow-md">
-              <TbDownload className="inline-block mr-1" /> Unduh
-            </button>
-            <button className="w-24 h-11 bg-success-500 rounded-md shadow-md">
-              <TambahDataIcon className="w-2 h-2 inline-block" /> Tambah Baru
-            </button>
+              <div className="tableButton flex gap-2 text-black text-[10px]">
+                <button className="w-32 h-11 bg-primary-500 rounded-md shadow-md">
+                  <DeleteBlackIcon className="w-2 h-2 inline-block mr-1" />
+                  Hapus yang dipilih
+                </button>
+                <Link to="/booking/create" className="w-24 h-11 bg-success-500 rounded-md shadow-md flex justify-center items-center">
+                  <TambahDataIcon className="w-2 h-2 inline-block" /> Tambah Baru
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
 

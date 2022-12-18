@@ -4,21 +4,20 @@ import { Link, useNavigate } from "react-router-dom";
 import APIClient from "../../../apis/APIClient";
 import { fetchDatas } from "../../../redux/gymSlice";
 
-const EditBooking = () => {
+const CreateBooking = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.gym.edit);
+  // const state = useSelector((state) => state.gym.edit);
   const navigate = useNavigate();
 
   const baseData = {
-    bookingId: state.bookingId,
-    classId: state.classId,
-    userId: state.userId,
-    date: state.date,
-    amount: state.amount,
-    method: state.method,
+    // bookingId: "",
+    classId: "",
+    userId: "",
+    date: "",
+    amount: "",
+    method: "",
     status: "",
   };
-  console.log(baseData);
   const [data, setData] = useState(baseData);
 
   useEffect(() => {
@@ -40,31 +39,30 @@ const EditBooking = () => {
   };
 
   const handleSubmit = async (e) => {
-    if (
-      !data.bookingId ||
-      !data.classId ||
-      !data.userId ||
-      !data.date ||
-      !data.amount ||
-      !data.method ||
-      !data.status
-    ) {
-      alert("Data tidak boleh kosong");
-      navigate("/booking")
-    } else {
+    // if (
+    //   !data.name ||
+    //   !data.type ||
+    //   !data.category_id ||
+    //   !data.price ||
+    //   !data.description ||
+    //   !data.total_meeting ||
+    //   !data.thumbnail
+    // ) {
+    //   alert("Data tidak boleh kosong");
+    // } else {
       try {
         e.preventDefault();
         // add content-type json & charset=UTF-8 to header
-        await APIClient.put(`/transactions/${state.id}`, data);
+        await APIClient.post(`/transactions`, data);
 
         dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
         navigate("/booking");
       } catch (error) {
         console.log(error);
       }
-    }
+    // }
   };
-  // console.log(data);
+  console.log(data);
 
   return (
     <form className="ml-[292px] pt-[124px] mr-9" onSubmit={handleSubmit}>
@@ -81,9 +79,9 @@ const EditBooking = () => {
           {/* Label, Input, & img */}
           <div className="main flex">
             <div>
-              <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
+              {/* <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="id">ID Pembayaran</label>
-              </div>
+              </div> */}
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="time">Waktu Pembelian</label>
               </div>
@@ -105,27 +103,23 @@ const EditBooking = () => {
             </div>
 
             <div className="flex flex-col">
-              <p
+              {/* <input
                 id="id"
                 type="text"
-                name="bookingId"
-                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2 text-gray-500"
-                // value=
-                // onChange={handleEdit}
-              >{data.bookingId}</p>
-              <p
+                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
+                value={data.bookingId}
+                onChange={handleEdit}
+              /> */}
+              <input
                 id="time"
                 type="text"
-                name="date"
-                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2 text-gray-500"
-                // value=
-                // onChange={handleEdit}
-              >{data.date.toString().substring(0, 10)} - {data.date.match(/\d\d:\d\d/)}{" "} WIB
-              </p>
+                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
+                value={data.date}
+                onChange={handleEdit}
+              />
               <input
                 id="name"
                 type="number"
-                name="userId"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
                 value={data.userId}
                 onChange={handleEdit}
@@ -133,23 +127,13 @@ const EditBooking = () => {
               <input
                 id="price"
                 type="number"
-                name="amount"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
                 value={data.amount}
                 onChange={handleNumberEdit}
               />
-              {/* <input
-                id="method"
-                type="number"
-                name="method"
-                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
-                value={data.method}
-                onChange={handleNumberEdit}
-              /> */}
               <select
                 id="method"
-                type="number"
-                name="method"
+                type="text"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
                 value={data.method}
                 onChange={handleNumberEdit}
@@ -164,15 +148,14 @@ const EditBooking = () => {
               <select
                 id="status"
                 type="text"
-                name="status"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
                 value={data.status}
                 onChange={handleEdit}
               >
                 <option value="">-- Pilih Status Pembayaran --</option>
-                <option value="settlement">BERHASIL</option>
-                <option value="pending">GAGAL</option>
-                <option value="failure">TERTUNDA</option>
+                <option value={"berhasil"}>BERHASIL</option>
+                <option value={"tertunda"}>GAGAL</option>
+                <option value={"gagal"}>TERTUNDA</option>
               </select>
             </div>
           </div>
@@ -205,10 +188,9 @@ const EditBooking = () => {
               </select> */}
               <select
                 id="name_kelas"
-                type="number"
-                name="classId"
+                type="text"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
-                value={data.classId}
+                value={data.class_id}
                 onChange={handleNumberEdit}
               >
                 <option value="">-- Pilih Kelas --</option>
@@ -245,4 +227,4 @@ const EditBooking = () => {
   );
 };
 
-export default EditBooking;
+export default CreateBooking;

@@ -1,16 +1,16 @@
 import React from "react";
 import DashboardNavbar from "../../../components/Dashboard/DashboardNavbar/DashboardNavbar";
 import Sidebar from "../../../components/Dashboard/DashboardNavbar/Sidebar";
-import EditBooking from "../../../components/Dashboard/Booking/EditBooking";
+import CreateKelas from "../../../components/Dashboard/Kelas/CreateKelas";
 
-const EditBookingPage = () => {
+const CreateKelasPage = () => {
   return (
     <div>
       <DashboardNavbar />
-      <Sidebar active="booking" />
-      <EditBooking />
+      <Sidebar active="kelas" />
+      <CreateKelas />
     </div>
   );
 };
 
-export default EditBookingPage;
+export default CreateKelasPage;
