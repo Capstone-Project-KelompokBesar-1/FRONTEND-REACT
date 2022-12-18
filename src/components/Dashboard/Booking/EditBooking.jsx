@@ -109,7 +109,7 @@ const EditBooking = () => {
                 id="id"
                 type="text"
                 name="bookingId"
-                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
+                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2 text-gray-500"
                 // value=
                 // onChange={handleEdit}
               >{data.bookingId}</p>
@@ -117,7 +117,7 @@ const EditBooking = () => {
                 id="time"
                 type="text"
                 name="date"
-                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
+                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2 text-gray-500"
                 // value=
                 // onChange={handleEdit}
               >{data.date.toString().substring(0, 10)} - {data.date.match(/\d\d:\d\d/)}{" "} WIB
