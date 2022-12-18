@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchDatas } from "../../../redux/gymSlice";
+import { fetchDatas, setEdit } from "../../../redux/gymSlice";
 import APIClient from "../../../apis/APIClient";
 
 import { Link, useNavigate } from "react-router-dom";
@@ -25,6 +25,10 @@ const EditKelas = () => {
   useEffect(() => {
     console.log(data);
     setData(baseData);
+
+    return(() => {
+      dispatch(setEdit({}));
+    })
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -193,13 +197,17 @@ const EditKelas = () => {
           {/* Submit Button */}
           <div className="mt-20 flex justify-end">
             <Link to="/kelas">
-              <button className="w-28 h-14 bg-white text-primary-500 font-avenirBlack rounded-lg mr-4 border border-primary-500 shadow-md">
+              <button
+                className="w-28 h-14 bg-white text-primary-500 font-avenirBlack rounded-lg mr-4 border border-primary-500 shadow-md"
+                onClick={() => dispatch(setEdit([]))}
+                >
                 Batal
               </button>
             </Link>
             <button
               className="w-52 h-14 bg-primary-500 text-white font-avenirBlack rounded-lg shadow-md"
               type="submit"
+              onClick={() => dispatch(setEdit([]))}
             >
               Simpan Perubahan
             </button>

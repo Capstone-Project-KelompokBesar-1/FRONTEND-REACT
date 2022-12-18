@@ -95,9 +95,6 @@ const EditBooking = () => {
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="price">Total Bayar</label>
               </div>
-              {/* <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
-                <label htmlFor="promo">Kode Promo</label>
-              </div> */}
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="payment_method_id">Metode Pembayaran</label>
               </div>
@@ -112,8 +109,6 @@ const EditBooking = () => {
                 type="text"
                 name="bookingId"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2 text-gray-500"
-                // value=
-                // onChange={handleEdit}
               >
                 {state.bookingId}
               </p>
@@ -122,8 +117,6 @@ const EditBooking = () => {
                 type="text"
                 name="date"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2 text-gray-500"
-                // value=
-                // onChange={handleEdit}
               >
                 {state.date.toString().substring(0, 10)} -{" "}
                 {state.date.match(/\d\d:\d\d/)} WIB
@@ -144,14 +137,6 @@ const EditBooking = () => {
                 value={data.amount}
                 onChange={handleNumberEdit}
               />
-              {/* <input
-                id="method"
-                type="number"
-                name="method"
-                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
-                value={data.method}
-                onChange={handleNumberEdit}
-              /> */}
               <select
                 id="method"
                 type="number"
@@ -244,6 +229,7 @@ const EditBooking = () => {
             <button
               className="w-52 h-14 bg-primary-500 text-white font-avenirBlack rounded-lg shadow-md"
               type="submit"
+              onClick={() => dispatch(setEdit([]))}
             >
               Simpan Perubahan
             </button>
