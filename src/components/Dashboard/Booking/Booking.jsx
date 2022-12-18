@@ -43,7 +43,7 @@ const Booking = () => {
       return (
         <BookingList
           key={item.id}
-          bookingId={item.id}
+          id={item.id}
           userId={item.user_id}
           classId={item.class_id}
           date={item.updated_at}
@@ -110,9 +110,12 @@ const Booking = () => {
                   Hapus yang dipilih
                 </button>
 
-                <Link to="/booking/create" className="w-24 h-11 bg-success-500 rounded-md shadow-md flex justify-center items-center">
-                  <TambahDataIcon className="w-2 h-2 inline-block" /> Tambah Baru
-
+                <Link
+                  to="/booking/create"
+                  className="w-24 h-11 bg-success-500 rounded-md shadow-md flex justify-center items-center"
+                >
+                  <TambahDataIcon className="w-2 h-2 inline-block" /> Tambah
+                  Baru
                 </Link>
               </div>
             </div>

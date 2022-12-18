@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import APIClient from "../../../apis/APIClient";
-import { fetchDatas, setEdit } from "../../../redux/gymSlice";
+import { fetchDatas } from "../../../redux/gymSlice";
 
 const CreateBooking = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const classes = useSelector((state) => state.gym.classes);
+  const users = useSelector((state) => state.gym.users);
 
   const baseData = {
     user_id: "",
@@ -19,10 +20,10 @@ const CreateBooking = () => {
   };
   // console.log("BASE DATA", baseData);
   const [data, setData] = useState(baseData);
-  console.log("DATA:", data);
 
   useEffect(() => {
-    console.log(data);
+    dispatch(fetchDatas({ url: "/users", state: "users" }));
+    dispatch(fetchDatas({ url: "/classes", state: "classes" }));
     setData(baseData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -40,6 +41,7 @@ const CreateBooking = () => {
   };
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     if (
       !data.user_id ||
       !data.class_id ||
@@ -48,21 +50,25 @@ const CreateBooking = () => {
       // ||
       // !data.status
     ) {
-      alert("Data tidak boleh kosong");
+      return alert("Data tidak boleh kosong");
     } else {
-      try {
-        e.preventDefault();
-        // add content-type json & charset=UTF-8 to header
-        await APIClient.post(`/transactions`, data);
-
-        dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
-        navigate("/booking");
-      } catch (error) {
-        console.log(error);
-      }
+      const user = users.find(
+        (user) => user.name.toLowerCase() === data.user_id.toLowerCase()
+      );
+      if (user) {
+        try {
+          console.log("icikiwir");
+          // add content-type json & charset=UTF-8 to header
+          await APIClient.post(`/transactions`, { ...data, user_id: user.id });
+          dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
+          navigate("/booking");
+        } catch (error) {
+          console.log(error);
+        }
+      } else return alert("User tidak ditemukan");
     }
   };
-  console.log(data);
+  // console.log(data);
 
   return (
     <form className="ml-[292px] pt-[124px] mr-9" onSubmit={handleSubmit}>
@@ -118,11 +124,11 @@ const CreateBooking = () => {
               </p> */}
               <input
                 id="name"
-                type="number"
+                type="text"
                 name="user_id"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
                 value={data.user_id}
-                onChange={handleNumberEdit}
+                onChange={handleEdit}
               />
               <input
                 id="price"
@@ -199,7 +205,9 @@ const CreateBooking = () => {
               >
                 <option value="">-- Pilih Kelas --</option>
                 {classes.map((item) => (
-                  <option value={item.id}>{item.name}</option>
+                  <option key={item.id} value={item.id}>
+                    {item.name}
+                  </option>
                 ))}
               </select>
               {/* <input
