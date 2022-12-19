@@ -11,6 +11,7 @@ import {
   TotalDashBoardIcon,
 } from "../../../assets/icons";
 import moment from "moment";
+import { NumericFormat } from "react-number-format";
 
 const MainMenu = () => {
   const dispatch = useDispatch();
@@ -73,7 +74,7 @@ const MainMenu = () => {
             <div className="flex justify-between items-center mt-7">
               <TotalDashBoardIcon className="w-12 h-12 inline-block ml-3" />
               <h3 className="inline-block font-avenirBlack text-5xl mr-3">
-                Rp {dashboard.total_income}
+                <NumericFormat value={dashboard.total_income} displayType={'text'} thousandSeparator={true} prefix={'Rp.'}/>
               </h3>
             </div>
           </div>
