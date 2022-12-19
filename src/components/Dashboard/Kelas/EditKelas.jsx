@@ -25,7 +25,6 @@ const EditKelas = () => {
   const [data, setData] = useState(baseData);
 
   useEffect(() => {
-    console.log(data);
     setData(baseData);
 
     return(() => {
@@ -70,7 +69,6 @@ const EditKelas = () => {
       }
     }
   };
-  console.log(data);
 
   return (
     <form className="ml-[292px] pt-[124px] mr-9" onSubmit={handleSubmit}>

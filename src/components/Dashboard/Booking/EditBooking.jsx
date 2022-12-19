@@ -14,8 +14,6 @@ const EditBooking = () => {
   const classes = useSelector((state) => state.gym.classes);
   const users = useSelector((state) => state.gym.users);
 
-  console.log(state);
-
   const baseData = {
     user_id: state.user.name,
     class_id: state.class_id,
@@ -23,7 +21,6 @@ const EditBooking = () => {
     payment_method_id: state.payment_method_id,
     status: state.status,
   };
-  // console.log("BASE DATA", baseData);
   const [data, setData] = useState(baseData);
 
   useEffect(() => {
@@ -86,7 +83,6 @@ const EditBooking = () => {
     }
     setEdit([]);
   };
-  // console.log(data);
 
   return (
     <form className="ml-[292px] pt-[124px] mr-9" onSubmit={handleSubmit}>

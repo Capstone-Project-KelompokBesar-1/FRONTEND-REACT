@@ -23,7 +23,6 @@ const EditAnggota = () => {
   const [data, setData] = useState(baseData);
 
   useEffect(() => {
-    console.log(data);
     setData(baseData);
 
     return () => {

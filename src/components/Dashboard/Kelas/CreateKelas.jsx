@@ -13,7 +13,6 @@ const CreateKelas = () => {
   const navigate = useNavigate();
 
   const categories = useSelector((state) => state.gym.categories);
-  // console.log(categories[0].name);
 
   const baseData = {
     name: "",
@@ -27,7 +26,6 @@ const CreateKelas = () => {
   const [data, setData] = useState(baseData);
 
   useEffect(() => {
-    console.log(data);
     setData(baseData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -67,7 +65,6 @@ const CreateKelas = () => {
       }
     }
   };
-  console.log(data);
 
   return (
     <form className="ml-[292px] pt-[124px] mr-9" onSubmit={handleSubmit}>
