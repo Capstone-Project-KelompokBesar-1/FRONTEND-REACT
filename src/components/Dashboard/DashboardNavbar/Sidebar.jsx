@@ -42,7 +42,7 @@ const Sidebar = ({ active }) => {
                 active === "anggota" ? "bg-primary-500" : ""
               }`}
             >
-              <MenuKelasIcon className="w-6 ml-3" />
+              <MenuAnggotaIcon className="w-6 ml-3" />
               <h3 className="font-avenirBlack text-white ml-4">ANGGOTA</h3>
             </Link>
           </div>
@@ -54,7 +54,7 @@ const Sidebar = ({ active }) => {
                 active === "kelas" ? "bg-primary-500" : ""
               }`}
             >
-              <MenuAnggotaIcon className="w-6 ml-3" />
+              <MenuKelasIcon className="w-6 ml-3" />
               <h3 className="font-avenirBlack text-white ml-4">KELAS</h3>
             </Link>
           </div>

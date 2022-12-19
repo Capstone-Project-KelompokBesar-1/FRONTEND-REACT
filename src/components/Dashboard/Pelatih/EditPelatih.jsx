@@ -1,3 +1,4 @@
+import moment from "moment";
 import { Link } from "react-router-dom";
 
 const EditPelatih = () => {
@@ -9,7 +10,7 @@ const EditPelatih = () => {
         </h1>
         <div className="flex justify-between mb-6">
           <p>Pelatih &gt; Ubah Data</p>
-          <p>Rabu, 30 November 2022</p>
+          <p>{moment().format("dddd[,] D MMMM YYYY")}</p>
         </div>
 
         <div className="border rounded-2xl px-4 py-6">

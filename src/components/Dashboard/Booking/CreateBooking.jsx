@@ -1,3 +1,4 @@
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -78,7 +79,7 @@ const CreateBooking = () => {
         </h1>
         <div className="flex justify-between mb-6">
           <p>Transaksi &gt; Ubah Data</p>
-          <p>Rabu, 30 November 2022</p>
+          <p>{moment().format("dddd[,] D MMMM YYYY")}</p>
         </div>
 
         <div className="border rounded-2xl px-4 py-6">

@@ -11,8 +11,11 @@ import {
 import { BiCheckbox } from "react-icons/bi";
 import PelatihList from "./PelatihList";
 import { Link } from "react-router-dom";
+import moment from "moment/moment";
 
 const Pelatih = () => {
+  var idLocale = require('moment/locale/id'); 
+  moment.locale('id', idLocale);
   const dispatch = useDispatch();
   const data = useSelector((state) => state.gym.trainers);
   const searchField = useSelector((state) => state.gym.searchField);
@@ -56,7 +59,7 @@ const Pelatih = () => {
 
           <i className="mt-[71px]">
             <CalenderIcon className="w-4 h-4 inline mr-1" />
-            <p className="inline not-italic">Rabu, 30 November 2022</p>
+            <p className="inline not-italic">{moment().format("dddd[,] D MMMM YYYY")}</p>
           </i>
         </div>
 
