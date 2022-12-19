@@ -4,24 +4,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import APIClient from "../../../apis/APIClient";
-import { fetchDatas, setEdit } from "../../../redux/gymSlice";
+import { fetchDatas } from "../../../redux/gymSlice";
 
-const EditBooking = () => {
+const CreateBooking = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const state = useSelector((state) => state.gym.edit);
   const classes = useSelector((state) => state.gym.classes);
   const users = useSelector((state) => state.gym.users);
 
-  console.log(state);
-
   const baseData = {
-    user_id: state.user.name,
-    class_id: state.class_id,
-    amount: state.amount,
-    payment_method_id: state.payment_method_id,
-    status: state.status,
+    user_id: "",
+    class_id: "",
+    amount: "",
+    payment_method_id: "",
+    // status: "",
   };
   // console.log("BASE DATA", baseData);
   const [data, setData] = useState(baseData);
@@ -30,11 +27,6 @@ const EditBooking = () => {
     dispatch(fetchDatas({ url: "/users", state: "users" }));
     dispatch(fetchDatas({ url: "/classes", state: "classes" }));
     setData(baseData);
-
-    return () => {
-      dispatch(setEdit([]));
-    };
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -56,35 +48,26 @@ const EditBooking = () => {
       !data.user_id ||
       !data.class_id ||
       !data.amount ||
-      !data.payment_method_id ||
-      !data.status
+      !data.payment_method_id
     ) {
-      return Swal.fire(
-        "Incomplete",
-        "Lengkapi seluruh data terlebih dahulu sebelum melakukan submit!",
-        "warning"
-      );
+      return Swal.fire("Incomplete", "Lengkapi seluruh data terlebih dahulu sebelum melakukan submit!", "warning");
     } else {
       const user = users.find(
         (user) => user.name.toLowerCase() === data.user_id.toLowerCase()
       );
       if (user) {
         try {
+          console.log("icikiwir");
           // add content-type json & charset=UTF-8 to header
-          await APIClient.put(`/transactions/${state.id}`, {
-            ...data,
-            user_id: user.id,
-          });
-          Swal.fire("Updated", "Data transaksi berhasil diubah!", "success");
+          await APIClient.post(`/transactions`, { ...data, user_id: user.id });
+          Swal.fire("Submitted", "Data transaksi baru berhasil dibuat!", "success");
           dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
-          dispatch(setEdit([]));
           navigate("/booking");
         } catch (error) {
           console.log(error);
         }
       } else return Swal.fire("Failed", "User tidak dapat ditemukan!", "error");
     }
-    setEdit([]);
   };
   // console.log(data);
 
@@ -92,7 +75,7 @@ const EditBooking = () => {
     <form className="ml-[292px] pt-[124px] mr-9" onSubmit={handleSubmit}>
       <div>
         <h1 className="font-avenirBlack text-black text-[40px]">
-          PERUBAHAN DATA TRANSAKSI
+          TAMBAH TRANSAKSI BARU
         </h1>
         <div className="flex justify-between mb-6">
           <p>Transaksi &gt; Ubah Data</p>
@@ -103,14 +86,14 @@ const EditBooking = () => {
           {/* Label, Input, & img */}
           <div className="main flex">
             <div>
-              <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
-                <label htmlFor="user_id">ID Pembayaran</label>
+              {/* <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
+                <label htmlFor="id">ID Pembayaran</label>
               </div>
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="time">Waktu Pembelian</label>
-              </div>
+              </div> */}
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
-                <label htmlFor="name">Nama Anggota</label>
+                <label htmlFor="name">ID Anggota</label>
               </div>
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="price">Total Bayar</label>
@@ -118,19 +101,19 @@ const EditBooking = () => {
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="payment_method_id">Metode Pembayaran</label>
               </div>
-              <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
+              {/* <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="status">Status Pembayaran</label>
-              </div>
+              </div> */}
             </div>
 
             <div className="flex flex-col">
-              <p
+              {/* <p
                 id="id"
                 type="text"
                 name="bookingId"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2 text-gray-500"
               >
-                {state.id}
+                {state.bookingId}
               </p>
               <p
                 id="time"
@@ -138,10 +121,10 @@ const EditBooking = () => {
                 name="date"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2 text-gray-500"
               >
-                {state.updated_at}
-              </p>
+                {state.date}
+              </p> */}
               <input
-                id="user_id"
+                id="name"
                 type="text"
                 name="user_id"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
@@ -157,11 +140,11 @@ const EditBooking = () => {
                 onChange={handleNumberEdit}
               />
               <select
-                id="payment_method_id"
+                id="method"
                 type="number"
                 name="payment_method_id"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
-                value={data.payment_method_id}
+                value={data.method}
                 onChange={handleNumberEdit}
               >
                 <option value="">-- Pilih Metode Pembayaran --</option>
@@ -171,7 +154,7 @@ const EditBooking = () => {
                 <option value={4}>MANDIRI</option>
                 <option value={5}>BCA</option>
               </select>
-              <select
+              {/* <select
                 id="status"
                 type="text"
                 name="status"
@@ -183,7 +166,7 @@ const EditBooking = () => {
                 <option value="settlement">BERHASIL</option>
                 <option value="failure">GAGAL</option>
                 <option value="pending">TERTUNDA</option>
-              </select>
+              </select> */}
             </div>
           </div>
           <div className="flex w-full h-12 justify-start pl-[118px] items-center font-avenirBlack mb-2 bg-primary-100">
@@ -221,6 +204,7 @@ const EditBooking = () => {
                 value={data.class_id}
                 onChange={handleNumberEdit}
               >
+                <option value="">-- Pilih Kelas --</option>
                 {classes.map((item) => (
                   <option key={item.id} value={item.id}>
                     {item.name}
@@ -243,7 +227,6 @@ const EditBooking = () => {
               <button
                 className="w-28 h-14 bg-white text-primary-500 font-avenirBlack rounded-lg mr-4 border border-primary-500 shadow-md"
                 type="button"
-                onClick={() => dispatch(setEdit([]))}
               >
                 Batal
               </button>
@@ -261,4 +244,4 @@ const EditBooking = () => {
   );
 };
 
-export default EditBooking;
+export default CreateBooking;

@@ -1,8 +1,11 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchDatas, setSearchField } from "../../../redux/gymSlice";
+import {
+  fetchDatas,
+  setSearchField,
+  deleteData,
+} from "../../../redux/gymSlice";
 
-import { TbDownload } from "react-icons/tb";
 import {
   CalenderIcon,
   SearchIcon,
@@ -12,11 +15,16 @@ import {
 import { BiCheckbox } from "react-icons/bi";
 
 import AnggotaList from "./AnggotaList";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import moment from "moment";
 
 const Anggota = () => {
   const dispatch = useDispatch();
+
   const data = useSelector((state) => state.gym.users);
   const searchField = useSelector((state) => state.gym.searchField);
+  const edit = useSelector((state) => state.gym.edit);
 
   useEffect(() => {
     dispatch(fetchDatas({ url: "/users", state: "users" }));
@@ -28,7 +36,7 @@ const Anggota = () => {
     dispatch(setSearchField(e.target.value.toLocaleLowerCase()));
   };
 
-  const renderSearch = () => {
+  const RenderedSearch = () => {
     const searchFilter = data.filter((data) => {
       return data.name.toLowerCase().includes(searchField);
     });
@@ -37,14 +45,60 @@ const Anggota = () => {
       return (
         <AnggotaList
           key={item.id}
+          id={item.id}
           name={item.name}
           phone={item.phone}
           email={item.email}
           address={item.address}
+          birth_date={item.birth_date}
+          gender={item.gender}
           index={index}
         />
       );
     });
+  };
+
+  const handleDelete = () => {
+    if (edit.length < 1)
+      return Swal.fire(
+        "Nothing Selected",
+        "Pilih data yang ingin dihapus!",
+        "warning"
+      );
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger",
+      },
+    });
+
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are You Sure?",
+        text: "Data yang terhapus tidak dapat dikembalikan",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Delete",
+        cancelButtonText: "Cancel",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            "Deleted",
+            "Data yang dipilih telah terhapus!",
+            "success"
+          );
+          dispatch(deleteData({ url: "/users", type: "many" }));
+          dispatch(fetchDatas({ url: "/users", state: "users" }));
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          swalWithBootstrapButtons.fire(
+            "Cancelled",
+            "Penghapusan data dibatalkan",
+            "error"
+          );
+        }
+      });
   };
 
   return (
@@ -57,7 +111,7 @@ const Anggota = () => {
 
           <i className="mt-[71px]">
             <CalenderIcon className="w-4 h-4 inline mr-1" />
-            <p className="inline not-italic">Rabu, 30 November 2022</p>
+            <p className="inline not-italic">{moment().format("dddd[,] D MMMM YYYY")}</p>
           </i>
         </div>
 
@@ -73,16 +127,19 @@ const Anggota = () => {
           </div>
 
           <div className="tableButton flex gap-2 text-black text-[10px]">
-            <button className="w-32 h-11 bg-primary-500 rounded-md shadow-md">
+            <button
+              className="w-32 h-11 bg-primary-500 rounded-md shadow-md"
+              onClick={handleDelete}
+            >
               <DeleteBlackIcon className="w-2 h-2 inline-block mr-1" />
               Hapus yang dipilih
             </button>
-            <button className="w-[75px] h-11 bg-info-100 rounded-md shadow-md">
-              <TbDownload className="inline-block mr-1" /> Unduh
-            </button>
-            <button className="w-24 h-11 bg-success-500 rounded-md shadow-md">
+            <Link
+              to="/anggota/create"
+              className="w-24 h-11 bg-success-500 rounded-md shadow-md flex justify-center items-center"
+            >
               <TambahDataIcon className="w-2 h-2 inline-block" /> Tambah Baru
-            </button>
+            </Link>
           </div>
         </div>
 
@@ -101,7 +158,7 @@ const Anggota = () => {
               </tr>
             </thead>
 
-            {renderSearch()}
+            <RenderedSearch />
           </table>
         </div>
       </div>

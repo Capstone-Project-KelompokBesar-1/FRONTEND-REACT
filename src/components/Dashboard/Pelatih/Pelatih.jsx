@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchDatas, setSearchField } from "../../../redux/gymSlice";
 
-import { TbDownload } from "react-icons/tb";
 import {
   CalenderIcon,
   SearchIcon,
@@ -11,8 +10,12 @@ import {
 } from "../../../assets/icons";
 import { BiCheckbox } from "react-icons/bi";
 import PelatihList from "./PelatihList";
+import { Link } from "react-router-dom";
+import moment from "moment/moment";
 
 const Pelatih = () => {
+  var idLocale = require('moment/locale/id'); 
+  moment.locale('id', idLocale);
   const dispatch = useDispatch();
   const data = useSelector((state) => state.gym.trainers);
   const searchField = useSelector((state) => state.gym.searchField);
@@ -27,7 +30,7 @@ const Pelatih = () => {
     dispatch(setSearchField(e.target.value.toLocaleLowerCase()));
   };
 
-  const renderSearch = () => {
+  const RenderedSearch = () => {
     const searchFilter = data.filter((data) => {
       return data.name.toLowerCase().includes(searchField);
     });
@@ -56,7 +59,7 @@ const Pelatih = () => {
 
           <i className="mt-[71px]">
             <CalenderIcon className="w-4 h-4 inline mr-1" />
-            <p className="inline not-italic">Rabu, 30 November 2022</p>
+            <p className="inline not-italic">{moment().format("dddd[,] D MMMM YYYY")}</p>
           </i>
         </div>
 
@@ -76,12 +79,9 @@ const Pelatih = () => {
               <DeleteBlackIcon className="w-2 h-2 inline-block mr-1" />
               Hapus yang dipilih
             </button>
-            <button className="w-[75px] h-11 bg-info-100 rounded-md shadow-md">
-              <TbDownload className="inline-block mr-1" /> Unduh
-            </button>
-            <button className="w-24 h-11 bg-success-500 rounded-md shadow-md">
+            <Link className="w-24 h-11 bg-success-500 rounded-md shadow-md flex justify-center items-center">
               <TambahDataIcon className="w-2 h-2 inline-block" /> Tambah Baru
-            </button>
+            </Link>
           </div>
         </div>
 
@@ -100,7 +100,7 @@ const Pelatih = () => {
               </tr>
             </thead>
 
-            {renderSearch()}
+            <RenderedSearch />
           </table>
         </div>
       </div>

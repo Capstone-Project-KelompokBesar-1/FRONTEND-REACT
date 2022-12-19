@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchDatas, setEdit } from "../../../redux/gymSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchDatas } from "../../../redux/gymSlice";
 import APIClient from "../../../apis/APIClient";
 
 import { Link, useNavigate } from "react-router-dom";
@@ -8,18 +8,20 @@ import { TambahDataRed } from "../../../assets/icons";
 import Swal from "sweetalert2";
 import moment from "moment";
 
-const EditKelas = () => {
+const CreateKelas = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.gym.edit);
   const navigate = useNavigate();
 
+  const categories = useSelector((state) => state.gym.categories);
+  // console.log(categories[0].name);
+
   const baseData = {
-    name: state.gymClass,
-    type: state.classType,
-    category_id: state.classCategory,
-    price: state.price,
-    description: state.description,
-    total_meeting: state.total_meeting,
+    name: "",
+    type: "",
+    category_id: "",
+    price: "",
+    description: "",
+    total_meeting: "",
     thumbnail: "https://",
   };
   const [data, setData] = useState(baseData);
@@ -27,11 +29,7 @@ const EditKelas = () => {
   useEffect(() => {
     console.log(data);
     setData(baseData);
-
-    return(() => {
-      dispatch(setEdit([]));
-    })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleEdit = (e) => {
@@ -60,10 +58,9 @@ const EditKelas = () => {
     } else {
       try {
         // add content-type json & charset=UTF-8 to header
-        await APIClient.put(`/classes/${state.id}`, data);
-        Swal.fire("Updated", "Data kelas berhasil diubah!", "success");
+        await APIClient.post(`/classes`, data);
+        Swal.fire("Submitted", "Data kelas baru berhasil dibuat!", "success");
         dispatch(fetchDatas({ url: "/classes", state: "classes" }));
-        dispatch(setEdit([]));
         navigate("/kelas");
       } catch (error) {
         console.log(error);
@@ -76,7 +73,7 @@ const EditKelas = () => {
     <form className="ml-[292px] pt-[124px] mr-9" onSubmit={handleSubmit}>
       <div>
         <h1 className="font-avenirBlack text-black text-[40px]">
-          PERUBAHAN DATA KELAS
+          TAMBAH KELAS BARU
         </h1>
         <div className="flex justify-between mb-6">
           <p>Kelas &gt; Ubah Data</p>
@@ -94,7 +91,7 @@ const EditKelas = () => {
                 <label htmlFor="type">Jenis Kelas</label>
               </div>
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
-                <label htmlFor="category">Kategori Kelas</label>
+                <label htmlFor="category_id">Kategori Kelas</label>
               </div>
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="price">Harga</label>
@@ -133,16 +130,19 @@ const EditKelas = () => {
               </select>
 
               <select
-                id="type"
+                id="category_id"
                 type="number"
                 name="category_id"
-                className="w-[523px] h-12 ml-12 mb-2 border rounded-lg p-2"
-                alue={data.category_id}
+                className="w-[523px] h-12 ml-12 mb-2 border rounded-lg p-2 capitalize"
+                value={data.category_id}
                 onChange={handleNumberEdit}
               >
                 <option value="">-- Pilih Kategori Kelas --</option>
-                <option value={1}>Yoga</option>
-                <option value={2}>Atletik</option>
+                {categories.map((item) => (
+                  <option value={item.id} className="capitalize">
+                    {item.name}
+                  </option>
+                ))}
               </select>
 
               <input
@@ -175,7 +175,7 @@ const EditKelas = () => {
                 id="trainer"
                 name="trainer_id"
                 className="w-[523px] h-12 ml-12 mb-2 border rounded-lg p-2"
-                value={data.trainer_id}
+                value={data.gender}
                 onChange={handleNumberEdit}
               >
                 <option value="">-- Pilih Trainer --</option>
@@ -199,10 +199,7 @@ const EditKelas = () => {
           {/* Submit Button */}
           <div className="mt-20 flex justify-end">
             <Link to="/kelas">
-              <button
-                className="w-28 h-14 bg-white text-primary-500 font-avenirBlack rounded-lg mr-4 border border-primary-500 shadow-md"
-                onClick={() => dispatch(setEdit([]))}
-                >
+              <button className="w-28 h-14 bg-white text-primary-500 font-avenirBlack rounded-lg mr-4 border border-primary-500 shadow-md">
                 Batal
               </button>
             </Link>
@@ -219,4 +216,4 @@ const EditKelas = () => {
   );
 };
 
-export default EditKelas;
+export default CreateKelas;

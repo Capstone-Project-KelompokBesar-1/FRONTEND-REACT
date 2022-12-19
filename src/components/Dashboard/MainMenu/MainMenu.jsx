@@ -10,6 +10,7 @@ import {
   KelasDashBoardIcon,
   TotalDashBoardIcon,
 } from "../../../assets/icons";
+import moment from "moment";
 
 const MainMenu = () => {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const MainMenu = () => {
           <h1 className="font-avenirBlack text-black text-[40px]">Dashboard</h1>
           <i className="mt-[71px]">
             <CalenderIcon className="w-4 h-4 inline mr-1" />
-            <p className="inline not-italic">Rabu, 30 November 2022</p>
+            <p className="inline not-italic">{moment().format("dddd[,] D MMMM YYYY")}</p>
           </i>
         </div>
 

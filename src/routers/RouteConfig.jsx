@@ -13,16 +13,19 @@ import EditKelasPage from "../pages/DashboardPage/KelasPage/EditKelasPage";
 import EditBookingPage from "../pages/DashboardPage/BookingPage/EditBookingPage";
 import ProtectedRoute from "./ProtectedRoute";
 import PrivateRoute from "./PrivateRoute";
+import CreateAnggotaPage from "../pages/DashboardPage/AnggotaPage/CreateAnggotaPage";
+import CreateKelasPage from "../pages/DashboardPage/KelasPage/CreateKelasPage";
+import CreateBookingPage from "../pages/DashboardPage/BookingPage/CreateBookingPage";
 
 const RouteConfig = () => {
   return (
     <BrowserRouter>
       <Routes>
         {/* Landing Route */}
-        <Route path="/" element={<LandingPage />} />
-        
+        <Route exact path="/" element={<LandingPage />} />
+
         {/* Login Route */}
-        <Route path="/" element={<ProtectedRoute />}>
+        <Route exact path="/" element={<ProtectedRoute />}>
           <Route path="/login" element={<Login />} />
         </Route>
 
@@ -30,20 +33,23 @@ const RouteConfig = () => {
         <Route path="/" element={<PrivateRoute />}>
           <Route path="dashboard" element={<DashboardMainPage />} />
           <Route path="pelatih">
-            <Route path="page" element={<PelatihPage />}/>
-            <Route path="edit" element={<EditPelatihPage />}/>
+            <Route path="" element={<PelatihPage />} />
+            <Route path="edit" element={<EditPelatihPage />} />
           </Route>
           <Route path="anggota">
-            <Route path="page" element={<AnggotaPage />}/>
-            <Route path="edit" element={<EditAnggotaPage />}/>
+            <Route path="" element={<AnggotaPage />} />
+            <Route path="create" element={<CreateAnggotaPage />} />
+            <Route path="edit" element={<EditAnggotaPage />} />
           </Route>
           <Route path="kelas">
-            <Route path="page" element={<KelasPage />}/>
-            <Route path="edit" element={<EditKelasPage />}/>
+            <Route path="" element={<KelasPage />} />
+            <Route path="create" element={<CreateKelasPage />} />
+            <Route path="edit" element={<EditKelasPage />} />
           </Route>
           <Route path="booking">
-            <Route path="page" element={<BookingPage />}/>
-            <Route path="edit" element={<EditBookingPage />}/>
+            <Route path="" element={<BookingPage />} />
+            <Route path="create" element={<CreateBookingPage />} />
+            <Route path="edit" element={<EditBookingPage />} />
           </Route>
         </Route>
       </Routes>

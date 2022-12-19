@@ -1,34 +1,32 @@
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchDatas, setEdit } from "../../../redux/gymSlice";
+import { useDispatch } from "react-redux";
+import { fetchDatas } from "../../../redux/gymSlice";
 
 import { Link, useNavigate } from "react-router-dom";
 import APIClient from "../../../apis/APIClient";
 import Swal from "sweetalert2";
 import moment from "moment";
 
-const EditAnggota = () => {
+const CreateAnggota = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.gym.edit);
   const navigate = useNavigate();
 
   const baseData = {
-    name: state.name,
-    email: state.email,
-    phone: state.phone,
-    birth_date: state.birth_date,
-    gender: state.gender,
-    address: state.address,
+    name: "",
+    email: "",
+    phone: "",
+    birth_date: "",
+    gender: "",
+    address: "",
+    password:
+      Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15),
   };
   const [data, setData] = useState(baseData);
 
   useEffect(() => {
     console.log(data);
     setData(baseData);
-
-    return () => {
-      dispatch(setEdit([]));
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -55,22 +53,22 @@ const EditAnggota = () => {
       );
     } else {
       try {
-        await APIClient.put(`/users/${state.id}`, data);
-        Swal.fire("Updated", "Data anggota berhasil diubah!", "success");
+        // add content-type json & charset=UTF-8 to header
+        await APIClient.post(`/users`, data);
+        Swal.fire("Submitted", "Data anggota baru berhasil dibuat!", "success");
         dispatch(fetchDatas({ url: "/users", state: "users" }));
         navigate("/anggota");
       } catch (error) {
         console.log(error);
       }
     }
-    dispatch(setEdit([]));
   };
 
   return (
     <form className="ml-[292px] pt-[124px] mr-9" onSubmit={handleSubmit}>
       <div>
         <h1 className="font-avenirBlack text-black text-[40px]">
-          PERUBAHAN DATA ANGGOTA
+          TAMBAH ANGGOTA BARU
         </h1>
         <div className="flex justify-between mb-6">
           <p>Anggota &gt; Ubah Data</p>
@@ -143,7 +141,7 @@ const EditAnggota = () => {
                 onChange={handleEdit}
               >
                 <option value="Pilih">-- Pilih Jenis Kelamin --</option>
-                <option value="Laki-Laki">Laki-laki</option>
+                <option value={"Laki-laki"}>Laki-laki</option>
                 <option value="Perempuan">Perempuan</option>
               </select>
               <input
@@ -174,13 +172,11 @@ const EditAnggota = () => {
 
           {/* Submit Button */}
           <div className="mt-52 flex justify-end">
-            <button
-              className="w-28 h-14 bg-white text-primary-500 font-avenirBlack rounded-lg mr-4 border border-primary-500 shadow-md"
-              onClick={() => dispatch(setEdit([]))}
-            >
-              <Link to="/anggota">Batal</Link>
-            </button>
-
+            <Link to="/anggota">
+              <button className="w-28 h-14 bg-white text-primary-500 font-avenirBlack rounded-lg mr-4 border border-primary-500 shadow-md">
+                Batal
+              </button>
+            </Link>
             <button
               className="w-52 h-14 bg-primary-500 text-white font-avenirBlack rounded-lg shadow-md"
               type="submit"
@@ -194,4 +190,4 @@ const EditAnggota = () => {
   );
 };
 
-export default EditAnggota;
+export default CreateAnggota;

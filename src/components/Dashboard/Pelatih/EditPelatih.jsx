@@ -1,3 +1,6 @@
+import moment from "moment";
+import { Link } from "react-router-dom";
+
 const EditPelatih = () => {
   return (
     <div className="ml-[292px] pt-[124px] mr-9">
@@ -7,7 +10,7 @@ const EditPelatih = () => {
         </h1>
         <div className="flex justify-between mb-6">
           <p>Pelatih &gt; Ubah Data</p>
-          <p>Rabu, 30 November 2022</p>
+          <p>{moment().format("dddd[,] D MMMM YYYY")}</p>
         </div>
 
         <div className="border rounded-2xl px-4 py-6">
@@ -71,9 +74,11 @@ const EditPelatih = () => {
 
           {/* Submit Button */}
           <div className="mt-52 flex justify-end">
-            <button className="w-28 h-14 bg-white text-primary-500 font-avenirBlack rounded-lg mr-4 border border-primary-500 shadow-md">
-              Batal
-            </button>
+            <Link to="/pelatih">
+              <button className="w-28 h-14 bg-white text-primary-500 font-avenirBlack rounded-lg mr-4 border border-primary-500 shadow-md">
+                Batal
+              </button>
+            </Link>
             <button className="w-52 h-14 bg-primary-500 text-white font-avenirBlack rounded-lg shadow-md">
               Simpan Perubahan
             </button>

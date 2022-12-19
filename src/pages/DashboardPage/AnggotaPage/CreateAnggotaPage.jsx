@@ -1,16 +1,16 @@
 import React from "react";
 import DashboardNavbar from "../../../components/Dashboard/DashboardNavbar/DashboardNavbar";
 import Sidebar from "../../../components/Dashboard/DashboardNavbar/Sidebar";
-import EditBooking from "../../../components/Dashboard/Booking/EditBooking";
+import CreateAnggota from "../../../components/Dashboard/Anggota/CreateAnggota";
 
-const EditBookingPage = () => {
+const CreateAnggotaPage = () => {
   return (
     <div>
       <DashboardNavbar />
-      <Sidebar active="booking" />
-      <EditBooking />
+      <Sidebar active="anggota" />
+      <CreateAnggota />
     </div>
   );
 };
 
-export default EditBookingPage;
+export default CreateAnggotaPage;
