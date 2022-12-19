@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchDatas,
@@ -25,6 +25,13 @@ const Kelas = () => {
   const searchField = useSelector((state) => state.gym.searchField);
   const edit = useSelector((state) => state.gym.edit);
 
+  const [selectedButton, setSelectedButton] = useState("semua");
+
+  const isSelected = (button) =>
+    selectedButton === button
+      ? "border-primary-500 text-white bg-primary-500"
+      : "border-primary-500 text-primary-500 bg-white";
+
   useEffect(() => {
     dispatch(fetchDatas({ url: "/classes", state: "classes" }));
     dispatch(fetchDatas({ url: "/categories", state: "categories" }));
@@ -40,6 +47,20 @@ const Kelas = () => {
     const searchFilter = data.filter((data) => {
       return data.name.toLowerCase().includes(searchField);
     });
+
+    const buttonFilter = searchFilter.filter((data) => {
+      if (selectedButton === "offline") {
+        return data.type === "offline";
+      } else if (selectedButton === "online") {
+        return data.type === "online";
+      } else return data;
+    });
+
+    if (selectedButton === "offline" || selectedButton === "online") {
+      return buttonFilter.map((item, index) => {
+        return <KelasList key={item.id} item={item} index={index} />;
+      });
+    }
 
     return searchFilter.map((item, index) => {
       return <KelasList key={item.id} item={item} index={index} />;
@@ -107,13 +128,28 @@ const Kelas = () => {
         </div>
         <div className="flex justify-between">
           <div className="flex flex-row items-end pb-6">
-            <button className="text-sm w-[86px] h-[40px] rounded-[40px] flex justify-center items-center border-2 border-primary-500 text-white bg-primary-500 mr-4">
+            <button
+              className={`text-sm w-[86px] h-[40px] rounded-[40px] flex justify-center items-center border-2 ${isSelected(
+                "semua"
+              )} mr-4`}
+              onClick={() => setSelectedButton("semua")}
+            >
               Semua
             </button>
-            <button className="text-sm w-[110px] h-[40px] rounded-[40px] flex justify-center items-center border-2 border-primary-500 text-primary-500 bg-white mr-4">
+            <button
+              className={`text-sm w-[110px] h-[40px] rounded-[40px] flex justify-center items-center border-2 ${isSelected(
+                "online"
+              )} mr-4`}
+              onClick={() => setSelectedButton("online")}
+            >
               Kelas Online
             </button>
-            <button className="text-sm w-[110px] h-[40px] rounded-[40px] flex justify-center items-center border-2 border-primary-500 text-primary-500 bg-white">
+            <button
+              className={`text-sm w-[110px] h-[40px] rounded-[40px] flex justify-center items-center border-2 ${isSelected(
+                "offline"
+              )}`}
+              onClick={() => setSelectedButton("offline")}
+            >
               Kelas Offline
             </button>
           </div>
