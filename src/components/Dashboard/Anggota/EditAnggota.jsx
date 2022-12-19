@@ -39,8 +39,19 @@ const EditAnggota = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!data.name || !data.email || !data.phone || !data.birth_date || !data.gender || !data.address) {
-      return Swal.fire("Incomplete", "Lengkapi seluruh data terlebih dahulu sebelum melakukan submit!", "warning");
+    if (
+      !data.name ||
+      !data.email ||
+      !data.phone ||
+      !data.birth_date ||
+      !data.gender ||
+      !data.address
+    ) {
+      return Swal.fire(
+        "Incomplete",
+        "Lengkapi seluruh data terlebih dahulu sebelum melakukan submit!",
+        "warning"
+      );
     } else {
       try {
         await APIClient.put(`/users/${state.id}`, data);
@@ -147,7 +158,10 @@ const EditAnggota = () => {
             <div className="flex justify-end w-[800px]">
               <div className="w-[342px] flex  flex-col justify-center items-center">
                 <div className="w-44 h-56 border rounded-lg bg-gray-500/50"></div>
-                <button className="w-32 h-10 my-6 bg-primary-500 text-white font-avenirBlack rounded-lg shadow-md">
+                <button
+                  className="w-32 h-10 my-6 bg-primary-500 text-white font-avenirBlack rounded-lg shadow-md"
+                  type="button"
+                >
                   Unggah
                 </button>
                 <p className="w-64 h-[50px]">
