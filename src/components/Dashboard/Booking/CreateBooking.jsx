@@ -93,7 +93,7 @@ const CreateBooking = () => {
                 <label htmlFor="time">Waktu Pembelian</label>
               </div> */}
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
-                <label htmlFor="name">ID Anggota</label>
+                <label htmlFor="name">Nama Anggota</label>
               </div>
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="price">Total Bayar</label>
