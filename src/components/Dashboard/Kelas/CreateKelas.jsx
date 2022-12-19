@@ -5,6 +5,7 @@ import APIClient from "../../../apis/APIClient";
 
 import { Link, useNavigate } from "react-router-dom";
 import { TambahDataRed } from "../../../assets/icons";
+import Swal from "sweetalert2";
 
 const CreateKelas = () => {
   const dispatch = useDispatch();
@@ -43,22 +44,21 @@ const CreateKelas = () => {
   };
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     if (
       !data.name ||
       !data.type ||
       !data.category_id ||
       !data.price ||
       !data.description ||
-      !data.total_meeting ||
-      !data.thumbnail
+      !data.total_meeting
     ) {
-      alert("Data tidak boleh kosong");
+      return Swal.fire("Incomplete", "Lengkapi seluruh data terlebih dahulu sebelum melakukan submit!", "warning");
     } else {
       try {
-        e.preventDefault();
         // add content-type json & charset=UTF-8 to header
         await APIClient.post(`/classes`, data);
-
+        Swal.fire("Submitted", "Data kelas baru berhasil dibuat!", "success");
         dispatch(fetchDatas({ url: "/classes", state: "classes" }));
         navigate("/kelas");
       } catch (error) {

@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import APIClient from "../../../apis/APIClient";
 import { fetchDatas, setEdit } from "../../../redux/gymSlice";
 
 const EditBooking = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.gym.edit);
-  const classes = useSelector((state) => state.gym.classes);
   const navigate = useNavigate();
 
+  const state = useSelector((state) => state.gym.edit);
+  const classes = useSelector((state) => state.gym.classes);
+  const users = useSelector((state) => state.gym.users);
+  const transactions = useSelector((state) => state.gym.transactions);
+
+  const transaction = transactions.find(
+    (transaction) => transaction.id === state.id
+  );
+
   const baseData = {
-    user_id: state.userId,
+    user_id: transaction.user.name,
     class_id: state.classId,
     amount: state.amount,
     payment_method_id: state.method,
@@ -19,10 +27,10 @@ const EditBooking = () => {
   };
   // console.log("BASE DATA", baseData);
   const [data, setData] = useState(baseData);
-  console.log("DATA:", data);
 
   useEffect(() => {
-    console.log(data);
+    dispatch(fetchDatas({ url: "/users", state: "users" }));
+    dispatch(fetchDatas({ url: "/classes", state: "classes" }));
     setData(baseData);
 
     return () => {
@@ -45,6 +53,7 @@ const EditBooking = () => {
   };
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     if (
       !data.user_id ||
       !data.class_id ||
@@ -52,19 +61,26 @@ const EditBooking = () => {
       !data.payment_method_id ||
       !data.status
     ) {
-      alert("Data tidak boleh kosong");
+      return Swal.fire("Incomplete", "Lengkapi seluruh data terlebih dahulu sebelum melakukan submit!", "warning");
     } else {
-      try {
-        e.preventDefault();
-        // add content-type json & charset=UTF-8 to header
-        await APIClient.put(`/transactions/${state.bookingId}`, data);
-
-        dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
-        dispatch(setEdit([]));
-        navigate("/booking");
-      } catch (error) {
-        console.log(error);
-      }
+      const user = users.find(
+        (user) => user.name.toLowerCase() === data.user_id.toLowerCase()
+      );
+      if (user) {
+        try {
+          // add content-type json & charset=UTF-8 to header
+          await APIClient.put(`/transactions/${state.id}`, {
+            ...data,
+            user_id: user.id,
+          });
+          Swal.fire("Updated", "Data transaksi berhasil diubah!", "success");
+          dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
+          dispatch(setEdit([]));
+          navigate("/booking");
+        } catch (error) {
+          console.log(error);
+        }
+      } else return Swal.fire("Failed", "User tidak dapat ditemukan!", "error");
     }
     setEdit([]);
   };
@@ -86,7 +102,7 @@ const EditBooking = () => {
           <div className="main flex">
             <div>
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
-                <label htmlFor="id">ID Pembayaran</label>
+                <label htmlFor="user_id">ID Pembayaran</label>
               </div>
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="time">Waktu Pembelian</label>
@@ -112,7 +128,7 @@ const EditBooking = () => {
                 name="bookingId"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2 text-gray-500"
               >
-                {state.bookingId}
+                {state.id}
               </p>
               <p
                 id="time"
@@ -123,7 +139,7 @@ const EditBooking = () => {
                 {state.date}
               </p>
               <input
-                id="name"
+                id="user_id"
                 type="text"
                 name="user_id"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
@@ -139,7 +155,7 @@ const EditBooking = () => {
                 onChange={handleNumberEdit}
               />
               <select
-                id="method"
+                id="payment_method_id"
                 type="number"
                 name="payment_method_id"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
@@ -204,7 +220,9 @@ const EditBooking = () => {
                 onChange={handleNumberEdit}
               >
                 {classes.map((item) => (
-                  <option value={item.id}>{item.name}</option>
+                  <option key={item.id} value={item.id}>
+                    {item.name}
+                  </option>
                 ))}
               </select>
               {/* <input

@@ -5,11 +5,11 @@ import APIClient from "../../../apis/APIClient";
 
 import { Link, useNavigate } from "react-router-dom";
 import { TambahDataRed } from "../../../assets/icons";
+import Swal from "sweetalert2";
 
 const EditKelas = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.gym.edit);
-  const categories = useSelector((state) => state.gym.categories);
   const navigate = useNavigate();
 
   const baseData = {
@@ -24,12 +24,13 @@ const EditKelas = () => {
   const [data, setData] = useState(baseData);
 
   useEffect(() => {
+    console.log(data);
     setData(baseData);
 
-    return () => {
+    return(() => {
       dispatch(setEdit([]));
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleEdit = (e) => {
@@ -45,22 +46,21 @@ const EditKelas = () => {
   };
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     if (
       !data.name ||
       !data.type ||
       !data.category_id ||
       !data.price ||
       !data.description ||
-      !data.total_meeting ||
-      !data.thumbnail
+      !data.total_meeting
     ) {
-      alert("Data tidak boleh kosong");
+      return Swal.fire("Incomplete", "Lengkapi seluruh data terlebih dahulu sebelum melakukan submit!", "warning");
     } else {
       try {
-        e.preventDefault();
         // add content-type json & charset=UTF-8 to header
         await APIClient.put(`/classes/${state.id}`, data);
-
+        Swal.fire("Updated", "Data kelas berhasil diubah!", "success");
         dispatch(fetchDatas({ url: "/classes", state: "classes" }));
         dispatch(setEdit([]));
         navigate("/kelas");
@@ -135,15 +135,13 @@ const EditKelas = () => {
                 id="type"
                 type="number"
                 name="category_id"
-                className="w-[523px] h-12 ml-12 mb-2 border rounded-lg p-2 capitalize"
-                value={data.category_id}
+                className="w-[523px] h-12 ml-12 mb-2 border rounded-lg p-2"
+                alue={data.category_id}
                 onChange={handleNumberEdit}
               >
-                {categories.map((item) => (
-                  <option value={item.id} className="capitalize">
-                    {item.name}
-                  </option>
-                ))}
+                <option value="">-- Pilih Kategori Kelas --</option>
+                <option value={1}>Yoga</option>
+                <option value={2}>Atletik</option>
               </select>
 
               <input
@@ -203,7 +201,7 @@ const EditKelas = () => {
               <button
                 className="w-28 h-14 bg-white text-primary-500 font-avenirBlack rounded-lg mr-4 border border-primary-500 shadow-md"
                 onClick={() => dispatch(setEdit([]))}
-              >
+                >
                 Batal
               </button>
             </Link>

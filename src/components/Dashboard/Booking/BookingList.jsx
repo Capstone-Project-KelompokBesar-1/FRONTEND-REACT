@@ -5,16 +5,9 @@ import { Link } from "react-router-dom";
 
 import { BiCheckbox, BiCheckboxSquare } from "react-icons/bi";
 import { EditIcon, DeleteIcon } from "../../../assets/icons";
+import Swal from "sweetalert2";
 
-const BookingList = ({
-  bookingId,
-  classId,
-  userId,
-  date,
-  amount,
-  method,
-  status,
-}) => {
+const BookingList = ({ id, classId, userId, date, amount, method, status }) => {
   const statusCheck = () => {
     if (status === "tertunda") {
       return "text-warning";
@@ -39,42 +32,70 @@ const BookingList = ({
     }
   };
 
-  // Kode Paujul //
-
   const dispatch = useDispatch();
   const edit = useSelector((state) => state.gym.edit);
   const [checked, setChecked] = useState(false);
 
   const checkItem = () => {
-    if (edit.includes(bookingId)) {
-      dispatch(setEdit(edit.filter((item) => item !== bookingId)));
+    if (edit.includes(id)) {
+      dispatch(setEdit(edit.filter((item) => item !== id)));
     } else {
-      dispatch(setEdit([...edit, bookingId]));
+      dispatch(setEdit([...edit, id]));
     }
     setChecked(!checked);
   };
 
   const handleDelete = () => {
-    dispatch(setEdit([]));
-    // ntar tambahin swal trs kl Yes pake kode bawah ini
-    dispatch(deleteData({ url: "/transactions", type: "one", bookingId }));
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: 'Are You Sure?',
+      text: "Data yang terhapus tidak dapat dikembalikan",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'Cancel',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+          'Deleted',
+          'Data yang dipilih telah terhapus!',
+          'success'
+        )
+        dispatch(setEdit([]));
+        dispatch(deleteData({ url: "/transactions", type: "one", id: id }));
+    
+        setTimeout(() => {
+          dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
+        }, 1000);
 
-    setTimeout(() => {
-      dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
-    }, 1000);
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'Penghapusan data dibatalkan',
+          'error'
+        )
+      }
+    })
   };
-
-  // Kode Paujul end //
 
   return (
     <tbody className="font-avenirHeavy text-web-dark border-t">
       <tr>
         <td className="py-4 px-4 text-3xl">
           <div onClick={checkItem}>
-            {edit.includes(bookingId) ? <BiCheckboxSquare /> : <BiCheckbox />}
+            {edit.includes(id) ? <BiCheckboxSquare /> : <BiCheckbox />}
           </div>
         </td>
-        <td className="py-4 px-6">{bookingId}</td>
+        <td className="py-4 px-6">{id}</td>
         <td className="py-4 px-6 text-center">
           {date.toString().substring(0, 10)} <br /> {date.match(/\d\d:\d\d/)}{" "}
           WIB
@@ -91,7 +112,7 @@ const BookingList = ({
             onClick={() =>
               dispatch(
                 setEdit({
-                  bookingId,
+                  id,
                   classId,
                   userId,
                   date,

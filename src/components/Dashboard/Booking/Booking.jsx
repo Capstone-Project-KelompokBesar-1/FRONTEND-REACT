@@ -16,6 +16,7 @@ import { BiCheckbox } from "react-icons/bi";
 
 import BookingList from "./BookingList";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Booking = () => {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const Booking = () => {
       return (
         <BookingList
           key={item.id}
-          bookingId={item.id}
+          id={item.id}
           userId={item.user_id}
           classId={item.class_id}
           date={item.updated_at}
@@ -57,9 +58,42 @@ const Booking = () => {
   };
 
   const handleDelete = () => {
-    if (edit.length < 1) return alert("Pilih data yang akan dihapus");
-    dispatch(deleteData({ url: "/transactions", type: "many" }));
-    dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
+    if (edit.length < 1) return Swal.fire("Nothing Selected", "Pilih data yang ingin dihapus!", "warning");
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: 'Are You Sure?',
+      text: "Data yang terhapus tidak dapat dikembalikan",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'Cancel',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+          'Deleted',
+          'Data yang dipilih telah terhapus!',
+          'success'
+        )
+        dispatch(deleteData({ url: "/transactions", type: "many" }));
+        dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
+
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'Penghapusan data dibatalkan',
+          'error'
+        )
+      }
+    })
   };
 
   return (
@@ -110,9 +144,12 @@ const Booking = () => {
                   Hapus yang dipilih
                 </button>
 
-                <Link to="/booking/create" className="w-24 h-11 bg-success-500 rounded-md shadow-md flex justify-center items-center">
-                  <TambahDataIcon className="w-2 h-2 inline-block" /> Tambah Baru
-
+                <Link
+                  to="/booking/create"
+                  className="w-24 h-11 bg-success-500 rounded-md shadow-md flex justify-center items-center"
+                >
+                  <TambahDataIcon className="w-2 h-2 inline-block" /> Tambah
+                  Baru
                 </Link>
               </div>
             </div>
