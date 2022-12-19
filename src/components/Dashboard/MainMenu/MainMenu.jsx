@@ -15,11 +15,14 @@ import moment from "moment";
 const MainMenu = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.gym.transactions);
+  const dashboard = useSelector((state) => state.gym.dashboard);
 
   useEffect(() => {
     dispatch(
       fetchDatas({ url: "/transactions/history", state: "transactions" })
     );
+
+    dispatch(fetchDatas({ url: "/dashboard", state: "dashboard" }));
 
     // eslint-disable-next-line
   }, []);
@@ -31,7 +34,9 @@ const MainMenu = () => {
           <h1 className="font-avenirBlack text-black text-[40px]">Dashboard</h1>
           <i className="mt-[71px]">
             <CalenderIcon className="w-4 h-4 inline mr-1" />
-            <p className="inline not-italic">{moment().format("dddd[,] D MMMM YYYY")}</p>
+            <p className="inline not-italic">
+              {moment().format("dddd[,] D MMMM YYYY")}
+            </p>
           </i>
         </div>
 
@@ -41,7 +46,7 @@ const MainMenu = () => {
             <div className="flex justify-between items-center mt-7">
               <AnggotaDashBoardIcon className="w-12 h-12 inline-block ml-3" />
               <h3 className="inline-block font-avenirBlack text-5xl mr-3">
-                542
+                {dashboard.total_user}
               </h3>
             </div>
           </div>
@@ -50,7 +55,7 @@ const MainMenu = () => {
             <div className="flex justify-between items-center mt-7">
               <PelatihDashBoardIcon className="w-12 h-12 inline-block ml-3" />
               <h3 className="inline-block font-avenirBlack text-5xl mr-3">
-                42
+                {dashboard.total_trainer}
               </h3>
             </div>
           </div>
@@ -59,7 +64,7 @@ const MainMenu = () => {
             <div className="flex justify-between items-center mt-7">
               <KelasDashBoardIcon className="w-12 h-12 inline-block ml-3" />
               <h3 className="inline-block font-avenirBlack text-5xl mr-3">
-                65
+                {dashboard.total_class}
               </h3>
             </div>
           </div>
@@ -68,7 +73,7 @@ const MainMenu = () => {
             <div className="flex justify-between items-center mt-7">
               <TotalDashBoardIcon className="w-12 h-12 inline-block ml-3" />
               <h3 className="inline-block font-avenirBlack text-5xl mr-3">
-                Rp 759.000
+                Rp {dashboard.total_income}
               </h3>
             </div>
           </div>
