@@ -42,62 +42,54 @@ const Kelas = () => {
     });
 
     return searchFilter.map((item, index) => {
-      return (
-        <KelasList
-          id={item.id}
-          gymClass={item.name}
-          classType={item.type}
-          classCategory={item.category.name}
-          price={item.price}
-          description={item.description}
-          total_meeting={item.total_meeting}
-          trainer={item.trainer.name}
-          index={index}
-        />
-      );
+      return <KelasList key={item.id} item={item} index={index} />;
     });
   };
 
   const handleDelete = () => {
-    if (edit.length < 1) return Swal.fire("Nothing Selected", "Pilih data yang ingin dihapus!", "warning");
+    if (edit.length < 1)
+      return Swal.fire(
+        "Nothing Selected",
+        "Pilih data yang ingin dihapus!",
+        "warning"
+      );
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger",
       },
-    })
-    
-    swalWithBootstrapButtons.fire({
-      title: 'Are You Sure?',
-      text: "Data yang terhapus tidak dapat dikembalikan",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Delete',
-      cancelButtonText: 'Cancel',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        swalWithBootstrapButtons.fire(
-          'Deleted',
-          'Data yang dipilih telah terhapus!',
-          'success'
-        )
-        dispatch(deleteData({ url: "/classes", type: "many" }));
+    });
 
-        setTimeout(() => {
-          dispatch(fetchDatas({ url: "/classes", state: "classes" }));
-        }, 1000);
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are You Sure?",
+        text: "Data yang terhapus tidak dapat dikembalikan",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Delete",
+        cancelButtonText: "Cancel",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            "Deleted",
+            "Data yang dipilih telah terhapus!",
+            "success"
+          );
+          dispatch(deleteData({ url: "/classes", type: "many" }));
 
-      } else if (
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        swalWithBootstrapButtons.fire(
-          'Cancelled',
-          'Penghapusan data dibatalkan',
-          'error'
-        )
-      }
-    })
+          setTimeout(() => {
+            dispatch(fetchDatas({ url: "/classes", state: "classes" }));
+          }, 1000);
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          swalWithBootstrapButtons.fire(
+            "Cancelled",
+            "Penghapusan data dibatalkan",
+            "error"
+          );
+        }
+      });
   };
 
   return (
