@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchDatas,
@@ -25,6 +25,8 @@ const Booking = () => {
   const searchField = useSelector((state) => state.gym.searchField);
   const edit = useSelector((state) => state.gym.edit);
 
+  const [selectedDropdown, setSelectedDropdown] = useState("semua");
+
   useEffect(() => {
     dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
 
@@ -37,63 +39,70 @@ const Booking = () => {
 
   const RenderedSearch = () => {
     const searchFilter = data.filter((data) => {
-      return data.id.toLowerCase().includes(searchField);
+      return (
+        data.id.toLowerCase().includes(searchField) ||
+        data.user.name.toLowerCase().includes(searchField)
+      );
     });
+    const dropdownFilter = searchFilter.filter(
+      (data) => data.status === selectedDropdown
+    );
+    if (
+      selectedDropdown === "berhasil" ||
+      selectedDropdown === "tertunda" ||
+      selectedDropdown === "gagal"
+    ) {
+      return dropdownFilter.map((item, index) => {
+        return <BookingList key={item.id} item={item} index={index} />;
+      });
+    }
 
     return searchFilter.map((item, index) => {
-      return (
-        <BookingList
-          key={item.id}
-          id={item.id}
-          userId={item.user_id}
-          classId={item.class_id}
-          date={item.updated_at}
-          amount={item.amount}
-          method={item.payment_method_id}
-          status={item.status}
-          index={index}
-        />
-      );
+      return <BookingList key={item.id} item={item} index={index} />;
     });
   };
 
   const handleDelete = () => {
-    if (edit.length < 1) return Swal.fire("Nothing Selected", "Pilih data yang ingin dihapus!", "warning");
+    if (edit.length < 1)
+      return Swal.fire(
+        "Nothing Selected",
+        "Pilih data yang ingin dihapus!",
+        "warning"
+      );
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger",
       },
-    })
-    
-    swalWithBootstrapButtons.fire({
-      title: 'Are You Sure?',
-      text: "Data yang terhapus tidak dapat dikembalikan",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Delete',
-      cancelButtonText: 'Cancel',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        swalWithBootstrapButtons.fire(
-          'Deleted',
-          'Data yang dipilih telah terhapus!',
-          'success'
-        )
-        dispatch(deleteData({ url: "/transactions", type: "many" }));
-        dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
+    });
 
-      } else if (
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        swalWithBootstrapButtons.fire(
-          'Cancelled',
-          'Penghapusan data dibatalkan',
-          'error'
-        )
-      }
-    })
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are You Sure?",
+        text: "Data yang terhapus tidak dapat dikembalikan",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Delete",
+        cancelButtonText: "Cancel",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            "Deleted",
+            "Data yang dipilih telah terhapus!",
+            "success"
+          );
+          dispatch(deleteData({ url: "/transactions", type: "many" }));
+          dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          swalWithBootstrapButtons.fire(
+            "Cancelled",
+            "Penghapusan data dibatalkan",
+            "error"
+          );
+        }
+      });
   };
 
   return (
@@ -116,6 +125,7 @@ const Booking = () => {
               id="type_kelas"
               type="text"
               className="w-[224px] h-10 border-2 text-primary-500 font-avenirHeavy border-primary-500 rounded-lg py-[7px] pl-4"
+              onChange={(e) => setSelectedDropdown(e.target.value)}
             >
               <option value="">SEMUA</option>
               <option value="berhasil">BERHASIL</option>

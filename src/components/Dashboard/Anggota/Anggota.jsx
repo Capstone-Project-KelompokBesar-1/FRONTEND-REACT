@@ -43,6 +43,7 @@ const Anggota = () => {
     return searchFilter.map((item, index) => {
       return (
         <AnggotaList
+          key={item.id}
           id={item.id}
           name={item.name}
           phone={item.phone}
@@ -57,42 +58,46 @@ const Anggota = () => {
   };
 
   const handleDelete = () => {
-    if (edit.length < 1) return Swal.fire("Nothing Selected", "Pilih data yang ingin dihapus!", "warning");
+    if (edit.length < 1)
+      return Swal.fire(
+        "Nothing Selected",
+        "Pilih data yang ingin dihapus!",
+        "warning"
+      );
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger",
       },
-    })
-    
-    swalWithBootstrapButtons.fire({
-      title: 'Are You Sure?',
-      text: "Data yang terhapus tidak dapat dikembalikan",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Delete',
-      cancelButtonText: 'Cancel',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        swalWithBootstrapButtons.fire(
-          'Deleted',
-          'Data yang dipilih telah terhapus!',
-          'success'
-        )
-        dispatch(deleteData({ url: "/users", type: "many" }));
-        dispatch(fetchDatas({ url: "/users", state: "users" }));
+    });
 
-      } else if (
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        swalWithBootstrapButtons.fire(
-          'Cancelled',
-          'Penghapusan data dibatalkan',
-          'error'
-        )
-      }
-    })
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are You Sure?",
+        text: "Data yang terhapus tidak dapat dikembalikan",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Delete",
+        cancelButtonText: "Cancel",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            "Deleted",
+            "Data yang dipilih telah terhapus!",
+            "success"
+          );
+          dispatch(deleteData({ url: "/users", type: "many" }));
+          dispatch(fetchDatas({ url: "/users", state: "users" }));
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          swalWithBootstrapButtons.fire(
+            "Cancelled",
+            "Penghapusan data dibatalkan",
+            "error"
+          );
+        }
+      });
   };
 
   return (

@@ -12,17 +12,14 @@ const EditBooking = () => {
   const state = useSelector((state) => state.gym.edit);
   const classes = useSelector((state) => state.gym.classes);
   const users = useSelector((state) => state.gym.users);
-  const transactions = useSelector((state) => state.gym.transactions);
 
-  const transaction = transactions.find(
-    (transaction) => transaction.id === state.id
-  );
+  console.log(state);
 
   const baseData = {
-    user_id: transaction.user.name,
-    class_id: state.classId,
+    user_id: state.user.name,
+    class_id: state.class_id,
     amount: state.amount,
-    payment_method_id: state.method,
+    payment_method_id: state.payment_method_id,
     status: state.status,
   };
   // console.log("BASE DATA", baseData);
@@ -61,7 +58,11 @@ const EditBooking = () => {
       !data.payment_method_id ||
       !data.status
     ) {
-      return Swal.fire("Incomplete", "Lengkapi seluruh data terlebih dahulu sebelum melakukan submit!", "warning");
+      return Swal.fire(
+        "Incomplete",
+        "Lengkapi seluruh data terlebih dahulu sebelum melakukan submit!",
+        "warning"
+      );
     } else {
       const user = users.find(
         (user) => user.name.toLowerCase() === data.user_id.toLowerCase()
@@ -136,7 +137,7 @@ const EditBooking = () => {
                 name="date"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2 text-gray-500"
               >
-                {state.date}
+                {state.updated_at}
               </p>
               <input
                 id="user_id"
@@ -159,7 +160,7 @@ const EditBooking = () => {
                 type="number"
                 name="payment_method_id"
                 className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
-                value={data.method}
+                value={data.payment_method_id}
                 onChange={handleNumberEdit}
               >
                 <option value="">-- Pilih Metode Pembayaran --</option>

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchDatas,
@@ -25,6 +25,13 @@ const Kelas = () => {
   const searchField = useSelector((state) => state.gym.searchField);
   const edit = useSelector((state) => state.gym.edit);
 
+  const [selectedButton, setSelectedButton] = useState("semua");
+
+  const isSelected = (button) =>
+    selectedButton === button
+      ? "border-primary-500 text-white bg-primary-500"
+      : "border-primary-500 text-primary-500 bg-white";
+
   useEffect(() => {
     dispatch(fetchDatas({ url: "/classes", state: "classes" }));
     dispatch(fetchDatas({ url: "/categories", state: "categories" }));
@@ -41,63 +48,69 @@ const Kelas = () => {
       return data.name.toLowerCase().includes(searchField);
     });
 
+    const buttonFilter = searchFilter.filter((data) => {
+      if (selectedButton === "offline") {
+        return data.type === "offline";
+      } else if (selectedButton === "online") {
+        return data.type === "online";
+      } else return data;
+    });
+
+    if (selectedButton === "offline" || selectedButton === "online") {
+      return buttonFilter.map((item, index) => {
+        return <KelasList key={item.id} item={item} index={index} />;
+      });
+    }
+
     return searchFilter.map((item, index) => {
-      return (
-        <KelasList
-          id={item.id}
-          gymClass={item.name}
-          classType={item.type}
-          classCategory={item.category.name}
-          price={item.price}
-          description={item.description}
-          total_meeting={item.total_meeting}
-          trainer={item.trainer.name}
-          index={index}
-        />
-      );
+      return <KelasList key={item.id} item={item} index={index} />;
     });
   };
 
   const handleDelete = () => {
-    if (edit.length < 1) return Swal.fire("Nothing Selected", "Pilih data yang ingin dihapus!", "warning");
+    if (edit.length < 1)
+      return Swal.fire(
+        "Nothing Selected",
+        "Pilih data yang ingin dihapus!",
+        "warning"
+      );
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger",
       },
-    })
-    
-    swalWithBootstrapButtons.fire({
-      title: 'Are You Sure?',
-      text: "Data yang terhapus tidak dapat dikembalikan",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Delete',
-      cancelButtonText: 'Cancel',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        swalWithBootstrapButtons.fire(
-          'Deleted',
-          'Data yang dipilih telah terhapus!',
-          'success'
-        )
-        dispatch(deleteData({ url: "/classes", type: "many" }));
+    });
 
-        setTimeout(() => {
-          dispatch(fetchDatas({ url: "/classes", state: "classes" }));
-        }, 1000);
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are You Sure?",
+        text: "Data yang terhapus tidak dapat dikembalikan",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Delete",
+        cancelButtonText: "Cancel",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            "Deleted",
+            "Data yang dipilih telah terhapus!",
+            "success"
+          );
+          dispatch(deleteData({ url: "/classes", type: "many" }));
 
-      } else if (
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        swalWithBootstrapButtons.fire(
-          'Cancelled',
-          'Penghapusan data dibatalkan',
-          'error'
-        )
-      }
-    })
+          setTimeout(() => {
+            dispatch(fetchDatas({ url: "/classes", state: "classes" }));
+          }, 1000);
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          swalWithBootstrapButtons.fire(
+            "Cancelled",
+            "Penghapusan data dibatalkan",
+            "error"
+          );
+        }
+      });
   };
 
   return (
@@ -115,13 +128,28 @@ const Kelas = () => {
         </div>
         <div className="flex justify-between">
           <div className="flex flex-row items-end pb-6">
-            <button className="text-sm w-[86px] h-[40px] rounded-[40px] flex justify-center items-center border-2 border-primary-500 text-white bg-primary-500 mr-4">
+            <button
+              className={`text-sm w-[86px] h-[40px] rounded-[40px] flex justify-center items-center border-2 ${isSelected(
+                "semua"
+              )} mr-4`}
+              onClick={() => setSelectedButton("semua")}
+            >
               Semua
             </button>
-            <button className="text-sm w-[110px] h-[40px] rounded-[40px] flex justify-center items-center border-2 border-primary-500 text-primary-500 bg-white mr-4">
+            <button
+              className={`text-sm w-[110px] h-[40px] rounded-[40px] flex justify-center items-center border-2 ${isSelected(
+                "online"
+              )} mr-4`}
+              onClick={() => setSelectedButton("online")}
+            >
               Kelas Online
             </button>
-            <button className="text-sm w-[110px] h-[40px] rounded-[40px] flex justify-center items-center border-2 border-primary-500 text-primary-500 bg-white">
+            <button
+              className={`text-sm w-[110px] h-[40px] rounded-[40px] flex justify-center items-center border-2 ${isSelected(
+                "offline"
+              )}`}
+              onClick={() => setSelectedButton("offline")}
+            >
               Kelas Offline
             </button>
           </div>
