@@ -13,8 +13,6 @@ const Login = () => {
     const formData = new FormData(e.target);
     const email = formData.get("email");
     const password = formData.get("password");
-    console.log(email);
-    console.log(password);
     await APIAuth.signin({
       email,
       password,
@@ -27,7 +25,7 @@ const Login = () => {
         }, 1500);
       })
       .catch((error) => {
-        console.log("error", error);
+        console.log(error);
         Swal.fire("Login Gagal", "Email atau Password mungkin salah", "error");
       });
   };

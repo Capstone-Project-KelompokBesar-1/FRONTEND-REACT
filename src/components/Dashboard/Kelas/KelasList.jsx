@@ -6,6 +6,7 @@ import { useState } from "react";
 import { EditIcon, DeleteIcon } from "../../../assets/icons";
 import { BiCheckboxSquare, BiCheckbox } from "react-icons/bi";
 import Swal from "sweetalert2";
+import { NumericFormat } from "react-number-format";
 
 const KelasList = ({ item }) => {
   const dispatch = useDispatch();
@@ -72,7 +73,7 @@ const KelasList = ({ item }) => {
         <td className="py-4 px-6 capitalize">{item.name}</td>
         <td className="py-4 px-6 capitalize">{item.type}</td>
         <td className="py-4 px-6 capitalize">{item.category.name}</td>
-        <td className="py-4 px-6">{item.price}</td>
+        <td className="py-4 px-6"><NumericFormat value={item.price} displayType={'number'} thousandSeparator={true} prefix={'Rp.'}/></td>
         <td className="py-4 px-6 text-center">
           <Link
             to="/kelas/edit"

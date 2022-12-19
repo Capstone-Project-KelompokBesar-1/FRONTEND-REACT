@@ -18,9 +18,7 @@ const CreateBooking = () => {
     class_id: "",
     amount: "",
     payment_method_id: "",
-    // status: "",
   };
-  // console.log("BASE DATA", baseData);
   const [data, setData] = useState(baseData);
 
   useEffect(() => {
@@ -57,7 +55,6 @@ const CreateBooking = () => {
       );
       if (user) {
         try {
-          console.log("icikiwir");
           // add content-type json & charset=UTF-8 to header
           await APIClient.post(`/transactions`, { ...data, user_id: user.id });
           Swal.fire("Submitted", "Data transaksi baru berhasil dibuat!", "success");
@@ -69,7 +66,6 @@ const CreateBooking = () => {
       } else return Swal.fire("Failed", "User tidak dapat ditemukan!", "error");
     }
   };
-  // console.log(data);
 
   return (
     <form className="ml-[292px] pt-[124px] mr-9" onSubmit={handleSubmit}>
@@ -86,14 +82,8 @@ const CreateBooking = () => {
           {/* Label, Input, & img */}
           <div className="main flex">
             <div>
-              {/* <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
-                <label htmlFor="id">ID Pembayaran</label>
-              </div>
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
-                <label htmlFor="time">Waktu Pembelian</label>
-              </div> */}
-              <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
-                <label htmlFor="name">ID Anggota</label>
+                <label htmlFor="name">Nama Anggota</label>
               </div>
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="price">Total Bayar</label>
@@ -101,28 +91,9 @@ const CreateBooking = () => {
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="payment_method_id">Metode Pembayaran</label>
               </div>
-              {/* <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
-                <label htmlFor="status">Status Pembayaran</label>
-              </div> */}
             </div>
 
             <div className="flex flex-col">
-              {/* <p
-                id="id"
-                type="text"
-                name="bookingId"
-                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2 text-gray-500"
-              >
-                {state.bookingId}
-              </p>
-              <p
-                id="time"
-                type="text"
-                name="date"
-                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2 text-gray-500"
-              >
-                {state.date}
-              </p> */}
               <input
                 id="name"
                 type="text"
@@ -154,19 +125,6 @@ const CreateBooking = () => {
                 <option value={4}>MANDIRI</option>
                 <option value={5}>BCA</option>
               </select>
-              {/* <select
-                id="status"
-                type="text"
-                name="status"
-                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
-                value={data.status}
-                onChange={handleEdit}
-              >
-                <option value="">-- Pilih Status Pembayaran --</option>
-                <option value="settlement">BERHASIL</option>
-                <option value="failure">GAGAL</option>
-                <option value="pending">TERTUNDA</option>
-              </select> */}
             </div>
           </div>
           <div className="flex w-full h-12 justify-start pl-[118px] items-center font-avenirBlack mb-2 bg-primary-100">
@@ -174,28 +132,11 @@ const CreateBooking = () => {
           </div>
           <div className="flex flex-row">
             <div>
-              {/* <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
-                <label htmlFor="type_kelas">Jenis Kelas</label>
-              </div> */}
               <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
                 <label htmlFor="name_kelas">Nama Kelas</label>
               </div>
-              {/* <div className="flex w-52 h-12 justify-end items-center font-avenirHeavy mb-2">
-                <label htmlFor="price_kelas">Harga Kelas</label>
-              </div> */}
             </div>
             <div>
-              {/* <select
-                id="type_kelas"
-                type="text"
-                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
-                value={data.class.type}
-                onChange={handleEdit}
-              >
-                <option value="">-- Pilih Jenis Kelas --</option>
-                <option value={"online"}>Online</option>
-                <option value={"offline"}>Offline</option>
-              </select> */}
               <select
                 id="name_kelas"
                 type="number"
@@ -211,13 +152,6 @@ const CreateBooking = () => {
                   </option>
                 ))}
               </select>
-              {/* <input
-                id="price_kelas"
-                type="number"
-                className="w-[865px] h-12 ml-12 mb-2 border rounded-lg p-2"
-                value={data.amount}
-                onChange={handleNumberEdit}
-              /> */}
             </div>
           </div>
 

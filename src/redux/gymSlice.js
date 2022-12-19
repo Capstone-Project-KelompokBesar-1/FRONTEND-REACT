@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import APIClient from "../apis/APIClient";
 
 const initialState = {
+  dashboard: [],
   transactions: [],
   trainers: [],
   users: [],
@@ -18,7 +19,6 @@ export const fetchDatas = ({ url, state }) => {
       const { data } = await APIClient.get(url);
 
       dispatch(getData({ ...data, state }));
-      //   console.log(data, state);
     } catch (error) {
       console.log(error);
     }
@@ -42,7 +42,6 @@ export const gymSlice = createSlice({
     },
 
     deleteData: (state, action) => {
-      console.log(action.payload);
       if (action.payload.type === "many") {
         try {
           APIClient.delete(`${action.payload.url}`, {

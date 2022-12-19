@@ -19,7 +19,7 @@ const Sidebar = ({ active }) => {
         <div className="menu-container flex flex-col justify-center p-5">
           <Link
             to="/dashboard"
-            className={`w-52 h-11 flex justify-start items-center rounded-lg mb-8 ${
+            className={`w-52 h-11 flex justify-start items-center rounded-lg mb-8 hover:border-primary-500 hover:border-2 ${
               active === "dashboard" ? "bg-primary-500" : ""
             }`}
           >
@@ -28,7 +28,7 @@ const Sidebar = ({ active }) => {
           </Link>
           <Link
             to="/pelatih"
-            className={`w-52 h-11 flex justify-start items-center rounded-lg mb-8 ${
+            className={`w-52 h-11 flex justify-start items-center rounded-lg mb-8 hover:border-primary-500 hover:border-2 ${
               active === "pelatih" ? "bg-primary-500" : ""
             }`}
           >
@@ -38,7 +38,7 @@ const Sidebar = ({ active }) => {
           <div onClick={() => dispatch(setEdit([]))}>
             <Link
               to="/anggota"
-              className={`w-52 h-11 flex justify-start items-center rounded-lg mb-8 ${
+              className={`w-52 h-11 flex justify-start items-center rounded-lg mb-8 hover:border-primary-500 hover:border-2 ${
                 active === "anggota" ? "bg-primary-500" : ""
               }`}
             >
@@ -50,7 +50,7 @@ const Sidebar = ({ active }) => {
           <div onClick={() => dispatch(setEdit([]))}>
             <Link
               to="/kelas"
-              className={`w-52 h-11 flex justify-start items-center rounded-lg mb-8 ${
+              className={`w-52 h-11 flex justify-start items-center rounded-lg mb-8 hover:border-primary-500 hover:border-2 ${
                 active === "kelas" ? "bg-primary-500" : ""
               }`}
             >
@@ -62,7 +62,7 @@ const Sidebar = ({ active }) => {
           <div onClick={() => dispatch(setEdit([]))}>
             <Link
               to="/booking"
-              className={`w-52 h-11 flex justify-start items-center rounded-lg mb-8 ${
+              className={`w-52 h-11 flex justify-start items-center rounded-lg mb-8 hover:border-primary-500 hover:border-2 ${
                 active === "booking" ? "bg-primary-500" : ""
               }`}
             >

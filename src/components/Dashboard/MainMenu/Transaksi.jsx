@@ -1,3 +1,5 @@
+import { NumericFormat } from "react-number-format";
+
 const Transaksi = ({ gymClass, classType, date, userName, status, price }) => {
   const statusCheck = () => {
     if (status === "tertunda") {
@@ -19,7 +21,7 @@ const Transaksi = ({ gymClass, classType, date, userName, status, price }) => {
         <td className={`py-4 px-6 font-avenirBlack ${statusCheck()} uppercase`}>
           {status}
         </td>
-        <td className="py-4 px-6">Rp. {price}</td>
+        <td className="py-4 px-6"><NumericFormat value={price} displayType={'number'} thousandSeparator={true} prefix={'Rp.'}/></td>
       </tr>
     </tbody>
   );

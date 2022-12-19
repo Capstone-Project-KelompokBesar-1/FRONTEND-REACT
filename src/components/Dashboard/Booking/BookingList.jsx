@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { BiCheckbox, BiCheckboxSquare } from "react-icons/bi";
 import { EditIcon, DeleteIcon } from "../../../assets/icons";
 import Swal from "sweetalert2";
+import { NumericFormat } from "react-number-format";
 
 const BookingList = ({ item }) => {
   const statusCheck = () => {
@@ -89,7 +90,7 @@ const BookingList = ({ item }) => {
           {item.updated_at.toString().substring(0, 10)} <br />{" "}
           {item.updated_at.match(/\d\d:\d\d/)} WIB
         </td>
-        <td className="py-4 px-6">Rp{item.amount}</td>
+        <td className="py-4 px-6"><NumericFormat value={item.amount} displayType={'number'} thousandSeparator={true} prefix={'Rp.'}/></td>
         <td className="py-4 px-6 uppercase">{item.payment_method.name}</td>
         <td className={`py-4 px-6 font-avenirBlack ${statusCheck()} uppercase`}>
           {item.status}
