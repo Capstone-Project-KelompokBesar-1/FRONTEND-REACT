@@ -10,7 +10,7 @@ import { ReactComponent as GooglePlay } from "./google-play.svg";
 import { ReactComponent as LocationIcon } from "./location.svg";
 import { ReactComponent as LogoutIcon } from "./logout.svg";
 import { ReactComponent as MenuAdminIcon } from "./menu-admin.svg";
-import { ReactComponent as MenuAnggotaIcon } from "./menu-anggota.svg";
+import { ReactComponent as MenuAnggotaIcon } from "./menu-member.svg";
 import { ReactComponent as MenuArticleIcon } from "./menu-artikel.svg";
 import { ReactComponent as MenuDashboardIcon } from "./menu-dashboard.svg";
 import { ReactComponent as MenuKelasIcon } from "./menu-kelas.svg";

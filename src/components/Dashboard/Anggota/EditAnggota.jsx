@@ -5,6 +5,7 @@ import { fetchDatas, setEdit } from "../../../redux/gymSlice";
 import { Link, useNavigate } from "react-router-dom";
 import APIClient from "../../../apis/APIClient";
 import Swal from "sweetalert2";
+import moment from "moment";
 
 const EditAnggota = () => {
   const dispatch = useDispatch();
@@ -62,7 +63,7 @@ const EditAnggota = () => {
         </h1>
         <div className="flex justify-between mb-6">
           <p>Anggota &gt; Ubah Data</p>
-          <p>Rabu, 30 November 2022</p>
+          <p>{moment().format("dddd[,] D MMMM YYYY")}</p>
         </div>
 
         <div className="border rounded-2xl px-4 py-6">

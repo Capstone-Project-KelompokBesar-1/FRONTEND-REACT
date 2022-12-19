@@ -17,6 +17,7 @@ import { BiCheckbox } from "react-icons/bi";
 import KelasList from "./KelasList";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import moment from "moment";
 
 const Kelas = () => {
   const dispatch = useDispatch();
@@ -110,7 +111,7 @@ const Kelas = () => {
 
           <i className="mt-[71px]">
             <CalenderIcon className="w-4 h-4 inline mr-1" />
-            <p className="inline not-italic">Rabu, 30 November 2022</p>
+            <p className="inline not-italic">{moment().format("dddd[,] D MMMM YYYY")}</p>
           </i>
         </div>
         <div className="flex justify-between">
