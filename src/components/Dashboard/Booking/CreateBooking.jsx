@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import APIClient from "../../../apis/APIClient";
 import { fetchDatas } from "../../../redux/gymSlice";
 
@@ -50,7 +51,7 @@ const CreateBooking = () => {
       // ||
       // !data.status
     ) {
-      return alert("Data tidak boleh kosong");
+      return Swal.fire("Incomplete", "Lengkapi seluruh data terlebih dahulu sebelum melakukan submit!", "warning");
     } else {
       const user = users.find(
         (user) => user.name.toLowerCase() === data.user_id.toLowerCase()
@@ -60,12 +61,13 @@ const CreateBooking = () => {
           console.log("icikiwir");
           // add content-type json & charset=UTF-8 to header
           await APIClient.post(`/transactions`, { ...data, user_id: user.id });
+          Swal.fire("Submitted", "Data transaksi baru berhasil dibuat!", "success");
           dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
           navigate("/booking");
         } catch (error) {
           console.log(error);
         }
-      } else return alert("User tidak ditemukan");
+      } else return Swal.fire("Failed", "User tidak dapat ditemukan!", "error");
     }
   };
   // console.log(data);

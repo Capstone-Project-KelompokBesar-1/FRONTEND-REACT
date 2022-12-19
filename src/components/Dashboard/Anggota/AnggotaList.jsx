@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import { EditIcon, DeleteIcon } from "../../../assets/icons";
 import { BiCheckbox, BiCheckboxSquare } from "react-icons/bi";
+import Swal from "sweetalert2";
 
 const AnggotaList = ({
   id,
@@ -29,13 +30,45 @@ const AnggotaList = ({
   };
 
   const handleDelete = () => {
-    dispatch(setEdit([]));
-    // ntar tambahin swal trs kl Yes pake kode bawah ini
-    dispatch(deleteData({ url: "/users", type: "one", id }));
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: 'Are You Sure?',
+      text: "Data yang terhapus tidak dapat dikembalikan",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'Cancel',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+          'Deleted',
+          'Data yang dipilih telah terhapus!',
+          'success'
+        )
+        dispatch(setEdit([]));
+        dispatch(deleteData({ url: "/users", type: "one", id }));
+    
+        setTimeout(() => {
+          dispatch(fetchDatas({ url: "/users", state: "users" }));
+        }, 1000);
 
-    setTimeout(() => {
-      dispatch(fetchDatas({ url: "/users", state: "users" }));
-    }, 1000);
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'Penghapusan data dibatalkan',
+          'error'
+        )
+      }
+    })
   };
 
   return (

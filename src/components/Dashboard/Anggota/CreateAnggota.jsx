@@ -4,6 +4,7 @@ import { fetchDatas } from "../../../redux/gymSlice";
 
 import { Link, useNavigate } from "react-router-dom";
 import APIClient from "../../../apis/APIClient";
+import Swal from "sweetalert2";
 
 const CreateAnggota = () => {
   const dispatch = useDispatch();
@@ -35,14 +36,14 @@ const CreateAnggota = () => {
   };
 
   const handleSubmit = async (e) => {
-    if (!data.name || !data.email || !data.phone || !data.birth_date) {
-      alert("Data tidak boleh kosong");
+    e.preventDefault();
+    if (!data.name || !data.email || !data.phone || !data.birth_date || !data.gender || !data.address) {
+      return Swal.fire("Incomplete", "Lengkapi seluruh data terlebih dahulu sebelum melakukan submit!", "warning");
     } else {
       try {
-        e.preventDefault();
         // add content-type json & charset=UTF-8 to header
         await APIClient.post(`/users`, data);
-
+        Swal.fire("Submitted", "Data anggota baru berhasil dibuat!", "success");
         dispatch(fetchDatas({ url: "/users", state: "users" }));
         navigate("/anggota");
       } catch (error) {

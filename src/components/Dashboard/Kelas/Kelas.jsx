@@ -16,6 +16,7 @@ import { BiCheckbox } from "react-icons/bi";
 
 import KelasList from "./KelasList";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Kelas = () => {
   const dispatch = useDispatch();
@@ -58,12 +59,45 @@ const Kelas = () => {
   };
 
   const handleDelete = () => {
-    if (edit.length < 1) return alert("Pilih data yang akan dihapus");
-    dispatch(deleteData({ url: "/classes", type: "many" }));
+    if (edit.length < 1) return Swal.fire("Nothing Selected", "Pilih data yang ingin dihapus!", "warning");
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: 'Are You Sure?',
+      text: "Data yang terhapus tidak dapat dikembalikan",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'Cancel',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+          'Deleted',
+          'Data yang dipilih telah terhapus!',
+          'success'
+        )
+        dispatch(deleteData({ url: "/classes", type: "many" }));
 
-    setTimeout(() => {
-      dispatch(fetchDatas({ url: "/classes", state: "classes" }));
-    }, 1000);
+        setTimeout(() => {
+          dispatch(fetchDatas({ url: "/classes", state: "classes" }));
+        }, 1000);
+
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'Penghapusan data dibatalkan',
+          'error'
+        )
+      }
+    })
   };
 
   return (
