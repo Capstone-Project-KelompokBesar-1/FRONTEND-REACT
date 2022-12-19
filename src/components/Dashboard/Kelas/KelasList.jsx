@@ -14,7 +14,7 @@ const KelasList = ({ item }) => {
 
   const checkItem = () => {
     if (edit.includes(item.id)) {
-      dispatch(setEdit(edit.filter((item) => item !== item.id)));
+      dispatch(setEdit(edit.filter((id) => id !== item.id)));
     } else {
       dispatch(setEdit([...edit, item.id]));
     }
