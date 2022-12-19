@@ -29,6 +29,12 @@ const CreateBooking = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleEdit = (e) => {
+    setData((data) => {
+      return { ...data, [e.target.name]: e.target.value };
+    });
+  };
+
   const handleNumberEdit = (e) => {
     setData((data) => {
       return { ...data, [e.target.name]: parseInt(e.target.value) };
@@ -42,8 +48,6 @@ const CreateBooking = () => {
       !data.class_id ||
       !data.amount ||
       !data.payment_method_id
-      // ||
-      // !data.status
     ) {
       return Swal.fire("Incomplete", "Lengkapi seluruh data terlebih dahulu sebelum melakukan submit!", "warning");
     } else {
