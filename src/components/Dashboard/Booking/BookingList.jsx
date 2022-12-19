@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 
 import { BiCheckbox, BiCheckboxSquare } from "react-icons/bi";
 import { EditIcon, DeleteIcon } from "../../../assets/icons";
+import Swal from "sweetalert2";
 
 const BookingList = ({ id, classId, userId, date, amount, method, status }) => {
-  // console.log(typeof id);
   const statusCheck = () => {
     if (status === "tertunda") {
       return "text-warning";
@@ -32,8 +32,6 @@ const BookingList = ({ id, classId, userId, date, amount, method, status }) => {
     }
   };
 
-  // Kode Paujul //
-
   const dispatch = useDispatch();
   const edit = useSelector((state) => state.gym.edit);
   const [checked, setChecked] = useState(false);
@@ -48,16 +46,46 @@ const BookingList = ({ id, classId, userId, date, amount, method, status }) => {
   };
 
   const handleDelete = () => {
-    dispatch(setEdit([]));
-    // ntar tambahin swal trs kl Yes pake kode bawah ini
-    dispatch(deleteData({ url: "/transactions", type: "one", id: id }));
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: 'Are You Sure?',
+      text: "Data yang terhapus tidak dapat dikembalikan",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'Cancel',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+          'Deleted',
+          'Data yang dipilih telah terhapus!',
+          'success'
+        )
+        dispatch(setEdit([]));
+        dispatch(deleteData({ url: "/transactions", type: "one", id: id }));
+    
+        setTimeout(() => {
+          dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
+        }, 1000);
 
-    setTimeout(() => {
-      dispatch(fetchDatas({ url: "/transactions", state: "transactions" }));
-    }, 1000);
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'Penghapusan data dibatalkan',
+          'error'
+        )
+      }
+    })
   };
-
-  // Kode Paujul end //
 
   return (
     <tbody className="font-avenirHeavy text-web-dark border-t">
