@@ -44,21 +44,15 @@ const Booking = () => {
         data.user.name.toLowerCase().includes(searchField)
       );
     });
-
-    const success = searchFilter.filter((data) => data.status === "berhasil");
-    const pending = searchFilter.filter((data) => data.status === "tertunda");
-    const failed = searchFilter.filter((data) => data.status === "gagal");
-
-    if (selectedDropdown === "success") {
-      return success.map((item, index) => {
-        return <BookingList key={item.id} item={item} index={index} />;
-      });
-    } else if (selectedDropdown === "failed") {
-      return failed.map((item, index) => {
-        return <BookingList key={item.id} item={item} index={index} />;
-      });
-    } else if (selectedDropdown === "pending") {
-      return pending.map((item, index) => {
+    const dropdownFilter = searchFilter.filter(
+      (data) => data.status === selectedDropdown
+    );
+    if (
+      selectedDropdown === "berhasil" ||
+      selectedDropdown === "tertunda" ||
+      selectedDropdown === "gagal"
+    ) {
+      return dropdownFilter.map((item, index) => {
         return <BookingList key={item.id} item={item} index={index} />;
       });
     }
@@ -134,9 +128,9 @@ const Booking = () => {
               onChange={(e) => setSelectedDropdown(e.target.value)}
             >
               <option value="">SEMUA</option>
-              <option value="success">BERHASIL</option>
-              <option value="failed">GAGAL</option>
-              <option value="pending">TERTUNDA</option>
+              <option value="berhasil">BERHASIL</option>
+              <option value="gagal">GAGAL</option>
+              <option value="tertunda">TERTUNDA</option>
             </select>
           </div>
           <div>
